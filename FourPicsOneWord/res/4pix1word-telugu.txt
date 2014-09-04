@@ -1,0 +1,17 @@
+﻿WORD: ఇంద్రధనుస్సు
+Cat,http://a-z-animals.com/media/animals/images/470x370/cat1.jpg
+Dog, http://a-z-animals.com/media/animals/images/470x370/dog5.jpg
+Goat,http://a-z-animals.com/media/animals/images/470x370/goat.jpg
+Horse, http://a-z-animals.com/media/animals/images/470x370/horse8.jpg
+--------------------------------------------------------------------------------
+WORD: ప్రోగ్రామింగ్
+Cat,http://a-z-animals.com/media/animals/images/470x370/cat1.jpg
+Dog, http://a-z-animals.com/media/animals/images/470x370/dog5.jpg
+Goat,http://a-z-animals.com/media/animals/images/470x370/goat.jpg
+Horse, http://a-z-animals.com/media/animals/images/470x370/horse8.jpg
+---------------------------------------------------------------------------------
+WORD: ఆనందమకరందము
+Cat,http://a-z-animals.com/media/animals/images/470x370/cat1.jpg
+Dog, http://a-z-animals.com/media/animals/images/470x370/dog5.jpg
+Goat,http://a-z-animals.com/media/animals/images/470x370/goat.jpg
+Horse, http://a-z-animals.com/media/animals/images/470x370/horse8.jpg

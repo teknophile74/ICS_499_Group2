@@ -1,0 +1,27 @@
+vowel a  0061
+vowel e  0065
+vowel i  0069
+vowel o  006F
+vowel u  0075
+
+consonant b  0062
+consonant c  0063
+consonant d  0064
+consonant f  0066
+consonant g  0067
+consonant h  0068
+consonant j  006A
+consonant k  006B
+consonant l  006C
+consonant m  006D
+consonant n  006E
+consonant p  0070
+consonant q  0071
+consonant r  0072
+consonant s  0073
+consonant t  0074
+consonant v  0076
+consonant w  0077
+consonant x  0078
+consonant y  0079
+consonant z  007A
