@@ -1,0 +1,16 @@
+﻿1. wordId	|	2.english	|	3.lang	|	4.english_in_lang	|	5.theme	|	6.image	|	7.english_sound	|	8.indic_sound					
+181	|	ant	|	చీమ	|		|	Animals	|	http://www.prontopest.com/wp-content/uploads/2012/06/fireant.jpg	|		|						
+182	|	ape	|	తోక లేని కోతి	|		|	Animals	|	http://www.babelsdawn.com/.a/6a00d83452aeca69e201157014af1a970b-800wi	|		|						
+183	|	armadillo	|	నఖ మృగము	|		|	Animals	|	http://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Nine-banded_Armadillo.jpg/800px-Nine-banded_Armadillo.jpg	|		|						
+184	|	baboon	|	గండు కోతి	|		|	Animals	|	http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/399px-Papio_anubis_%28Serengeti%2C_2009%29.jpg	|		|						
+185	|	badger	|	చిన్న ఎలుగు 	|		|	Animals	|	http://www.universityobserver.ie/wp-content/uploads/2012/10/badger.jpeg	|		|						
+186	|	badicoot	|	పందికొక్కు 	|		|	Animals	|	http://cf067b.medialib.glogster.com/media/05/0592549526ecae6439648baec5df4da3b0aa2ab3bd3e04283460a6334a6a286a/quenda-southern-brown-bandicoot.gif	|		|						
+187	|	bat	|	గబ్బిలము 	|		|	Animals	|	http://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Big-eared-townsend-fledermaus.jpg/240px-Big-eared-townsend-fledermaus.jpg	|		|						
+188	|	bear	|	ఎలుగుబంటి 	|		|	Animals	|	http://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Medved_mzoo.jpg/220px-Medved_mzoo.jpg	|		|						
+189	|	bed bug	|	నల్లి	|		|	Animals	|	http://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Bed_bug%2C_Cimex_lectularius.jpg/800px-Bed_bug%2C_Cimex_lectularius.jpg	|		|						
+190	|	bee	|	తేనెటీగ 	|		|	Animals	|	http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Osmia_ribifloris_bee.jpg/405px-Osmia_ribifloris_bee.jpg	|		|						
+692	|	rough lemon	|	దబ్బ నిమ్మ	|		|	Fruits	|	http://www.citrusvariety.ucr.edu/images/Floridaroughlemonedit.jpg	|		|						
+693	|	sugar cane	|	చెరుకు గడ	|		|	Fruits	|	http://1.bp.blogspot.com/-DtqcZVEH51Q/UKe7JKlMsgI/AAAAAAAABHU/9eBQO-O_obc/s1600/sugar+cane.jpg	|		|						
+694	|	water melon	|	పుచ్చ కాయ	|		|	Fruits	|	http://www.tamilkurinji.in/images_/Watermelons_1332342139.jpg	|		|						
+695	|	wild dates	|	ఈత పళ్ళు	|		|	Fruits	|	http://1.bp.blogspot.com/-6k6B9yUkKC0/TeXpuiAIuuI/AAAAAAAAMsk/tdoJEMf_5fQ/s1600/DSCN1178.JPG	|		|						
+696	|	wood apple	|	వెలగ	|		|	Fruits	|	https://upload.wikimedia.org/wikipedia/te/thumb/2/29/Limonia_acidissima.jpg/800px-Limonia_acidissima.jpg	|		|						
