@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD:Word_Search_Puzzle/.project
 	<name>Word_Search_Puzzle</name>
+=======
+	<name>Game_Portal</name>
+>>>>>>> origin/master:Game_Portal/.project
 	<comment></comment>
 	<projects>
 	</projects>
