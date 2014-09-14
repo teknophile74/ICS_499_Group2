@@ -1,0 +1,13 @@
+td {
+	margin: 0px;
+	padding: 0px;
+	border: solid 2px;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	font-size: 1em;
+}
+
+a {
+	text-decoration: none;
+}
