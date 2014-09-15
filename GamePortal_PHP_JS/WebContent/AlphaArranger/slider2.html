@@ -3,8 +3,14 @@
 <head>
 	<title>Alphabet-Arranger</title>
 	<link rel="stylesheet" type="text/css" href="css/slider2.css" />
+	<script src="script/LoadLangSettings.js"></script>
 	<script src="script/Slider2Objects.js"></script>
+	<meta charset="UTF-8">
 </head>
-<body onload="puzzle.writePuzzle();">
+<script>puzzle.writePuzzle();</script>
+<body onload="loadFile(langFileToLoad);displayContents();">
+
+<div id="counter"><span>Moves this game:</span><span id="MoveCounter"></span></div>
+<div><span>Language Info: </span><span id="langDisplay"></span></div>
 </body>
 </html>

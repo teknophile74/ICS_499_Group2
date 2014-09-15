@@ -1,13 +1,29 @@
+table {
+	border: solid blue 2px;
+}
+
 td {
 	margin: 0px;
 	padding: 0px;
 	border: solid 2px;
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	text-align: center;
 	font-size: 1em;
 }
 
+td.graysq {
+	background-color: gray;
+}
+
 a {
 	text-decoration: none;
+}
+
+div#counter {
+	margin: 20px 0px;
+}
+
+#MoveCounter {
+	color: red;
 }
