@@ -2,15 +2,36 @@
 <html>
 <head>
 	<title>Alphabet-Arranger</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/slider2.css" />
-	<script src="script/LoadLangSettings.js"></script>
+	<script src="script/enLangJSON.js"></script>
+	<script src="script/teLangJSON.js"></script>
+	<script src="script/hiLangJSON.js"></script>
+	<script src="script/getQueryInfo.js"></script>
 	<script src="script/Slider2Objects.js"></script>
-	<meta charset="UTF-8">
 </head>
-<script>puzzle.writePuzzle();</script>
-<body onload="loadFile(langFileToLoad);displayContents();">
-
-<div id="counter"><span>Moves this game:</span><span id="MoveCounter"></span></div>
-<div><span>Language Info: </span><span id="langDisplay"></span></div>
+<body onload="getLanguageFromQueryString();puzzle.writePuzzle();">
+    <fieldset class="gameSettings">
+      <legend>Game Settings</legend>
+      	<div id="gameSettings">
+      		<label for="Lang">Language:</label>
+			<select id="Lang" name="Lang" onchange="changeLanguage(this.value);">
+				<option value="en">English</option>
+				<option value="te">Telugu</option>
+				<option value="hi">Hindi</option>
+			</select>
+			<label for="Offset">Character Offset:</label>
+			<input id="Offset" name="Offset" onchange="changePuzzleOffset(this.value)" 
+				type="number" min="0" max="10" step="1" value="0" /><br />
+      		<label for="Size">Cells Per Row:</label>
+      		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
+      			type="number" min="4" max="8" step="1" value="4" />
+      		<input type="button" value="Reset Puzzle" onClick="changeLanguage((document.getElementById('Lang')).value);">
+		</div>
+	</fieldset>
+	<div id="gameHolder"></div>	
+	<div id="counter">
+		<span>Moves this game: </span><span id="MoveCounter"></span>
+	</div>
 </body>
 </html>
