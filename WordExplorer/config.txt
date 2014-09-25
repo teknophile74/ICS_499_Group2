@@ -1,0 +1,4 @@
+soundURIOfEnglish = c:/WordExplorer/LANG/EnglishSounds/
+soundURIOfLang = c:/WordExplorer/LANG/LangSounds/
+imageURI = c:/WordExplorer/LANG/Images/
+infoURI = c:/WordExplorer/LANG/Info/
