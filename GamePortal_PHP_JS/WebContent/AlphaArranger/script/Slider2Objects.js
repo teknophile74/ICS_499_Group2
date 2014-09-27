@@ -203,9 +203,9 @@ function loadCharArray(Symbols, intWidth, intHeight, intOffset, currentLang)
 
 	switch (this.currentLang) {
 		//case "fr" : {charArray = charArrayFR.slice(0); break;}	
-		case "en" : {charArray = English.slice(0); break;}
-		case "te" : {charArray = Telugu.slice(0); break;}
-		case "hi" : {charArray = Hindi.slice(0); break;}
+		case "US/en" : {charArray = English.slice(0); break;}
+		case "IN/te" : {charArray = Telugu.slice(0); break;}
+		case "IN/hi" : {charArray = Hindi.slice(0); break;}
 		default : {charArray = English.slice(0); break;}
 	}
 	
