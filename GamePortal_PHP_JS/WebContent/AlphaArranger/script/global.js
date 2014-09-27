@@ -33,6 +33,10 @@ function getInboundLanguage(queryString){
 			returnLang = tempLang;
 		}
 	}
-	
 	return returnLang;
+}
+
+function populateLanguageDropDown()
+{
+	
 }

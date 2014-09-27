@@ -2,7 +2,7 @@
  * English
  */
 
-var charArrayEN = 
+var English = 
 [
 	{
 		char: "0041",

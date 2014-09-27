@@ -2,7 +2,7 @@
 * Devanagari
 */
 
-var charArrayHI = 
+var Hindi = 
 [
 	{
 		char: "0900",

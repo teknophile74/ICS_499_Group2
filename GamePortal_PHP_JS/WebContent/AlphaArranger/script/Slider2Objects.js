@@ -203,10 +203,10 @@ function loadCharArray(Symbols, intWidth, intHeight, intOffset, currentLang)
 
 	switch (this.currentLang) {
 		//case "fr" : {charArray = charArrayFR.slice(0); break;}	
-		case "en" : {charArray = charArrayEN.slice(0); break;}
-		case "te" : {charArray = charArrayTE.slice(0); break;}
-		case "hi" : {charArray = charArrayHI.slice(0); break;}
-		default : {charArray = charArrayEN.slice(0); break;}
+		case "en" : {charArray = English.slice(0); break;}
+		case "te" : {charArray = Telugu.slice(0); break;}
+		case "hi" : {charArray = Hindi.slice(0); break;}
+		default : {charArray = English.slice(0); break;}
 	}
 	
 	var maxChars = (intWidth*intHeight);

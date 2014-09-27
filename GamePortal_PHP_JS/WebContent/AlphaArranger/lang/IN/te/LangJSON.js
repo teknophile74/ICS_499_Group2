@@ -2,7 +2,7 @@
 * Telugu
 */
 
-var charArrayTE = 
+var Telugu = 
 [
 	{
 		char: "0c00",
