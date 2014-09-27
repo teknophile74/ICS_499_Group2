@@ -8,6 +8,7 @@ function getLanguageFromQueryString()
 		var languageSelector = document.getElementById("Lang");
 		// Iterate nodes in form elements array
 		languageSelector.value = userChosenLang;
+		puzzle.writePuzzle();
 	}
 	return success;
 }
