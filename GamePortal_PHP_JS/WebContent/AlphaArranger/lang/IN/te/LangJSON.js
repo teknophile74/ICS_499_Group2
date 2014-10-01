@@ -5,26 +5,6 @@
 var Telugu = 
 [
 	{
-		char: "0c00",
-		symbol: "ఀ"
-	},
-	{
-		char: "0c01",
-		symbol: "ఁ"
-	},
-	{
-		char: "0c02",
-		symbol: "ం"
-	},
-	{
-		char: "0c03",
-		symbol: "ః"
-	},
-	{
-		char: "0c04",
-		symbol: "ఄ"
-	},
-	{
 		char: "0c05",
 		symbol: "అ"
 	},
@@ -53,12 +33,8 @@ var Telugu =
 		symbol: "ఋ"
 	},
 	{
-		char: "0c0c",
-		symbol: "ఌ"
-	},
-	{
-		char: "0c0d",
-		symbol: "఍"
+		char: "0c60",
+		symbol: "ౠ"
 	},
 	{
 		char: "0c0e",
@@ -73,10 +49,6 @@ var Telugu =
 		symbol: "ఐ"
 	},
 	{
-		char: "0c11",
-		symbol: "఑"
-	},
-	{
 		char: "0c12",
 		symbol: "ఒ"
 	},
@@ -88,6 +60,14 @@ var Telugu =
 		char: "0c14",
 		symbol: "ఔ"
 	},
+	{
+		char: "0c05+0co2",
+		symbol: "అం"
+	},
+	{
+		char: "0c05+0co3",
+		symbol: "అః"
+	},	
 	{
 		char: "0c15",
 		symbol: "క"
@@ -169,10 +149,6 @@ var Telugu =
 		symbol: "న"
 	},
 	{
-		char: "0c29",
-		symbol: "఩"
-	},
-	{
 		char: "0c2a",
 		symbol: "ప"
 	},
@@ -201,20 +177,8 @@ var Telugu =
 		symbol: "ర"
 	},
 	{
-		char: "0c31",
-		symbol: "ఱ"
-	},
-	{
 		char: "0c32",
 		symbol: "ల"
-	},
-	{
-		char: "0c33",
-		symbol: "ళ"
-	},
-	{
-		char: "0c34",
-		symbol: "ఴ"
 	},
 	{
 		char: "0c35",
@@ -237,283 +201,11 @@ var Telugu =
 		symbol: "హ"
 	},
 	{
-		char: "0c3a",
-		symbol: "఺"
+		char: "0c33",
+		symbol: "ళ"
 	},
 	{
-		char: "0c3b",
-		symbol: "఻"
-	},
-	{
-		char: "0c3c",
-		symbol: "఼"
-	},
-	{
-		char: "0c3d",
-		symbol: "ఽ"
-	},
-	{
-		char: "0c3e",
-		symbol: "ా"
-	},
-	{
-		char: "0c3f",
-		symbol: "ి"
-	},
-	{
-		char: "0c40",
-		symbol: "ీ"
-	},
-	{
-		char: "0c41",
-		symbol: "ు"
-	},
-	{
-		char: "0c42",
-		symbol: "ూ"
-	},
-	{
-		char: "0c43",
-		symbol: "ృ"
-	},
-	{
-		char: "0c44",
-		symbol: "ౄ"
-	},
-	{
-		char: "0c45",
-		symbol: "౅"
-	},
-	{
-		char: "0c46",
-		symbol: "ె"
-	},
-	{
-		char: "0c47",
-		symbol: "ే"
-	},
-	{
-		char: "0c48",
-		symbol: "ై"
-	},
-	{
-		char: "0c49",
-		symbol: "౉"
-	},
-	{
-		char: "0c4a",
-		symbol: "ొ"
-	},
-	{
-		char: "0c4b",
-		symbol: "ో"
-	},
-	{
-		char: "0c4c",
-		symbol: "ౌ"
-	},
-	{
-		char: "0c4d",
-		symbol: "్"
-	},
-	{
-		char: "0c4e",
-		symbol: "౎"
-	},
-	{
-		char: "0c4f",
-		symbol: "౏"
-	},
-	{
-		char: "0c50",
-		symbol: "౐"
-	},
-	{
-		char: "0c51",
-		symbol: "౑"
-	},
-	{
-		char: "0c52",
-		symbol: "౒"
-	},
-	{
-		char: "0c53",
-		symbol: "౓"
-	},
-	{
-		char: "0c54",
-		symbol: "౔"
-	},
-	{
-		char: "0c55",
-		symbol: "ౕ"
-	},
-	{
-		char: "0c56",
-		symbol: "ౖ"
-	},
-	{
-		char: "0c57",
-		symbol: "౗"
-	},
-	{
-		char: "0c58",
-		symbol: "ౘ"
-	},
-	{
-		char: "0c59",
-		symbol: "ౙ"
-	},
-	{
-		char: "0c5a",
-		symbol: "ౚ"
-	},
-	{
-		char: "0c5b",
-		symbol: "౛"
-	},
-	{
-		char: "0c5c",
-		symbol: "౜"
-	},
-	{
-		char: "0c5d",
-		symbol: "ౝ"
-	},
-	{
-		char: "0c5e",
-		symbol: "౞"
-	},
-	{
-		char: "0c5f",
-		symbol: "౟"
-	},
-	{
-		char: "0c60",
-		symbol: "ౠ"
-	},
-	{
-		char: "0c61",
-		symbol: "ౡ"
-	},
-	{
-		char: "0c62",
-		symbol: "ౢ"
-	},
-	{
-		char: "0c63",
-		symbol: "ౣ"
-	},
-	{
-		char: "0c64",
-		symbol: "౤"
-	},
-	{
-		char: "0c65",
-		symbol: "౥"
-	},
-	{
-		char: "0c66",
-		symbol: "౦"
-	},
-	{
-		char: "0c67",
-		symbol: "౧"
-	},
-	{
-		char: "0c68",
-		symbol: "౨"
-	},
-	{
-		char: "0c69",
-		symbol: "౩"
-	},
-	{
-		char: "0c6a",
-		symbol: "౪"
-	},
-	{
-		char: "0c6b",
-		symbol: "౫"
-	},
-	{
-		char: "0c6c",
-		symbol: "౬"
-	},
-	{
-		char: "0c6d",
-		symbol: "౭"
-	},
-	{
-		char: "0c6e",
-		symbol: "౮"
-	},
-	{
-		char: "0c6f",
-		symbol: "౯"
-	},
-	{
-		char: "0c70",
-		symbol: "౰"
-	},
-	{
-		char: "0c71",
-		symbol: "౱"
-	},
-	{
-		char: "0c72",
-		symbol: "౲"
-	},
-	{
-		char: "0c73",
-		symbol: "౳"
-	},
-	{
-		char: "0c74",
-		symbol: "౴"
-	},
-	{
-		char: "0c75",
-		symbol: "౵"
-	},
-	{
-		char: "0c76",
-		symbol: "౶"
-	},
-	{
-		char: "0c77",
-		symbol: "౷"
-	},
-	{
-		char: "0c78",
-		symbol: "౸"
-	},
-	{
-		char: "0c79",
-		symbol: "౹"
-	},
-	{
-		char: "0c7a",
-		symbol: "౺"
-	},
-	{
-		char: "0c7b",
-		symbol: "౻"
-	},
-	{
-		char: "0c7c",
-		symbol: "౼"
-	},
-	{
-		char: "0c7d",
-		symbol: "౽"
-	},
-	{
-		char: "0c7e",
-		symbol: "౾"
-	},
-	{
-		char: "0c7f",
-		symbol: "౿"
+		char: "0c15",
+		symbol: "క్ష"
 	}
 ];
