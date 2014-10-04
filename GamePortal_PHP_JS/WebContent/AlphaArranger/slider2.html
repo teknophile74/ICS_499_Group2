@@ -4,7 +4,9 @@
 	<title>Alphabet-Arranger</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/slider2.css" />
-	<script src="lang/US/en/LangJSON.js"></script>
+	<script id="langArray" src="lang/US/en/LangJSON.js"></script>
+	<script src="lang/CurrentLangDirs.js"></script>
+	<script src="script/baseSettingsJSON.js"></script>
 	<script src="script/global.js"></script>
 	<script src="script/Slider2Objects.js"></script>
 </head>
@@ -14,16 +16,13 @@
       	<div id="gameSettings">
       		<label for="Lang">Language:</label>
 			<select id="Lang" name="Lang" onchange="changeLanguage(this.value);">
-				<option value="US/en">English</option>
-				<option value="IN/te">Telugu</option>
-				<option value="IN/hi">Hindi</option>
 			</select>
 			<label for="Offset">Character Offset:</label>
 			<input id="Offset" name="Offset" onchange="changePuzzleOffset(this.value)" 
-				type="number" min="0" max="10" step="1" value="0" /><br />
+				type="number" min="0" max="10" step="1" value="0" />
       		<label for="Size">Cells Per Row:</label>
       		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
-      			type="number" min="4" max="8" step="1" value="4" />
+      			type="number" min="3" max="8" step="1" value="4" />
       		<input type="button" value="Reset Puzzle" onClick="changeLanguage((document.getElementById('Lang')).value);">
 		</div>
 	</fieldset>

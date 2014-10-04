@@ -4,12 +4,13 @@
  * @Author Aaron Burke
  */
 
-var puzzleName = 'puzzle';
-var useSymbol = true;
-var initialWidth = 4;
-var initialHeight = 4;
-var initialOffset = 0;
-var currentLang = "en";
+var charArray = new Array();
+var puzzleName = PuzzleBaseConfig[0].puzzleName;
+var useSymbol = PuzzleBaseConfig[0].useSymbol;
+var initialWidth = PuzzleBaseConfig[0].initialWidth;
+var initialHeight = PuzzleBaseConfig[0].initialHeight;
+var initialOffset = PuzzleBaseConfig[0].initialOffset;
+var currentLang = PuzzleBaseConfig[0].currentLang;
 var puzzle=null
 createPuzzle();
 
@@ -166,6 +167,7 @@ function changePuzzleSize(newSize)
 	puzzle.cleanGame();
 	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
 	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
+	ResetCounter();
 	puzzle.writePuzzle();
 }
 
@@ -174,9 +176,11 @@ function changeLanguage(currentLang)
 	this.Size = parseInt((document.getElementById("Size")).value);
 	this.Lang = currentLang;
 	this.Offset = parseInt((document.getElementById("Offset")).value);
+	SetCurrentlyLoadedLangArray();
 	puzzle.cleanGame();
 	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
 	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
+	ResetCounter();
 	puzzle.writePuzzle();
 }
 
@@ -188,26 +192,19 @@ function changePuzzleOffset(newOffset)
 	puzzle.cleanGame();
 	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
 	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
+	ResetCounter();
 	puzzle.writePuzzle();
 }
 
 function loadCharArray(Symbols, intWidth, intHeight, intOffset, currentLang)
 {
-	var charArray = new Array();
+	
 	if (intOffset.NaN) {
 		intOffset = 0;
 	}
-	if (currentLang) {
-		this.currentLang = currentLang;
-	}
-
-	switch (this.currentLang) {
-		//case "fr" : {charArray = charArrayFR.slice(0); break;}	
-		case "US/en" : {charArray = English.slice(0); break;}
-		case "IN/te" : {charArray = Telugu.slice(0); break;}
-		case "IN/hi" : {charArray = Hindi.slice(0); break;}
-		default : {charArray = English.slice(0); break;}
-	}
+	
+	var selectBox = document.getElementById('Lang');
+	charArray = (eval(selectBox.options[selectBox.selectedIndex].text)).slice(0);
 	
 	var maxChars = (intWidth*intHeight);
 	
@@ -248,4 +245,12 @@ function IsSolved(pieces, fields)
 		}
 	}
 	return true;
+}
+
+
+function ResetCounter() 
+{
+	// Check for puzzle being changed and reset counter value to zero
+	this.moveCounter=0;
+	document.getElementById("MoveCounter").innerHTML=this.moveCounter;
 }
