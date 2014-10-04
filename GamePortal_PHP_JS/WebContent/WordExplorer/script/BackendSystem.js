@@ -1,58 +1,56 @@
-/*	ICS499
+/*	
+ *	ICS499
  *  Group 2
- *  Main.java
  *  This is the Main program the starts program and builds GUI
- *  Please make sure jl1.0.1.jar is included in project build path
  */
-
+/*
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-
-public class BackendSystem {
-
+*/
+function BackendSystem() 
+{
 	// Declares Global Variables
-	protected String wordId;
-	protected String englishInEnglish;
-	protected String langInLang;
-	protected String englishInLang;
-	protected String langInEnglish;
-	protected List<String> themesInEnglish;
-	protected String themesInEnglishString;
-	protected List<String> themesInLang;
-	protected String themesInLangString;
-	protected String imageURI;
-	protected String infoURI;
-	protected String soundURIOfEnglish;
-	protected String soundURIOfLang;
-	protected WordList wordList;
-	protected WordList themedList;
-	protected WordList tempList;
-	protected WordList tempList2;
-	protected int hasLines;
-	protected int themedSize;
-	protected int countLines;
-	protected int wordsAdded;
-	protected File file;
-	protected Scanner scanner1;
-	protected Scanner scanner2;
-	protected Scanner scanner3;
-	protected Scanner scanner4;
-	protected Word word1;
-	protected Word tempWord;
-	protected String[] rows;
-	private static final BackendSystem INSTANCE = new BackendSystem();
+	 var wordId;; //String 
+	 var englishInEnglish;; //String 
+	 var langInLang;; //String 
+	 var englishInLang;; //String 
+	 var langInEnglish;; //String 
+	 var themesInLangString;; //String 
+	 var imageURI;; //String 
+	 var infoURI;; //String 
+	 var soundURIOfEnglish;; //String 
+	 var soundURIOfLang;; //String 	 
+	 var themesInEnglishString;; //String 
+	 var themesInEnglish; //List<String>
+	 var themesInLang; //List<String>
+	 var wordList; //WordList
+	 var themedList; //WordList
+	 var tempList; //WordList
+	 var tempList2; //WordList
+	 var hasLines; //int
+	 var themedSize; //int
+	 var countLines; //int
+	 var wordsAdded; //int
+	 var file; //File
+	 var scanner1; //Scanner
+	 var scanner2; //Scanner
+	 var scanner3; //Scanner
+	 var scanner4; //Scanner
+	 var word1; //Word
+	 var tempWord; //Word
+	 var rows = null; //int[]
+	// TODO: Evaluate need for this function
+	//private static final BackendSystem INSTANCE = new BackendSystem();
 
-	private BackendSystem() {
 
-	}
+	//Creates Word and adds to wordList; Takes in int as variable
+	this.createWord=function(number)
+	{
 
-	//Creates Word and adds to wordList
-	public void createWord(int number) {
-
-		String tempWordId = englishInEnglish + langInLang;
+		var tempWordId = englishInEnglish + langInLang;; //String 
 
 		if (wordsAdded == 0) {
 			tempWord = new Word(englishInEnglish, langInLang, englishInLang,
@@ -62,7 +60,7 @@ public class BackendSystem {
 			wordsAdded++;
 		} else {
 
-			boolean isDup = wordList.searchWordIsDup(tempWordId);
+			var isDup = wordList.searchWordIsDup(tempWordId); //boolean
 			if (isDup == true) {
 				System.out.println("Sorry word is already added to list.");
 			} else {
@@ -79,12 +77,13 @@ public class BackendSystem {
 
 	}
 
-	//Creates and returns a new WordList
+	// TODO: - work on connecting function
+	/*//Creates and returns a new WordList
 	public WordList createWordList(int number) {
-		WordList tempList3 = new WordList(number);
+		var tempList3 = new WordList(number); //WordList
 		return tempList3;
 	}
-
+	
 	//Get tempList
 	public WordList getTempList() {
 		return tempList;
@@ -93,9 +92,10 @@ public class BackendSystem {
 	public WordList getWordList() {
 		return wordList;
 	}
-
+	*/
+	
 	//Scans file and uses them to build wordList
-	public void scanFile(File tempFile) {
+	this.scanFile=function(File tempFile) {
 
 		wordsAdded = 0;
 		wordId = "";
@@ -103,8 +103,8 @@ public class BackendSystem {
 		langInLang = "";
 		englishInLang = "";
 		langInEnglish = "";
-		themesInEnglish = new ArrayList<String>();
-		themesInLang = new ArrayList<String>();
+		themesInEnglish = new Array(); //ArrayList<String>
+		themesInLang = new Array(); //ArrayList<String>
 		imageURI = "";
 		infoURI = "";
 		soundURIOfEnglish = "";
@@ -123,9 +123,9 @@ public class BackendSystem {
 	}
 
 	//Scans file and returns number of lines/entires
-	public int scanFileForLinesNum() {
+	this.scanFileForLinesNum=function() { //int
 
-		int numLines = 0;
+		var numLines = 0; //int
 
 		try {
 			scanner1 = new Scanner(file, "UTF-8");
@@ -144,7 +144,7 @@ public class BackendSystem {
 	}
 
 	//Scans each line and adds them to an String Array rows[]
-	public void scanLines() {
+	this.scanLines=function() {
 
 		try {
 			scanner2 = new Scanner(file, "UTF-8");
@@ -153,11 +153,11 @@ public class BackendSystem {
 			e.printStackTrace();
 		}
 
-		int lineCount = 0;
+		var lineCount = 0; //int
 		scanner2.reset();
 		while (scanner2.hasNextLine()) {
 			rows[lineCount] = "";
-			String tempString2 = scanner2.nextLine();
+			var tempString2 = scanner2.nextLine(); //String 
 			rows[lineCount] = tempString2;
 			lineCount++;
 
@@ -167,16 +167,16 @@ public class BackendSystem {
 
 	// Scans each row of words and seperates each section into its correct
 	// String
-	public void scanRows() {
+	this.scanRows=function() {
 
-		int lineCount = 0;
-		int rowCount = 0;
-		String tempWord2 = "";
+		var lineCount = 0; //int
+		var rowCount = 0; //int
+		var tempWord2 = ""; //String 
 
 		while (lineCount < rows.length) {
-			List<String> tempTIE = new ArrayList<String>();
-			List<String> tempTIL = new ArrayList<String>();
-			String[] collumn = new String[10];
+			var tempTIE = new Array(); //ArrayList<String> //List<String>
+			var tempTIL = new Array(); //ArrayList<String> //List<String>
+			var collumn = new String[10]; //String 
 
 			collumn = rows[lineCount].split("\\|");
 
@@ -194,9 +194,9 @@ public class BackendSystem {
 
 			} else {
 				if (collumn.length != 1) {
-					String[] temp = new String[10];
+					var temp = new String[10]; //String 
 
-					for (int i = 0; i < 10; i++) {
+					for (var i = 0; i < 10; i++) {
 						if (i <= collumn.length - 1)
 							temp[i] = collumn[i];
 						else
@@ -272,13 +272,13 @@ public class BackendSystem {
 	}
 	
 	//Finds and returns the englishThemes list from wordList
-	public List<String> getEngList() {
+	this.getEngListList=function() { //List<String>
 
-		int counter = 0;
+		var counter = 0; //int
 
-		List<String> tempAList = new ArrayList<String>();
-		List<String> themesList = new ArrayList<String>();
-		String tempString = "";
+		var tempAList = new Array(); //ArrayList<String> //List<String>
+		var themesList = new Array(); //ArrayList<String> //List<String>
+		var tempString = ""; //String 
 
 		while (counter < wordList.getSize()) {
 
@@ -294,7 +294,7 @@ public class BackendSystem {
 						themesList.add(tempString);
 					}
 				} else {
-					int counter1 = 0;
+					var counter1 = 0; //int
 					while (counter1 < tempAList.size()) {
 						tempString = tempAList.get(counter1);
 						if (themesList.contains(tempString)) {
@@ -317,12 +317,12 @@ public class BackendSystem {
 	}
 	
 	//Finds and returns the langThemes list from wordList
-		public List<String> getLangList() {
+		this.getLangList=function() { // List<String> 
 
-			int counter = 0;
+			var counter = 0; //int
 
-			List<String> tempAList = new ArrayList<String>();
-			List<String> themesList = new ArrayList<String>();
+			var tempAList = new Array(); //ArrayList<String> //List<String>
+			var themesList = new Array(); //ArrayList<String> //List<String>
 			String tempString = "";
 
 			while (counter < wordList.getSize()) {
@@ -339,7 +339,7 @@ public class BackendSystem {
 							themesList.add(tempString);
 						}
 					} else {
-						int counter1 = 0;
+						var counter1 = 0; //int
 						while (counter1 < tempAList.size()) {
 							tempString = tempAList.get(counter1);
 							if (themesList.contains(tempString)) {
@@ -362,30 +362,30 @@ public class BackendSystem {
 		}
 
 	//Randomizes wordList based on tempTheme and returns a seperate wordList of results
-	public void randomN(String tempTheme) {
+	this.randomN=function(String tempTheme) {
 
-		int randomNum = 0;
-		int num[];
-		Random generator = new Random();
-		int n = 0;
+		var randomNum = 0; //int
+		var num[]; //int
+		var generator = new Random(); //Random
+		var n = 0; //int
 
 		if (tempTheme == "All Words") {
-			int number = wordList.getSize();
+			var number = wordList.getSize(); //int
 			tempList = new WordList(number);
 			num = new int[number];
-			for (int y = 0; y < number; y++) {
+			for (var y = 0; y < number; y++) {
 				num[y] = -1;
 			}
 
-			for (int x = 0; x < number; x++) {
+			for (var x = 0; x < number; x++) {
 
-				boolean isSame = true;
-				int tempLength = 1;
+				var isSame = true; //boolean
+				var tempLength = 1; //int
 				while (isSame == true) {
 					n = hasLines;
 					randomNum = generator.nextInt(n);
 
-					for (int z = 0; z < tempLength; z++) {
+					for (var z = 0; z < tempLength; z++) {
 						if (randomNum == num[z]) {
 							isSame = true;
 							break;
@@ -401,16 +401,16 @@ public class BackendSystem {
 
 			}
 
-			for (int q = 0; q < number; q++) {
-				int tempNumber = num[q];
+			for (var q = 0; q < number; q++) {
+				var tempNumber = num[q]; //int
 				tempWord = wordList.getWord(tempNumber);
 				tempList.addWord(tempWord);
 			}
 
 		} else {
-			int x = 0;
-			int tempLength = 1;
-			List<String> tempThemes = new ArrayList<String>();
+			var x = 0; //int
+			var tempLength = 1; //int
+			var tempThemes = new Array(); //ArrayList<String> //List<String>
 			themedList = new WordList();
 
 			while (x < wordList.getSize()) {
@@ -422,23 +422,23 @@ public class BackendSystem {
 				x++;
 			}
 
-			int number2 = themedList.getSize();
+			var number2 = themedList.getSize(); //int
 			tempList = new WordList(number2);
 			num = new int[number2];
 
-			for (int y2 = 0; y2 < number2; y2++) {
+			for (var y2 = 0; y2 < number2; y2++) {
 				num[y2] = -1;
 			}
 
-			for (int x2 = 0; x2 < number2; x2++) {
+			for (var x2 = 0; x2 < number2; x2++) {
 
-				boolean isSame = true;
+				var isSame = true; //boolean
 
 				while (isSame == true) {
 					n = number2;
 					randomNum = generator.nextInt(n);
 
-					for (int z = 0; z < tempLength; z++) {
+					for (var z = 0; z < tempLength; z++) {
 						if (randomNum == num[z]) {
 							isSame = true;
 							break;
@@ -454,8 +454,8 @@ public class BackendSystem {
 
 			}
 
-			for (int q = 0; q < number2; q++) {
-				int tempNumber = num[q];
+			for (var q = 0; q < number2; q++) {
+				var tempNumber = num[q]; //int
 				tempWord = themedList.getWord(tempNumber);
 				tempList.addWord(tempWord);
 			}
@@ -465,21 +465,21 @@ public class BackendSystem {
 	}
 
 	//Returns new wordList based on tempTheme and sequentially sorted how the text file presents it
-	public void sequentialN(String tempTheme) {
+	this.sequentialN=function(String tempTheme) {
 		themedList = new WordList();
-		int number = 0;
+		var number = 0; //int
 
 		if (tempTheme == "All Words") {
 			number = wordList.getSize();
 			tempList = new WordList(number);
 
-			for (int q = 0; q < number; q++) {
+			for (var q = 0; q < number; q++) {
 				tempWord = wordList.getWord(q);
 				tempList.addWord(tempWord);
 			}
 		} else {
-			int x = 0;
-			List<String> tempThemes = new ArrayList<String>();
+			var x = 0; //int
+			var tempThemes = new Array(); //ArrayList<String> //List<String>
 
 			while (x < wordList.getSize()) {
 				tempWord = wordList.getWord(x);
@@ -495,19 +495,18 @@ public class BackendSystem {
 
 			tempList = new WordList(number);
 
-			for (int x2 = 0; x2 < number; x2++) {
+			for (var x2 = 0; x2 < number; x2++) {
 				tempWord = themedList.getWord(x2);
 				tempList.addWord(tempWord);
 			}
-
 		}
-
 	}
 
-	
+	//TODO: 
+	/* Evaluate this fucntion
 	//Returns the instance of BackendSystem
-	public static BackendSystem getInstance() {
+	function BackendSystem getInstance() {
 		return INSTANCE;
 	}
-
+	*/
 }

@@ -5,7 +5,7 @@
  *  This is the Main program the starts program and builds GUI
  *  Please make sure jl1.0.1.jar is included in project build path
  */
-
+/*
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
@@ -42,44 +42,46 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+*/
 
 
-
-public class Main implements ActionListener {
-	private static final long serialVersionUID = 1L;
+function Main{
+	var serialVersionUID = 1L;
 
 	//Creates and grabs instance of BackendSystem
 	BackendSystem bS = BackendSystem.getInstance();
 
 	// Strings
-	private String englishInEnglish;
-	private String langInLang;
-	private String englishInLang;
-	private String langInEnglish;
-	private String imageURI;
-	private String infoURI;
-	private String soundURIOfEnglish;
-	private String soundURIOfLang;
-	protected Scanner scanner1;
-	private String configSEng, configSLang, configImage, configInfo;
-	private String tempS[] = new String[15];
-	private String[] themeList = { "All Words" };
-	private String[] tempList;
-	private List<String> themesInEnglish;
+	var englishInEnglish;
+	var langInLang;
+	var englishInLang;
+	var langInEnglish;
+	var imageURI;
+	var infoURI;
+	var soundURIOfEnglish;
+	var soundURIOfLang;
+	//protected Scanner scanner1;
+	var configSEng, configSLang, configImage, configInfo;
+	var tempS[] = new var[15];
+	//private String[] themeList = { "All Words" };
+	var [] themeList= {"All words"};
+	//private String[] tempList;
+	var [] tempList;
+	//private List<String> themesInEnglish;
+	themesInEnglish = new Array();
+	var temp="";   //protected String temp = "";
+	var themeSelection;    //protected var themeSelection;
 
-	protected String temp = "";
-	protected String themeSelection;
-	
-	static int curser;
-	int counter;
+	var curser;
+	var counter;
 
-	private File file, picFile;
-	
+	var File file, picFile;
+
 	Image wordPicture;
 	Image wordPicture2;
-	
+
 	final JFileChooser chooser = new JFileChooser();
-	
+
 	WordList wordList;
 
 	// JPanels and JFrames
@@ -106,7 +108,7 @@ public class Main implements ActionListener {
 	JLabel eILText, lIEText;
 
 	JComboBox<String> themeCombo;
-
+/*
 	public static void main(String[] args) {
 
 		curser = 0;
@@ -118,8 +120,8 @@ public class Main implements ActionListener {
 		m.mainFrame();
 
 	}
-
-	public void mainFrame() {
+*/
+	this.mainFrame=function() {
 
 		mainFrame = new JFrame("Word Explorer");
 		mainFrame.setLayout(new GridLayout(2, 1));
@@ -232,8 +234,8 @@ public class Main implements ActionListener {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	
-	public List<String> getThemesEngList() {
+
+	getThemeEngList=new array; //public List<String> getThemesEngList() {
 		themesInEnglish = bS.getEngList();
 		List<String> tempList = new ArrayList<String>();
 		tempList.add("All Words");
@@ -248,8 +250,8 @@ public class Main implements ActionListener {
 	}
 
 	// Generates Results based on GUI
-	public void generateResults() {
-		
+	this.generateResults=function() {
+
 		Word tempWord = wordList.getWord(curser);
 
 		englishInEnglish = tempWord.getEnglishInEnglish();
@@ -291,9 +293,9 @@ public class Main implements ActionListener {
 		eILText.setText("<HTML><FONT color=\"#000099\"><center><br>"
 				+ englishInLang + "</center></FONT></HTML>");
 
-	
+
 		if (imageURI.length() > 2) {
-			
+
 			if (imageURI.startsWith("http")) {
 				try {
 					URL imageURL = new URL(imageURI);
@@ -309,7 +311,7 @@ public class Main implements ActionListener {
 						e2.printStackTrace();
 					}
 
-					
+
 				}
 			} else {
 
@@ -349,34 +351,34 @@ public class Main implements ActionListener {
 		counter = 0;
 		MouseAdapter imageM = new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				
-				if(infoURI.startsWith("http")){ 
-					 try { 
-						 URL tempURL = new URL(infoURI); 
+
+				if(infoURI.startsWith("http")){
+					 try {
+						 URL tempURL = new URL(infoURI);
 						 if(counter < 1){
-							 openWebpage(tempURL); 
+							 openWebpage(tempURL);
 							 counter++;
 						 }
-				  } catch(MalformedURLException e) { 
-				  e.printStackTrace(); } 
-				}else{			  
-				  
-					  URI tempURI; 
-					  try { 
+				  } catch(MalformedURLException e) {
+				  e.printStackTrace(); }
+				}else{
+
+					  URI tempURI;
+					  try {
 					  tempURI = new URI(configInfo + infoURI);
 					  	if(counter < 1){
 					  		openWebpage(tempURI);
 					  		counter++;
 					  	}
 					  } catch (URISyntaxException e) { //
-			
-				  
+
+
 					  }
 				 }
 				}
-				
+
 				};
-				
+
 		picLabel.removeMouseListener(imageM);
 
 		if (infoURI.length() > 2) {
@@ -391,8 +393,8 @@ public class Main implements ActionListener {
 	}
 
 	// Generates Results for first run
-	public void generateFirstRun() {
-
+	//public void generateFirstRun() {
+	this.generateFirstRun=function(){
 
 		eIEText.setText("<HTML><FONT color=\"#000099\"><U><center>englishInEnglish</center></U></FONT></HTML>");
 
@@ -404,7 +406,8 @@ public class Main implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	//public void actionPerformed(ActionEvent e) {
+	this.actionPerformed=function(){
 		List<String> themesList = new ArrayList<String>();
 		// TODO Auto-generated method stub
 		if (e.getSource() == fileButton) {
@@ -416,18 +419,18 @@ public class Main implements ActionListener {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				file = chooser.getSelectedFile();
 				bS.scanFile(file);
-				themesList = getThemesEngList();	
+				themesList = getThemesEngList();
 				int counter = 1;
 				while (counter < themesList.size()) {
 					themeCombo.addItem(themesList.get(counter));
 					counter++;
 				}
 
-				
+
 			} else {
 				System.out.println("Open command cancelled by user.");
 			}
-	
+
 
 		} else if (e.getSource() == executeButton) {
 
@@ -459,11 +462,11 @@ public class Main implements ActionListener {
 			generateResults();
 
 		} else if (e.getSource() == eIEText) {
-			
-			
+
+
 			FileInputStream fis;
 			InputStream is;
-	
+
 			if (soundURIOfEnglish.startsWith("http")
 					&& soundURIOfEnglish.endsWith(".mp3")) {
 
@@ -508,7 +511,7 @@ public class Main implements ActionListener {
 			} else if (soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".wav")) {
 				try {
 						URL url1 = new URL(soundURIOfEnglish);
-					 
+
 				        Clip clip1 = AudioSystem.getClip();
 				        AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
 				        clip1.open(audioIn1);
@@ -516,13 +519,13 @@ public class Main implements ActionListener {
 
 				} catch (Exception ex) {
 				}
-				
-				
+
+
 			} else if (!soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".wav")) {
 
 				try {
 					File file2 = new File(configSEng + soundURIOfEnglish);
-					 
+
 				        Clip clip2 = AudioSystem.getClip();
 				        AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(file2);
 				        clip2.open(audioIn2);
@@ -531,12 +534,12 @@ public class Main implements ActionListener {
 				} catch (Exception ex) {
 				}
 
-			
+
 
 		}
 
 		} else if (e.getSource() == lILText) {
-		
+
 			FileInputStream fis;
 			InputStream is;
 			if (soundURIOfLang.startsWith("http")
@@ -581,29 +584,29 @@ public class Main implements ActionListener {
 
 				}
 			} else if (soundURIOfLang.startsWith("http") && soundURIOfLang.endsWith(".wav")) {
-				
-				
+
+
 				try {
-						
-					
+
+
 					URL url1 = new URL(soundURIOfLang);
-					
-					 
+
+
 			        Clip clip1 = AudioSystem.getClip();
 			        AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
 			        clip1.open(audioIn1);
 			        clip1.start();
-				   
-				   
+
+
 				} catch (Exception ex) {
 				}
-				
-				
+
+
 			} else if ((!soundURIOfLang.startsWith("http")) && soundURIOfLang.endsWith(".wav")) {
 
 				try {
 					File file4 = new File(configSLang + soundURIOfLang);
-					 
+
 				        Clip clip4 = AudioSystem.getClip();
 				        AudioInputStream audioIn = AudioSystem.getAudioInputStream(file4);
 				        clip4.open(audioIn);
@@ -618,7 +621,8 @@ public class Main implements ActionListener {
 
 	}
 
-	public void readConfig() {
+	//public void readConfig() {
+	this.readConfig(){
 		Scanner scanner1 = null;
 		File file = new File("config.txt");
 
@@ -649,12 +653,14 @@ public class Main implements ActionListener {
 
 	}
 
-	public void selectedFile(File tempFile) {
+	//public void selectedFile(File tempFile) {
+	this.selectedFile=function(){
 
 		bS.scanFile(tempFile);
 	}
 
-	public static void openWebpage(URI uri) {
+	//public static void openWebpage(URI uri) {
+	this.openWebpage=function(){
 		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop()
 				: null;
 		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
