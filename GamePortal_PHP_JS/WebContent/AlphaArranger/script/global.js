@@ -40,17 +40,44 @@ function getInboundLanguage(queryString){
 function populateLanguageDropDown()
 {
 	var i = 0;
-	for (var dir in CurrentLangDirs) 
+	var selectBox = document.getElementById('Lang');
+	
+	for (var language in CurrentLangDirs) 
 	{
-        var selectBox = document.getElementById('Lang');
-        var newOption = document.createElement('option');
-        newOption.id = CurrentLangDirs[i].dir;
-        newOption.innerHTML = CurrentLangDirs[i].arrayName;
-        newOption.value = (CurrentLangDirs[i].dir).split('_')[1];
-        //if(i==0) { newOption.setAttribute('selected','selected'); }
-        selectBox.appendChild(newOption);
+		SetOption(selectBox, language, i);
+        SetLangScripts(selectBox, language, i);
         ++i;
 	}
+}
+
+function SetOption(selectBox, language, i){
+    
+    var newOption = document.createElement('option');
+    
+    newOption.id = CurrentLangDirs[i].dir;
+    newOption.innerHTML = CurrentLangDirs[i].arrayName;
+    newOption.value = (CurrentLangDirs[i].dir).split('_')[1];
+    selectBox.appendChild(newOption);
+}
+
+function SetLangScripts(selectBox, language, i)
+{
+    var head = document.getElementsByTagName("head")[0];
+    var sourcesPath = CurrentLangDirs[i].dir;
+    var scriptId = CurrentLangDirs[i].arrayName+'langArray'
+    
+    sourcesPath = 'lang/' + sourcesPath.replace("_", "/") + '/LangJSON.js';
+    
+	if (document.getElementById(scriptId)) {
+		eval("var old = document.getElementById(scriptId)"); // Already exists delete
+		old.parentNode.removeChild(old);
+		delete old;
+	}
+	
+	var script = document.createElement('script'); // New - Create
+	script.id = scriptId;
+	script.src = sourcesPath;
+	head.appendChild(script);
 }
 
 function SetCurrentlyLoadedLangArray()
@@ -63,17 +90,13 @@ function SetCurrentlyLoadedLangArray()
 	if (document.getElementById('langArray')) {
 		cssWork = document.getElementById('langArray'); // Already exists update
 		cssWork.src = 'lang/' + sourcesPath + '/LangJSON.js';
-		cssWork.onload = scriptLoaded;
+		//cssWork.onload = scriptLoaded;
 	}
 	else {
 		cssWork = document.createElement('script'); // New - Create
 		cssWork.id = 'langArray';
 		cssWork.src = 'lang/' + sourcesPath + '/LangJSON.js';
-		cssWork.onload = scriptLoaded;
+		//cssWork.onload = scriptLoaded;
 		document.head.appendChild(cssWork);
 	}
-}
-
-function scriptLoaded() {
-	charArray = (eval(selectBox.options[selectBox.selectedIndex].text)).slice(0);
 }
