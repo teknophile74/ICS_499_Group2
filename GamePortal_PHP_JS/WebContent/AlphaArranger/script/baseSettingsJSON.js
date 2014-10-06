@@ -3,7 +3,7 @@ var PuzzleBaseConfig =
 [
 	{ 
 		puzzleName : 'puzzle',
-		currentLang : 'en',
+		currentLang : 'English',
 		initialWidth : 4,
 		initialHeight : 4,
 		initialOffset : 0,

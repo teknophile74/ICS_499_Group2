@@ -4,19 +4,17 @@
 	<title>Alphabet-Arranger</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/slider2.css" />
-	<script id="langArray" src="lang/US/en/LangJSON.js"></script>
 	<script src="lang/CurrentLangDirs.js"></script>
 	<script src="script/baseSettingsJSON.js"></script>
 	<script src="script/global.js"></script>
 	<script src="script/Slider2Objects.js"></script>
 </head>
-<body onload="populateLanguageDropDown();getLanguageFromQueryString();">
+<body onload="init();">
     <fieldset class="gameSettings">
       <legend>Game Settings</legend>
       	<div id="gameSettings">
       		<label for="Lang">Language:</label>
-			<select id="Lang" name="Lang" onchange="changeLanguage(this.value);">
-			</select>
+			<select id="Lang" name="Lang" onchange="changeLanguage(this.value);"></select>
 			<label for="Offset">Character Offset:</label>
 			<input id="Offset" name="Offset" onchange="changePuzzleOffset(this.value)" 
 				type="number" min="0" max="20" step="1" value="0" /><br />

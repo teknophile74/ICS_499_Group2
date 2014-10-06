@@ -4,7 +4,6 @@
  * @Author Aaron Burke
  */
 
-var charArray = new Array();
 var puzzleName = PuzzleBaseConfig[0].puzzleName;
 var useSymbol = PuzzleBaseConfig[0].useSymbol;
 var initialWidth = PuzzleBaseConfig[0].initialWidth;
@@ -12,9 +11,9 @@ var initialHeight = PuzzleBaseConfig[0].initialHeight;
 var initialOffset = PuzzleBaseConfig[0].initialOffset;
 var currentLang = PuzzleBaseConfig[0].currentLang;
 var puzzle=null
-createPuzzle();
+CreatePuzzle();
 
-function createPuzzle() 
+function CreatePuzzle() 
 {
 	puzzle = new initializePuzzle(puzzleName, initialWidth, initialHeight);
 	// Load in the requested alpha array
@@ -171,12 +170,11 @@ function changePuzzleSize(newSize)
 	puzzle.writePuzzle();
 }
 
-function changeLanguage(currentLang)
+function changeLanguage(newLang)
 {
 	this.Size = parseInt((document.getElementById("Size")).value);
-	this.Lang = currentLang;
+	this.Lang = newLang;
 	this.Offset = parseInt((document.getElementById("Offset")).value);
-	SetCurrentlyLoadedLangArray();
 	puzzle.cleanGame();
 	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
 	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
@@ -196,38 +194,45 @@ function changePuzzleOffset(newOffset)
 	puzzle.writePuzzle();
 }
 
-function loadCharArray(Symbols, intWidth, intHeight, intOffset, currentLang)
+function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
 {
 	
 	if (intOffset.NaN) {
 		intOffset = 0;
 	}
 	
-	var selectBox = document.getElementById('Lang');
-	charArray = (eval(selectBox.options[selectBox.selectedIndex].text)).slice(0);
+	if (!(newLang)) {
+		var selectBox = document.getElementById('Lang');
+		newLang = selectBox.options[selectBox.selectedIndex].text;
+	}
 	
-	var maxChars = (intWidth*intHeight);
+	if (window[newLang]) {
 	
-	for (var i=0; i <= maxChars-1; ++i) {
-		if (i > maxChars-2) {
-			puzzle.pieces[i]="";
-		}
-		else {
-			initializePuzzle(puzzle.name, intWidth, intHeight);
-			if (useSymbol) {
-				if (i+intOffset > charArray.lenth-1) {
-					puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].symbol;
-				}
-				else {
-					puzzle.pieces[i]=charArray[(i+intOffset)].symbol;
-				}
+		var charArray = (window[newLang]).slice(0);
+		
+		var maxChars = (intWidth*intHeight);
+		
+		for (var i=0; i <= maxChars-1; ++i) {
+			if (i > maxChars-2) {
+				puzzle.pieces[i]="";
 			}
 			else {
-				if (i+intOffset > charArray.lenth-1) {
-					puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].char;
+				initializePuzzle(puzzle.name, intWidth, intHeight);
+				if (useSymbol) {
+					if (i+intOffset > charArray.lenth-1) {
+						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].symbol;
+					}
+					else {
+						puzzle.pieces[i]=charArray[(i+intOffset)].symbol;
+					}
 				}
 				else {
-					puzzle.pieces[i]=charArray[(i+intOffset)].char;
+					if (i+intOffset > charArray.lenth-1) {
+						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].char;
+					}
+					else {
+						puzzle.pieces[i]=charArray[(i+intOffset)].char;
+					}
 				}
 			}
 		}

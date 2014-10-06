@@ -1,3 +1,11 @@
+function init() {
+	populatePageLanguageSettings();
+	getLanguageFromQueryString();
+	CreatePuzzle();
+	ResetCounter();
+	puzzle.writePuzzle();
+}
+
 function getLanguageFromQueryString()
 {
 	var success = false;
@@ -8,8 +16,7 @@ function getLanguageFromQueryString()
 		var languageSelector = document.getElementById("Lang");
 		// Iterate nodes in form elements array
 		languageSelector.value = userChosenLang;
-		SetCurrentlyLoadedLangArray()
-		puzzle.writePuzzle();
+		currentLang = userChosenLang;
 	}
 	return success;
 }
@@ -25,7 +32,7 @@ function doDecode(object)
 
 function getInboundLanguage(queryString){ 	
 	// break apart incoming location.search variable
-	var returnLang = "en"; // default
+	var returnLang = currentLang; // default
 	var strQueryArray = queryString.slice(1).split('&');
 	
 	for (var j=0; j < strQueryArray.length; j++) {
@@ -37,7 +44,7 @@ function getInboundLanguage(queryString){
 	return returnLang;
 }
 
-function populateLanguageDropDown()
+function populatePageLanguageSettings()
 {
 	var i = 0;
 	var selectBox = document.getElementById('Lang');
@@ -45,7 +52,7 @@ function populateLanguageDropDown()
 	for (var language in CurrentLangDirs) 
 	{
 		SetOption(selectBox, language, i);
-        SetLangScripts(selectBox, language, i);
+		SetLangScripts(selectBox, language, i);
         ++i;
 	}
 }
@@ -56,7 +63,7 @@ function SetOption(selectBox, language, i){
     
     newOption.id = CurrentLangDirs[i].dir;
     newOption.innerHTML = CurrentLangDirs[i].arrayName;
-    newOption.value = (CurrentLangDirs[i].dir).split('_')[1];
+    newOption.value = CurrentLangDirs[i].arrayName;
     selectBox.appendChild(newOption);
 }
 
@@ -64,7 +71,7 @@ function SetLangScripts(selectBox, language, i)
 {
     var head = document.getElementsByTagName("head")[0];
     var sourcesPath = CurrentLangDirs[i].dir;
-    var scriptId = CurrentLangDirs[i].arrayName+'langArray'
+    var scriptId = CurrentLangDirs[i].arrayName+'LangArray'
     
     sourcesPath = 'lang/' + sourcesPath.replace("_", "/") + '/LangJSON.js';
     
@@ -78,25 +85,4 @@ function SetLangScripts(selectBox, language, i)
 	script.id = scriptId;
 	script.src = sourcesPath;
 	head.appendChild(script);
-}
-
-function SetCurrentlyLoadedLangArray()
-{
-    var cssWork;
-    var selectBox = document.getElementById('Lang');
-    var sourcesPath = selectBox.options[selectBox.selectedIndex].id;
-    sourcesPath = sourcesPath.replace("_", "/");
-    
-	if (document.getElementById('langArray')) {
-		cssWork = document.getElementById('langArray'); // Already exists update
-		cssWork.src = 'lang/' + sourcesPath + '/LangJSON.js';
-		//cssWork.onload = scriptLoaded;
-	}
-	else {
-		cssWork = document.createElement('script'); // New - Create
-		cssWork.id = 'langArray';
-		cssWork.src = 'lang/' + sourcesPath + '/LangJSON.js';
-		//cssWork.onload = scriptLoaded;
-		document.head.appendChild(cssWork);
-	}
 }

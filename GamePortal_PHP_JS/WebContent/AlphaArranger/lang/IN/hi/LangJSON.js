@@ -1,5 +1,7 @@
 /*
 * Devanagari
+* Defines a languages alphabet, includes a series of glyphs
+* Written by upload process for new languages
 */
 
 var Hindi = 
