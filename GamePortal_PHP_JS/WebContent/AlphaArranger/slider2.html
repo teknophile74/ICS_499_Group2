@@ -3,10 +3,15 @@
 <head>
 	<title>Alphabet-Arranger</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- Locally needed style objects -->
 	<link rel="stylesheet" type="text/css" href="css/slider2.css" />
+	<!-- Global Site Style -->
+	<link rel="stylesheet" type="text/css" href="../../style.css" />
+	<!-- Game Javascript Files -->
 	<script id="DefaultLangArray" src="lang/US/en/LangJSON.js"></script>
 	<script src="lang/CurrentLangDirs.js"></script>
 	<script src="script/baseSettingsJSON.js"></script>
+	<!--  Main Game scripts -->
 	<script src="script/global.js"></script>
 	<script src="script/Slider2Objects.js"></script>
 </head>
@@ -25,6 +30,7 @@
       		<input type="button" value="Reset Puzzle" onClick="ResetPuzzle();">
 		</div>
 	</fieldset>
+	<!-- Holds Game Board -->
 	<div id="gameHolder"></div>	
 	<div id="counter">
 		<span>Moves this game: </span><span id="MoveCounter"></span>
