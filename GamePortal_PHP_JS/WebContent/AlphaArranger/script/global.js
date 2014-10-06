@@ -1,21 +1,20 @@
-function init() {
-	populatePageLanguageSettings();
-	getLanguageFromQueryString();
-	CreatePuzzle();
-	ResetCounter();
-	puzzle.writePuzzle();
-}
 
-function getLanguageFromQueryString()
+
+function GetLanguageFromQueryString()
 {
 	var success = false;
 	var queryString = location.search;
 	if (queryString) {
-		var userChosenLang = getInboundLanguage(queryString);
+		var userChosenLang = GetInboundLanguage(queryString);
 		// Get languageSelector object
 		var languageSelector = document.getElementById("Lang");
-		// Iterate nodes in form elements array
-		languageSelector.value = userChosenLang;
+		// Iterate nodes in the select tag
+		for(var x=0;x < languageSelector.length -1 ; x++)
+		{
+		   if(userChosenLang == languageSelector.options[x].text)
+		 
+			   languageSelector.selectedIndex = x;
+		}
 		currentLang = userChosenLang;
 	}
 	return success;
@@ -30,7 +29,7 @@ function doDecode(object)
 	return object;
 }
 
-function getInboundLanguage(queryString){ 	
+function GetInboundLanguage(queryString){ 	
 	// break apart incoming location.search variable
 	var returnLang = currentLang; // default
 	var strQueryArray = queryString.slice(1).split('&');
@@ -44,7 +43,7 @@ function getInboundLanguage(queryString){
 	return returnLang;
 }
 
-function populatePageLanguageSettings()
+function PopulatePageLanguageSettings()
 {
 	var i = 0;
 	var selectBox = document.getElementById('Lang');

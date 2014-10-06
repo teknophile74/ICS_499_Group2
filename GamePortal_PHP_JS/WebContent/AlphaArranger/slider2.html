@@ -4,6 +4,7 @@
 	<title>Alphabet-Arranger</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/slider2.css" />
+	<script id="DefaultLangArray" src="lang/US/en/LangJSON.js"></script>
 	<script src="lang/CurrentLangDirs.js"></script>
 	<script src="script/baseSettingsJSON.js"></script>
 	<script src="script/global.js"></script>
@@ -21,7 +22,7 @@
       		<label for="Size">Cells Per Row:</label>
       		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
       			type="number" min="3" max="8" step="1" value="4" />
-      		<input type="button" value="Reset Puzzle" onClick="changeLanguage((document.getElementById('Lang')).value);">
+      		<input type="button" value="Reset Puzzle" onClick="ResetPuzzle();">
 		</div>
 	</fieldset>
 	<div id="gameHolder"></div>	

@@ -259,3 +259,19 @@ function ResetCounter()
 	this.moveCounter=0;
 	document.getElementById("MoveCounter").innerHTML=this.moveCounter;
 }
+
+function init() 
+{
+	PopulatePageLanguageSettings();
+	GetLanguageFromQueryString();
+	CreatePuzzle();
+	ResetCounter();
+	puzzle.writePuzzle();
+}
+
+function ResetPuzzle()
+{
+	(document.getElementById("Size")).value = initialHeight;
+	(document.getElementById("Offset")).value = initialOffset;
+	changeLanguage((document.getElementById('Lang')).value);
+}
