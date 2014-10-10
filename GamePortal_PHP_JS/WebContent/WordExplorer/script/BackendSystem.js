@@ -10,49 +10,32 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 */
-function BackendSystem() 
-{
+function BackendSystem() {
 	// Declares Global Variables
-	 var wordId;; //String 
-	 var englishInEnglish;; //String 
-	 var langInLang;; //String 
-	 var englishInLang;; //String 
-	 var langInEnglish;; //String 
-	 var themesInLangString;; //String 
-	 var imageURI;; //String 
-	 var infoURI;; //String 
-	 var soundURIOfEnglish;; //String 
-	 var soundURIOfLang;; //String 	 
-	 var themesInEnglishString;; //String 
-	 var themesInEnglish; //List<String>
-	 var themesInLang; //List<String>
-	 var wordList; //WordList
-	 var themedList; //WordList
-	 var tempList; //WordList
-	 var tempList2; //WordList
-	 var hasLines; //int
-	 var themedSize; //int
-	 var countLines; //int
-	 var wordsAdded; //int
-	 var file; //File
-	 var scanner1; //Scanner
-	 var scanner2; //Scanner
-	 var scanner3; //Scanner
-	 var scanner4; //Scanner
-	 var word1; //Word
-	 var tempWord; //Word
-	 var rows = null; //int[]
-	// TODO: Evaluate need for this function
-	//private static final BackendSystem INSTANCE = new BackendSystem();
-
+	// Strings
+	var wordId, englishInEnglish, langInLang, englishInLang, langInEnglish, themesInLangString;
+	var imageURI, infoURI, soundURIOfEnglish, soundURIOfLang, themesInEnglishString;
+	// List<String>
+	var themesInEnglish, themesInLang;
+	// WordList
+	var wordList, themedList, tempList;
+	// int
+	var hasLines, themedSize, countLines, wordsAdded;
+	// File
+	var file;
+	// Scanner
+	var scanner1, scanner2, scanner3, scanner4;
+	//Word
+	var tempWord;
+	// int array
+	var rows = new array();
 
 	//Creates Word and adds to wordList; Takes in int as variable
-	this.createWord=function(number)
+	this.createWord = function(number)
 	{
+		var tempWordId = englishInEnglish + langInLang; //String 
 
-		var tempWordId = englishInEnglish + langInLang;; //String 
-
-		if (wordsAdded == 0) {
+		if (wordsAdded === 0) {
 			tempWord = new Word(englishInEnglish, langInLang, englishInLang,
 					langInEnglish, themesInEnglish, themesInLang, imageURI,
 					infoURI, soundURIOfEnglish, soundURIOfLang);
@@ -61,7 +44,7 @@ function BackendSystem()
 		} else {
 
 			var isDup = wordList.searchWordIsDup(tempWordId); //boolean
-			if (isDup == true) {
+			if (isDup === true) {
 				System.out.println("Sorry word is already added to list.");
 			} else {
 				tempWord = new Word(englishInEnglish, langInLang,
@@ -70,12 +53,9 @@ function BackendSystem()
 						soundURIOfLang);
 				wordList.addWord(tempWord);
 				wordsAdded++;
-
 			}
-
 		}
-
-	}
+	};
 
 	// TODO: - work on connecting function
 	/*//Creates and returns a new WordList
@@ -95,7 +75,7 @@ function BackendSystem()
 	*/
 	
 	//Scans file and uses them to build wordList
-	this.scanFile=function(File tempFile) {
+	this.scanFile=function(tempFile) {
 
 		wordsAdded = 0;
 		wordId = "";
@@ -103,8 +83,8 @@ function BackendSystem()
 		langInLang = "";
 		englishInLang = "";
 		langInEnglish = "";
-		themesInEnglish = new Array(); //ArrayList<String>
-		themesInLang = new Array(); //ArrayList<String>
+		themesInEnglish = new array(); //ArrayList<String>
+		themesInLang = new array(); //ArrayList<String>
 		imageURI = "";
 		infoURI = "";
 		soundURIOfEnglish = "";
@@ -113,14 +93,12 @@ function BackendSystem()
 		file = tempFile;
 		hasLines = scanFileForLinesNum();
 
-		wordList = new WordList(hasLines);
-		rows = new String[hasLines];
+		wordList = new array(); //WordList(hasLines);
+		rows = new array(); //[hasLines]
 
 		scanLines();
-
 		scanRows();
-
-	}
+	};
 
 	//Scans file and returns number of lines/entires
 	this.scanFileForLinesNum=function() { //int
@@ -129,7 +107,8 @@ function BackendSystem()
 
 		try {
 			scanner1 = new Scanner(file, "UTF-8");
-		} catch (FileNotFoundException e) {
+		} 
+		catch (e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -141,14 +120,15 @@ function BackendSystem()
 		}
 
 		return numLines;
-	}
+	};
 
 	//Scans each line and adds them to an String Array rows[]
 	this.scanLines=function() {
 
 		try {
 			scanner2 = new Scanner(file, "UTF-8");
-		} catch (FileNotFoundException e) {
+		}
+		catch (e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -160,10 +140,8 @@ function BackendSystem()
 			var tempString2 = scanner2.nextLine(); //String 
 			rows[lineCount] = tempString2;
 			lineCount++;
-
 		}
-
-	}
+	};
 
 	// Scans each row of words and seperates each section into its correct
 	// String
@@ -174,9 +152,9 @@ function BackendSystem()
 		var tempWord2 = ""; //String 
 
 		while (lineCount < rows.length) {
-			var tempTIE = new Array(); //ArrayList<String> //List<String>
-			var tempTIL = new Array(); //ArrayList<String> //List<String>
-			var collumn = new String[10]; //String 
+			var tempTIE = new array(); //ArrayList<String> //List<String>
+			var tempTIL = new array(); //ArrayList<String> //List<String>
+			var collumn = new array(); //String[10];
 
 			collumn = rows[lineCount].split("\\|");
 
@@ -194,7 +172,7 @@ function BackendSystem()
 
 			} else {
 				if (collumn.length != 1) {
-					var temp = new String[10]; //String 
+					var temp = new array(); //String[10];
 
 					for (var i = 0; i < 10; i++) {
 						if (i <= collumn.length - 1)
@@ -220,7 +198,7 @@ function BackendSystem()
 
 			// Scanner 3 to split themesInEnglishString to seperate string
 			// entries
-			if (themesInEnglishString != "" && themesInEnglishString != null) {
+			if (themesInEnglishString !== "" && themesInEnglishString !== null) {
 				// Creates Scanners to sort through themes and seperate them by
 				// ,
 				scanner3 = new Scanner(themesInEnglishString);
@@ -241,7 +219,7 @@ function BackendSystem()
 				themesInEnglish = tempTIE;
 			}
 			// Scanner 4 to split themesInLangString to seperate string entries
-			if (themesInLangString != "" && themesInLangString != null) {
+			if (themesInLangString !== "" && themesInLangString !== null) {
 
 				scanner4 = new Scanner(themesInLangString);
 				// Themes In Lang Seperator and adding
@@ -261,7 +239,7 @@ function BackendSystem()
 				themesInLang = tempTIL;
 			}
 
-			if (englishInEnglish != null && langInLang != null) {
+			if (englishInEnglish !== null && langInLang !== null) {
 				createWord(rowCount);
 				rowCount++;
 			}
@@ -269,15 +247,15 @@ function BackendSystem()
 
 		}
 
-	}
+	};
 	
 	//Finds and returns the englishThemes list from wordList
 	this.getEngListList=function() { //List<String>
 
 		var counter = 0; //int
 
-		var tempAList = new Array(); //ArrayList<String> //List<String>
-		var themesList = new Array(); //ArrayList<String> //List<String>
+		var tempAList = new array(); //ArrayList<String> //List<String>
+		var themesList = new array(); //ArrayList<String> //List<String>
 		var tempString = ""; //String 
 
 		while (counter < wordList.getSize()) {
@@ -314,16 +292,16 @@ function BackendSystem()
 		}
 
 		return themesList;
-	}
+	};
 	
 	//Finds and returns the langThemes list from wordList
 		this.getLangList=function() { // List<String> 
 
 			var counter = 0; //int
 
-			var tempAList = new Array(); //ArrayList<String> //List<String>
-			var themesList = new Array(); //ArrayList<String> //List<String>
-			String tempString = "";
+			var tempAList = new array(); //ArrayList<String> //List<String>
+			var themesList = new array(); //ArrayList<String> //List<String>
+			var tempString = "";
 
 			while (counter < wordList.getSize()) {
 
@@ -359,29 +337,29 @@ function BackendSystem()
 			}
 
 			return themesList;
-		}
+		};
 
 	//Randomizes wordList based on tempTheme and returns a seperate wordList of results
-	this.randomN=function(String tempTheme) {
-
+	this.randomN=function(tempTheme) {
+		var isSame = true; //boolean
+		var tempLength = 1; //int
 		var randomNum = 0; //int
-		var num[]; //int
+		var num = new array(); //int
 		var generator = new Random(); //Random
 		var n = 0; //int
 
 		if (tempTheme == "All Words") {
 			var number = wordList.getSize(); //int
 			tempList = new WordList(number);
-			num = new int[number];
+			num = new array(); //int[number];
 			for (var y = 0; y < number; y++) {
 				num[y] = -1;
 			}
 
 			for (var x = 0; x < number; x++) {
 
-				var isSame = true; //boolean
-				var tempLength = 1; //int
-				while (isSame == true) {
+				tempLength = 1; //int
+				while (isSame === true) {
 					n = hasLines;
 					randomNum = generator.nextInt(n);
 
@@ -401,30 +379,30 @@ function BackendSystem()
 
 			}
 
-			for (var q = 0; q < number; q++) {
-				var tempNumber = num[q]; //int
+			for (var t = 0; t < number; t++) {
+				var tempNumber = num[t]; //int
 				tempWord = wordList.getWord(tempNumber);
 				tempList.addWord(tempWord);
 			}
 
-		} else {
-			var x = 0; //int
-			var tempLength = 1; //int
-			var tempThemes = new Array(); //ArrayList<String> //List<String>
+		}
+		else {
+			var x1 = 0; //int
+			var tempThemes = new array(); //ArrayList<String> //List<String>
 			themedList = new WordList();
 
-			while (x < wordList.getSize()) {
-				tempWord = wordList.getWord(x);
+			while (x1 < wordList.getSize()) {
+				tempWord = wordList.getWord(x1);
 				tempThemes = tempWord.getThemesInEnglish();
 				if (tempThemes.contains(tempTheme)) {
 					themedList.addWord(tempWord);
 				}
-				x++;
+				x1++;
 			}
 
 			var number2 = themedList.getSize(); //int
 			tempList = new WordList(number2);
-			num = new int[number2];
+			num = new array(); //int[number2];
 
 			for (var y2 = 0; y2 < number2; y2++) {
 				num[y2] = -1;
@@ -432,14 +410,14 @@ function BackendSystem()
 
 			for (var x2 = 0; x2 < number2; x2++) {
 
-				var isSame = true; //boolean
-
-				while (isSame == true) {
+				isSame = true; //boolean
+				tempLength = 1; //int
+				while (isSame === true) {
 					n = number2;
 					randomNum = generator.nextInt(n);
 
-					for (var z = 0; z < tempLength; z++) {
-						if (randomNum == num[z]) {
+					for (var z2 = 0; z2 < tempLength; z2++) {
+						if (randomNum == num[z2]) {
 							isSame = true;
 							break;
 						} else {
@@ -455,17 +433,15 @@ function BackendSystem()
 			}
 
 			for (var q = 0; q < number2; q++) {
-				var tempNumber = num[q]; //int
-				tempWord = themedList.getWord(tempNumber);
+				var tempNumber1 = num[q]; //int
+				tempWord = themedList.getWord(tempNumber1);
 				tempList.addWord(tempWord);
 			}
-
 		}
-
-	}
+	};
 
 	//Returns new wordList based on tempTheme and sequentially sorted how the text file presents it
-	this.sequentialN=function(String tempTheme) {
+	this.sequentialN=function(tempTheme) {
 		themedList = new WordList();
 		var number = 0; //int
 
@@ -477,9 +453,10 @@ function BackendSystem()
 				tempWord = wordList.getWord(q);
 				tempList.addWord(tempWord);
 			}
-		} else {
+		} 
+		else {
 			var x = 0; //int
-			var tempThemes = new Array(); //ArrayList<String> //List<String>
+			var tempThemes = new array(); //ArrayList<String> //List<String>
 
 			while (x < wordList.getSize()) {
 				tempWord = wordList.getWord(x);
@@ -500,7 +477,7 @@ function BackendSystem()
 				tempList.addWord(tempWord);
 			}
 		}
-	}
+	};
 
 	//TODO: 
 	/* Evaluate this fucntion
