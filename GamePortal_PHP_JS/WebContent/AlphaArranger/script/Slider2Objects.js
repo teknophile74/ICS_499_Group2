@@ -4,12 +4,12 @@
  * @Author Aaron Burke
  */
 
-var puzzleName = PuzzleBaseConfig[0].puzzleName;
-var useSymbol = PuzzleBaseConfig[0].useSymbol;
-var initialWidth = PuzzleBaseConfig[0].initialWidth;
-var initialHeight = PuzzleBaseConfig[0].initialHeight;
-var initialOffset = PuzzleBaseConfig[0].initialOffset;
-var currentLang = PuzzleBaseConfig[0].currentLang;
+var puzzleName = PuzzleBaseConfig.puzzleName;
+var useSymbol = PuzzleBaseConfig.useSymbol;
+var initialWidth = PuzzleBaseConfig.initialWidth;
+var initialHeight = PuzzleBaseConfig.initialHeight;
+var initialOffset = PuzzleBaseConfig.initialOffset;
+var currentLang = PuzzleBaseConfig.currentLang;
 var puzzle=null
 CreatePuzzle();
 
