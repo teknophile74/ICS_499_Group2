@@ -216,7 +216,7 @@ function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
 				puzzle.pieces[i]="";
 			}
 			else {
-				initializePuzzle(puzzle.name, intWidth, intHeight);
+				//initializePuzzle(puzzle.name, intWidth, intHeight);
 				if (useSymbol) {
 					if (i+intOffset > charArray.lenth-1) {
 						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].symbol;

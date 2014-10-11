@@ -19,14 +19,20 @@
     <fieldset class="gameSettings">
       <legend>Game Settings</legend>
       	<div id="gameSettings">
+      		<span class="nonwraplabels">
       		<label for="Lang">Language:</label>
 			<select id="Lang" name="Lang" onchange="changeLanguage(this.value);"></select>
+			</span>
+			<span class="nonwraplabels">
 			<label for="Offset">Character Offset:</label>
 			<input id="Offset" name="Offset" onchange="changePuzzleOffset(this.value)" 
-				type="number" min="0" max="20" step="1" value="0" />
+				type="number" min="0" max="20" step="1" value="0" readonly />
+      		</span>
+      		<span class="nonwraplabels">
       		<label for="Size">Cells Per Row:</label>
       		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
-      			type="number" min="3" max="8" step="1" value="4" />
+      			type="number" min="3" max="8" step="1" value="4" readonly />
+      		</span>
       		<input type="button" value="Reset Puzzle" onClick="ResetPuzzle();">
 		</div>
 	</fieldset>

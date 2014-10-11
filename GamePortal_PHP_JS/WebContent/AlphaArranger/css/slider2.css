@@ -1,8 +1,10 @@
-table {
+table 
+{
 	border: solid blue 2px;
 }
 
-td {
+td 
+{
 	margin: 0px;
 	padding: 0px;
 	border: solid 2px;
@@ -12,18 +14,34 @@ td {
 	font-size: 1em;
 }
 
-td.graysq {
+td.graysq 
+{
 	background-color: gray;
 }
 
-a {
+a 
+{
 	text-decoration: none;
 }
 
-div#counter {
+fieldset.gameSettings
+{
+	max-width: 825px;
+}
+
+div#counter 
+{
 	margin: 20px 0px;
 }
 
-#MoveCounter {
+#MoveCounter 
+{
 	color: red;
+}
+
+span.nonwraplabels 
+{
+	padding: 5px;
+	white-space: nowrap;
+	overflow: hidden;
 }
