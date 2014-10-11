@@ -7,4 +7,4 @@ var PuzzleBaseConfig =
 	initialHeight : 4,
 	initialOffset : 0,
 	useSymbol : true		
-}
+};

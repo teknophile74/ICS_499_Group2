@@ -3,15 +3,14 @@
  * Group: 2
  * @Author Aaron Burke
  */
-
+var PuzzleBaseConfig = window.PuzzleBaseConfig;
 var puzzleName = PuzzleBaseConfig.puzzleName;
 var useSymbol = PuzzleBaseConfig.useSymbol;
 var initialWidth = PuzzleBaseConfig.initialWidth;
 var initialHeight = PuzzleBaseConfig.initialHeight;
 var initialOffset = PuzzleBaseConfig.initialOffset;
 var currentLang = PuzzleBaseConfig.currentLang;
-var puzzle=null
-CreatePuzzle();
+var puzzle=null;
 
 function CreatePuzzle() 
 {
@@ -27,8 +26,8 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 	this.height=puzzleHeight;	
 	//this.emptyVal=0;
 	this.emptyVal="";
-	this.pieces=new Array();
-	this.fields=new Array();
+	this.pieces=[];
+	this.fields=[];
 	this.name=aName;
 	this.moveCounter=0;
 	this.writePuzzle=function()
@@ -48,9 +47,9 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 			{
 				var P=Math.floor(Math.random()*(tempArray.length-I));
 				this.fields[I]=tempArray[P];
-				for(J=P;J<tempArray.length-1;J++)
+				for(var J=P;J<tempArray.length-1;J++)
 				{
-					tempArray[J]=tempArray[J+1]
+					tempArray[J]=tempArray[J+1];
 				}				
 			}
 	
@@ -87,7 +86,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 			HTML.appendChild(tbl);
 			gamePlaceHolder.appendChild(HTML);
 		}
-	}
+	};
 
 	this.move=function(aY,aX)
 	{
@@ -146,7 +145,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 		}
 		this.moveCounter++;
 		document.getElementById("MoveCounter").innerHTML=this.moveCounter;
-	}
+	};
 
 	this.cleanGame=function()
 	{
@@ -155,7 +154,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 		if (element) {
 			gamePlaceHolder.removeChild(element);
 		}
-	}
+	};
 }
 
 function changePuzzleSize(newSize)
@@ -263,7 +262,17 @@ function ResetCounter()
 function init() 
 {
 	PopulatePageLanguageSettings();
-	GetLanguageFromQueryString();
+	if (!(GetLanguageFromQueryString()))
+	{
+		var selectBox = document.getElementById('Lang');
+		for(var i=0; i < selectBox.length; i++)
+		{
+		   if (currentLang == selectBox.options[i].text)
+		   {
+			   selectBox.selectedIndex = i;
+		   }
+		}
+	}
 	CreatePuzzle();
 	ResetCounter();
 	puzzle.writePuzzle();

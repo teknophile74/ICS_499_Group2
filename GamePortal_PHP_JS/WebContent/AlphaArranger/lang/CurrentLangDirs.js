@@ -16,5 +16,5 @@ var CurrentLangDirs =
 	{
 		dir: "US_en",
 		arrayName: "English"
-	},
+	}
 ];
