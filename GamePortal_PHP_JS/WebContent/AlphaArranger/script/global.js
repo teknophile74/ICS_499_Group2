@@ -5,7 +5,7 @@
  */
 
 function GetInboundLanguage(queryString)
-{ 	
+{
 	// break apart incoming location.search variable
 	var returnLang;
 	if (currentLang) {
@@ -35,20 +35,24 @@ function doDecode(object)
 function GetLanguageFromQueryString()
 {
 	var success = false;
-	var queryString = location.search;
-	if (queryString) {
-		var userChosenLang = GetInboundLanguage(queryString);
-		// Get languageSelector object
-		var selectBox = document.getElementById("Lang");
-		// Iterate nodes in the select tag
-		for(var i=0; i < selectBox.length-1; i++)
-		{
-		   if (userChosenLang == selectBox.options[i].text)
-		   {
-			   selectBox.selectedIndex = i;
-		   }
+	if (location) {
+		var queryString = location.search;
+		
+		if (queryString) {
+			var userChosenLang = GetInboundLanguage(queryString);
+			// Get languageSelector object
+			var selectBox = document.getElementById("Lang");
+			// Iterate nodes in the select tag
+			for(var i=0; i < selectBox.length-1; i++)
+			{
+			   if (userChosenLang == selectBox.options[i].text)
+			   {
+				   selectBox.selectedIndex = i;
+			   }
+			}
+			currentLang = userChosenLang;
+			success = true;
 		}
-		currentLang = userChosenLang;
 	}
 	return success;
 }
