@@ -8,12 +8,14 @@ function GetInboundLanguage(queryString)
 {
 	// break apart incoming location.search variable
 	var returnLang;
-	if (currentLang) {
+	if (currentLang) 
+	{
 		returnLang = currentLang; // default
 	}
 	var strQueryArray = queryString.slice(1).split('&');
 	
-	for (var i=0; i < strQueryArray.length; i++) {
+	for (var i=0; i < strQueryArray.length; i++) 
+	{
 		var tempLang = doDecode(strQueryArray[i].split('=')[1]);
 		if ((tempLang) && (tempLang !== ''))
 		{
@@ -25,7 +27,8 @@ function GetInboundLanguage(queryString)
 
 function doDecode(object)
 {
-	if (object) {
+	if (object) 
+	{
 		// decode URI and change + to spaces
 		object = decodeURIComponent((object.replace(/\+/g, '%20')));
 	}
@@ -35,10 +38,12 @@ function doDecode(object)
 function GetLanguageFromQueryString()
 {
 	var success = false;
-	if (location) {
+	if (location) 
+	{
 		var queryString = location.search;
 		
-		if (queryString) {
+		if (queryString) 
+		{
 			var userChosenLang = GetInboundLanguage(queryString);
 			// Get languageSelector object
 			var selectBox = document.getElementById("Lang");
@@ -86,7 +91,8 @@ function SetLangScripts(i)
     sourcesPath = 'lang/' + sourcesPath.replace("_", "/") + '/LangJSON.js';
   
     var oldScript = document.getElementById(scriptId);
-	if (oldScript) {
+	if (oldScript) 
+	{
 		// Already exists delete
 		oldScript.parentNode.removeChild(oldScript);
 	}
