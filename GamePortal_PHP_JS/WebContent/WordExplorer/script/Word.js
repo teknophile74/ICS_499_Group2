@@ -69,7 +69,7 @@ function Word {
 	 *
 	 * @see WordListInterface#getEngList()
 	 */
-	public String getWordId() {
+	var getWordId() {
 		return wordId;
 	}
 

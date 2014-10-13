@@ -96,8 +96,8 @@ function BackendSystem() {
 		wordList = new array(); //WordList(hasLines);
 		rows = new array(); //[hasLines]
 
-		scanLines();
-		scanRows();
+	//	scanLines();
+	//	scanRows();
 	};
 
 	//Scans file and returns number of lines/entires
