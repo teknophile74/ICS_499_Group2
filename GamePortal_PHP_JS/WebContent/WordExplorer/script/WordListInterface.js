@@ -16,7 +16,7 @@ function WordListInterface()
 	 var searchWordIsDup(wordId); //boolean
 	 var searchWordEnglish(wordInEnglish); //int
 	 var searchWordLang(wordInLang); //int
-	 var searchWordId(wordId); //int
+	 var searchWordId(wordId);
 	 var getEngList; //List<String>
 	 var isEmpty; //boolean
 	 var isFull; //boolean
