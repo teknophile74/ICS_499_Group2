@@ -31,9 +31,9 @@ function Word() {
 	Word(eIE, lIL, eIL, lIE,
 			List<String> tIE, List<String> tIL, imURI, inURI,sURIE, sURIL) {
 
-		wordId = eIE + lIE;
-		englishInEnglish = eIE;
-		langInLang = lIL;
+		wordId = eIE + lIE;       //eIE = English in English
+		englishInEnglish = eIE;   // LiE= Lang in English
+		langInLang = lIL;         // lil= Lang in Lang
 		englishInLang = eIL;
 		langInEnglish = lIE;
 		themesInEnglish = tIE;
