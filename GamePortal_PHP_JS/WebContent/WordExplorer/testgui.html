@@ -1,54 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Word Explorer</title>
-<h1 class="nav_right">Word Explorer</h1>
-<script id="DefaultLangArray" src="lang/US/en/LangJSON.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/galleryView.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+<script id="DefaultLangArray" src="lang/US/en/te/Cat_Family.js"></script>
 <script src="lang/CurrentLangDirs.js"></script>
-<script src="lang/US/te/Cat_Family.js"></script>
+<script src="lang/CategoryList.js"></script>
+<script src="script/global.js"></script>
+<!-- <script src="lang/US/en/te/Cat_Family.js"></script> -->
 <script src="script/BackendSystem.js"></script>
-
 <script src="script/WordListInterface.js"></script>
 <script src="script/Word.js"></script>
 </head>
-<body>
-<style>
-body {
-			background-color: gray;
-        }
-		h1.nav_right {
-		position: relative;
-		left: 300px;
-		}
-		div.nav_right {
-		position: relative;
-		left: 300px;
-		}
-		div.nav_lang {
-		position: relative;
-		left: 700px;
-		}
-		div.nav_eng {
-		position: fixed;
-		left: 50px;
-		}
-		</style>
-		<div class="nav_eng">
-			<a href="url">engInEng</a> <br/>
-			<a href="url">engInLang</a> 
-			<br/>&nbsp;
+<body onload="PopulatePageLanguageSettings();var BS = new BackendSystem(); BS.createWord(2);">
+	<h1 class="banner">Word Explorer</h1>
+	<div class="main">
+		<!-- <img class="defaultImage" src="images/default.jpg" alt="Default Image Holder" /> --> 
+		<div id="gallery">
+			<div id="fullsize">
+				<div id="pic1">
+					<img alt="Rocky Beach" src="../images/bloggallery/pic1.jpg" />
+					<a href="#pic4" class="previous">
+						<img alt="Sandy Beach" src="../images/bloggallery/pic4.jpg" />
+					</a>
+					<a href="#pic2" class="next">
+						<img alt="Oiled Beach" src="../images/bloggallery/pic2.jpg" />
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng1</a><br />
+						<a href="url" onclick="">engInLang1</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang1</a><br />
+						<a href="url" onclick="">langInEnglish1</a> 
+					</div>
+				</div>
+				<div id="pic2">
+					<img alt="Oiled Beach" src="../images/bloggallery/pic2.jpg" />
+					<a href="#pic1" class="previous">
+						<img alt="Rocky Beach" src="../images/bloggallery/pic1.jpg" />
+					</a>
+					<a href="#pic3" class="next">
+						<img alt="Barren Beach" src="../images/bloggallery/pic3.jpg"/>
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng2</a><br/>
+						<a href="url" onclick="">engInLang2</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang2</a> <br/>
+						<a href="url" onclick="">langInEnglish2</a> 
+					</div>				
+				</div>
+				<div id="pic3">
+					<img alt="Barren Beach" src="../images/bloggallery/pic3.jpg" />
+					<a href="#pic2" class="previous">
+						<img alt="Oiled Beach" src="../images/bloggallery/pic2.jpg" />
+					</a>
+					<a href="#pic4" class="next">
+						<img alt="Sandy Beach" src="../images/bloggallery/pic4.jpg" />
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng3</a> <br/>
+						<a href="url" onclick="">engInLang3</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang3</a> <br/>
+						<a href="url" onclick="">langInEnglish3</a> 
+					</div>				
+				</div>
+				<div id="pic4">
+					<img alt="Sandy Beach" src="../images/bloggallery/pic4.jpg" />
+					<a href="#pic3" class="previous">
+						<img alt="Barren Beach" src="../images/bloggallery/pic3.jpg" />
+					</a>
+					<a href="#pic1" class="next">
+						<img alt="Rocky Beach" src="../images/bloggallery/pic1.jpg" />
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng4</a> <br/>
+						<a href="url" onclick="">engInLang4</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang4</a> <br/>
+						<a href="url" onclick="">langInEnglish4</a> 
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="nav_lang">
-			<a href="url">langInLang</a> <br/>
-			<a href="url">langInEnglish</a> 
-		</div>
-		<div class="nav_right">
-			<FORM>
-				<INPUT TYPE="image" src="../default.jpg" height="400px" width="300px"> <br/>
-				<INPUT TYPE="button" VALUE="<< Back" onClick="Back1()"> 
-				<INPUT TYPE="button" VALUE="Forward >>" onClick="Forward1()">
-			</FORM>
-		</div>
+	</div>
+	<div id="category">
+		<fieldset>
+			<legend>Select a category</legend>
+			<select id="categories" onchange="triggerUpdate();"></select>
+		</fieldset>
+	</div>
+	<!--<fieldset>
+		<legend>Controls</legend>
+		<input TYPE="button" VALUE="<< Back" onClick="Back1()" /> 
+		<input TYPE="button" VALUE="Forward >>" onClick="Forward1()" />
+	</fieldset>-->
 </body>
 </html>

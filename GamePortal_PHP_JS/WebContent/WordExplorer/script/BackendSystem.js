@@ -28,10 +28,10 @@ function BackendSystem() {
 	//Word
 	var tempWord;
 	// int array
-	var rows = new array();
+	var rows = [];
 
 	//Creates Word and adds to wordList; Takes in int as variable
-	this.createWord = function(number)
+	this.createWord=function(number)
 	{
 		var tempWordId = englishInEnglish + langInLang; //String 
 

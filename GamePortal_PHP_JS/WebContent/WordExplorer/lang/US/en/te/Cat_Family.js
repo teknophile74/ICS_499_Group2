@@ -1,4 +1,5 @@
-﻿[
+﻿var EnglishTeluguFamily =
+[
   {
     "English":"grandmother",
     "Lang":"అమ్మమ్మ",
