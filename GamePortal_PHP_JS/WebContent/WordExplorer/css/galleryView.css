@@ -49,11 +49,15 @@
     font-size: 18px;
     margin: 0;
     padding: 10px 0 0;
+    position: relative;
+    left: 300px;
 }
 #gallery #fullsize div div.nav_seclang {
     font-size: 18px;
     margin: 0;
     padding: 10px 0 0;
+    position: relative;
+    left: -400px;
 }
 #gallery #fullsize a.previous {
     border: 10px solid #FFFFFF;

@@ -64,9 +64,9 @@ function Main(){
 	var configSEng, configSLang, configImage, configInfo;
 	var tempS = []; //new var[15];
 	//private String[] themeList = { "All Words" };
-	var themeList= []; //{"All words"};
+	var themeList=[]; //{"All words"};
 	//private String[] tempList;
-	var tempList = [];
+	var tempList =[];
 	//private List<String> themesInEnglish;
 	var themesInEnglish = []; //new Array();
 	var temp = null;   //protected String temp = "";
@@ -77,10 +77,12 @@ function Main(){
 
 	var file, picFile; //File
 
-	Image wordPicture;
-	Image wordPicture2;
+//	Image wordPicture;
+	var wordPicture;
+//	Image wordPicture2;
+	var wordPicture2;
 
-	final JFileChooser chooser = new JFileChooser();
+	var chooser =JFileChooser();
 
 	WordList wordList;
 
@@ -237,7 +239,7 @@ function Main(){
 
 	getThemeEngList=new array; //public List<String> getThemesEngList() {
 		themesInEnglish = bS.getEngList();
-		List<String> tempList = new ArrayList<String>();
+	//	List<String> tempList = new ArrayList<String>();
 		tempList.add("All Words");
 
 		int counter = 0;
@@ -407,8 +409,11 @@ function Main(){
 
 	@Override
 	//public void actionPerformed(ActionEvent e) {
+	
+	// Action Perform, to do what actionlistener asked to do
 	this.actionPerformed=function(){
-		List<String> themesList = new ArrayList<String>();
+	//	List<String> themesList = new ArrayList<String>();
+		themeList= arrayList();
 		// TODO Auto-generated method stub
 		if (e.getSource() == fileButton) {
 			chooser.setCurrentDirectory(new java.io.File("."));
@@ -623,7 +628,8 @@ function Main(){
 
 	//public void readConfig() {
 	this.readConfig(){
-		Scanner scanner1 = null;
+	//	Scanner scanner1 = null;
+		scanner1=null;
 		File file = new File("config.txt");
 
 		try {
@@ -672,7 +678,8 @@ function Main(){
 		}
 	}
 
-	public static void openWebpage(URL url) {
+	//public static void openWebpage(URL url) {
+	  this.openWebpage(url){
 		try {
 			openWebpage(url.toURI());
 		} catch (URISyntaxException e) {
