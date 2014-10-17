@@ -45,11 +45,11 @@ import javax.swing.SwingConstants;
 */
 
 
-function Main{
+function Main(){
 	var serialVersionUID = 1L;
 
 	//Creates and grabs instance of BackendSystem
-	BackendSystem bS = BackendSystem.getInstance();
+	var bS = BackendSystem();
 
 	// Strings
 	var englishInEnglish;
@@ -62,20 +62,20 @@ function Main{
 	var soundURIOfLang;
 	//protected Scanner scanner1;
 	var configSEng, configSLang, configImage, configInfo;
-	var tempS[] = new var[15];
+	var tempS = []; //new var[15];
 	//private String[] themeList = { "All Words" };
-	var [] themeList= {"All words"};
+	var themeList= []; //{"All words"};
 	//private String[] tempList;
-	var [] tempList;
+	var tempList = [];
 	//private List<String> themesInEnglish;
-	themesInEnglish = new Array();
-	var temp="";   //protected String temp = "";
-	var themeSelection;    //protected var themeSelection;
+	var themesInEnglish = []; //new Array();
+	var temp = null;   //protected String temp = "";
+	var themeSelection = null;    //protected var themeSelection;
 
 	var curser;
 	var counter;
 
-	var File file, picFile;
+	var file, picFile; //File
 
 	Image wordPicture;
 	Image wordPicture2;
@@ -185,7 +185,7 @@ function Main{
 		picFile = new File(configImage + "default.jpg");
 		try {
 			wordPicture = ImageIO.read(picFile);
-		} catch (IOException e) {
+		} catch ( e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

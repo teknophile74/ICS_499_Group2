@@ -28,10 +28,10 @@ function BackendSystem() {
 	//Word
 	var tempWord;
 	// int array
-	var rows = new array();
+	var rows = [];
 
 	//Creates Word and adds to wordList; Takes in int as variable
-	this.createWord = function(number)
+	this.createWord=function(number)
 	{
 		var tempWordId = englishInEnglish + langInLang; //String 
 
@@ -96,8 +96,8 @@ function BackendSystem() {
 		wordList = new array(); //WordList(hasLines);
 		rows = new array(); //[hasLines]
 
-		scanLines();
-		scanRows();
+	//	scanLines();
+	//	scanRows();
 	};
 
 	//Scans file and returns number of lines/entires
