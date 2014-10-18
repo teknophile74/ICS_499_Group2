@@ -45,7 +45,8 @@ function BackendSystem() {
 
 			var isDup = wordList.searchWordIsDup(tempWordId); //boolean
 			if (isDup === true) {
-				System.out.println("Sorry word is already added to list.");
+				//System.out.println("Sorry word is already added to list.");
+				console.log("Sorry word is already added to list.");
 			} else {
 				tempWord = new Word(englishInEnglish, langInLang,
 						englishInLang, langInEnglish, themesInEnglish,
@@ -75,7 +76,7 @@ function BackendSystem() {
 	*/
 	
 	//Scans file and uses them to build wordList
-	this.scanFile=function(tempFile) {
+/*	this.scanFile=function(tempFile) {
 
 		wordsAdded = 0;
 		wordId = "";
@@ -98,7 +99,7 @@ function BackendSystem() {
 
 	//	scanLines();
 	//	scanRows();
-	};
+	};  */
 
 	//Scans file and returns number of lines/entires
 	this.scanFileForLinesNum=function() { //int
