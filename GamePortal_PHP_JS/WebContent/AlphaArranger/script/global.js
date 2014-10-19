@@ -25,14 +25,14 @@ function GetInboundLanguage(queryString)
 	return returnLang;
 }
 
-function doDecode(object)
+function doDecode(object) 
 {
-	if (object) 
-	{
-		// decode URI and change + to spaces
-		object = decodeURIComponent((object.replace(/\+/g, '%20')));
-	}
-	return object;
+    if (object) 
+    {
+        // decode URI and change + to spaces
+        object = decodeURIComponent((object.replace(/\+/g, '%20')));
+    }
+    return object;
 }
 
 function GetLanguageFromQueryString()
