@@ -1,6 +1,6 @@
 
 /*	ICS499
- *  Group 2
+ *  Group 2 <<best.
  *  Main.java
  *  This is the Main program the starts program and builds GUI
  *  Please make sure jl1.0.1.jar is included in project build path

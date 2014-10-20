@@ -12,3 +12,5 @@ var WordBaseConfig =
     SecLang_translit:"",
     Image:""	
 };
+
+//yadda.

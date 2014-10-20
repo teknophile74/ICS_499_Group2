@@ -1,6 +1,6 @@
 /**
  * Global Page level JavaScript
- * Group: 2
+ * Group: 2 <<better.
  * @Author Aaron Burke
  */
 
