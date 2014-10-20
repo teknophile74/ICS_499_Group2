@@ -154,29 +154,29 @@ function BackendSystem() {
 		while (lineCount < rows.length) {
 			var tempTIE = new array(); //ArrayList<String> //List<String>
 			var tempTIL = new array(); //ArrayList<String> //List<String>
-			var collumn = new array(); //String[10];
+			var column = new array(); //String[10];
 
-			collumn = rows[lineCount].split("\\|");
+			column = rows[lineCount].split("\\|");
 
-			if (collumn.length == 10) {
-				englishInEnglish = collumn[0].trim();
-				langInLang = collumn[1].trim();
-				englishInLang = collumn[2].trim();
-				langInEnglish = collumn[3].trim();
-				themesInEnglishString = collumn[4].trim();
-				themesInLangString = collumn[5].trim();
-				imageURI = collumn[6].trim();
-				infoURI = collumn[7].trim();
-				soundURIOfEnglish = collumn[8].trim();
-				soundURIOfLang = collumn[9].trim();
+			if (column.length == 10) {
+				englishInEnglish = column[0].trim();
+				langInLang = column[1].trim();
+				englishInLang = column[2].trim();
+				langInEnglish = column[3].trim();
+				themesInEnglishString = column[4].trim();
+				themesInLangString = column[5].trim();
+				imageURI = column[6].trim();
+				infoURI = column[7].trim();
+				soundURIOfEnglish = column[8].trim();
+				soundURIOfLang = column[9].trim();
 
 			} else {
-				if (collumn.length != 1) {
+				if (column.length != 1) {
 					var temp = new array(); //String[10];
 
 					for (var i = 0; i < 10; i++) {
-						if (i <= collumn.length - 1)
-							temp[i] = collumn[i];
+						if (i <= column.length - 1)
+							temp[i] = column[i];
 						else
 							temp[i] = "";
 					}
