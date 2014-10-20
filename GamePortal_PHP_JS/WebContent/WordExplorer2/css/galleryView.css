@@ -1,0 +1,95 @@
+
+#gallery {
+    background: none repeat scroll 0 0 #F8F8F8;
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
+    font-family: verdana,arial,sans-serif;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    width: 1000px;
+}
+#gallery #fullsize {
+    height: 500px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 1000px;
+}
+#gallery #fullsize div {
+    height: 700px;
+    padding-top: 20px;
+    position: relative;
+    width: 1000px;
+}
+#gallery #fullsize div img {
+    border: 10px solid #FFFFFF;
+    clear: both;
+    display: block;
+    height: 360px;
+    margin: 0 auto;
+    position: relative;
+    width: 720px;
+    z-index: 500;
+}
+#gallery #fullsize div h3 {
+    font-size: 18px;
+    margin: 0;
+    padding: 10px 0 0;
+}
+#gallery #fullsize div p {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+    padding: 5px 0;
+}
+#gallery #fullsize div div.nav_prilang {
+    font-size: 18px;
+    margin: 0;
+    padding: 10px 0 0;
+    position: relative;
+    left: 300px;
+}
+#gallery #fullsize div div.nav_seclang {
+    font-size: 18px;
+    margin: 0;
+    padding: 10px 0 0;
+    position: relative;
+    left: -400px;
+}
+#gallery #fullsize a.previous {
+    border: 10px solid #FFFFFF;
+    display: block;
+    height: 120px;
+    left: 10px;
+    position: absolute;
+    top: 200px;
+    width: 240px;
+    z-index: 10;
+}
+#gallery #fullsize a.next {
+    border: 10px solid #FFFFFF;
+    display: block;
+    height: 120px;
+    position: absolute;
+    right: 10px;
+    top: 200px;
+    width: 240px;
+    z-index: 10;
+}
+#gallery #fullsize a.previous img, #gallery #fullsize a.next img {
+    border: 0 none;
+    display: block;
+    height: 120px;
+    opacity: 0.4;
+    width: 240px;
+}
+#gallery #fullsize a:hover {
+    direction: ltr;
+    z-index: 600;
+}
+#gallery #fullsize a:hover img {
+    opacity: 0.8;
+}
