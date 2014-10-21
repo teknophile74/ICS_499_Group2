@@ -45,7 +45,8 @@ function BackendSystem() {
 
 			var isDup = wordList.searchWordIsDup(tempWordId); //boolean
 			if (isDup === true) {
-				System.out.println("Sorry word is already added to list.");
+				//System.out.println("Sorry word is already added to list.");
+				console.log("Sorry word is already added to list.");
 			} else {
 				tempWord = new Word(englishInEnglish, langInLang,
 						englishInLang, langInEnglish, themesInEnglish,
@@ -75,7 +76,7 @@ function BackendSystem() {
 	*/
 	
 	//Scans file and uses them to build wordList
-	this.scanFile=function(tempFile) {
+/*	this.scanFile=function(tempFile) {
 
 		wordsAdded = 0;
 		wordId = "";
@@ -98,7 +99,7 @@ function BackendSystem() {
 
 	//	scanLines();
 	//	scanRows();
-	};
+	};  */
 
 	//Scans file and returns number of lines/entires
 	this.scanFileForLinesNum=function() { //int
@@ -154,29 +155,29 @@ function BackendSystem() {
 		while (lineCount < rows.length) {
 			var tempTIE = new array(); //ArrayList<String> //List<String>
 			var tempTIL = new array(); //ArrayList<String> //List<String>
-			var column = new array(); //String[10];
+			var collumn = new array(); //String[10];
 
-			column = rows[lineCount].split("\\|");
+			collumn = rows[lineCount].split("\\|");
 
-			if (column.length == 10) {
-				englishInEnglish = column[0].trim();
-				langInLang = column[1].trim();
-				englishInLang = column[2].trim();
-				langInEnglish = column[3].trim();
-				themesInEnglishString = column[4].trim();
-				themesInLangString = column[5].trim();
-				imageURI = column[6].trim();
-				infoURI = column[7].trim();
-				soundURIOfEnglish = column[8].trim();
-				soundURIOfLang = column[9].trim();
+			if (collumn.length == 10) {
+				englishInEnglish = collumn[0].trim();
+				langInLang = collumn[1].trim();
+				englishInLang = collumn[2].trim();
+				langInEnglish = collumn[3].trim();
+				themesInEnglishString = collumn[4].trim();
+				themesInLangString = collumn[5].trim();
+				imageURI = collumn[6].trim();
+				infoURI = collumn[7].trim();
+				soundURIOfEnglish = collumn[8].trim();
+				soundURIOfLang = collumn[9].trim();
 
 			} else {
-				if (column.length != 1) {
+				if (collumn.length != 1) {
 					var temp = new array(); //String[10];
 
 					for (var i = 0; i < 10; i++) {
-						if (i <= column.length - 1)
-							temp[i] = column[i];
+						if (i <= collumn.length - 1)
+							temp[i] = collumn[i];
 						else
 							temp[i] = "";
 					}

@@ -1,6 +1,6 @@
 
 /*	ICS499
- *  Group 2 <<best.
+ *  Group 2
  *  Main.java
  *  This is the Main program the starts program and builds GUI
  *  Please make sure jl1.0.1.jar is included in project build path
@@ -177,8 +177,8 @@ function Main(){
 		picLabel.setSize(200, 200);
 
 		// ActionListeners
-	//	fileButton.addActionListener(this);
-	//	executeButton.addActionListener(this);
+		fileButton.addActionListener(this);
+		executeButton.addActionListener(this);
 
 		generateFirstRun();
 
@@ -625,37 +625,37 @@ function Main(){
 
 	}
 
-//	//public void readConfig() {
-//	this.readConfig(){
-//		var scanner1 = null;
-//		File file = new File("config.txt");
-//
-//		try {
-//			scanner1 = new Scanner(file, "UTF-8");
-//		} catch (e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		scanner1.reset();
-//
-//		int count = 0;
-//		while (scanner1.hasNext()) {
-//			tempS[count] = scanner1.next();
-//			count++;
-//		}
-//
-//		configSEng = tempS[2];
-//		configSLang = tempS[5];
-//		configImage = tempS[8];
-//		configInfo = tempS[11];
-//
-//		System.out.println("Config File:");
-//		System.out.println(configSEng);
-//		System.out.println(configSLang);
-//		System.out.println(configImage);
-//		System.out.println(configInfo);
-//
-//	}
+	//public void readConfig() {
+	this.readConfig(){
+		var scanner1 = null;
+		File file = new File("config.txt");
+
+		try {
+			scanner1 = new Scanner(file, "UTF-8");
+		} catch (e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		scanner1.reset();
+
+		int count = 0;
+		while (scanner1.hasNext()) {
+			tempS[count] = scanner1.next();
+			count++;
+		}
+
+		configSEng = tempS[2];
+		configSLang = tempS[5];
+		configImage = tempS[8];
+		configInfo = tempS[11];
+
+		System.out.println("Config File:");
+		System.out.println(configSEng);
+		System.out.println(configSLang);
+		System.out.println(configImage);
+		System.out.println(configInfo);
+
+	}
 
 	//public void selectedFile(File tempFile) {
 	this.selectedFile=function(){
@@ -684,37 +684,4 @@ function Main(){
 		}
 	}
 */
-	window.onload=function newOnload()
-	{
-	  init();
-	}
-
-	function init()
-	{
-
-		// set initially needed values
-		var englishInEnglish;
-		var langInLang;
-		var englishInLang;
-		var langInEnglish;
-		var imageURI;
-		var infoURI;
-		var soundURIOfEnglish;
-		var soundURIOfLang;
-		
-		PopulatePageLanguageSettings();
-		if (!(GetLanguageFromQueryString()))
-		{
-			var selectBox = document.getElementById('Lang');
-			for(var i=0; i < selectBox.length; i++)
-			{
-			   if (currentLang == selectBox.options[i].text)
-			   {
-				   selectBox.selectedIndex = i;
-			   }
-			}
-		}
-		// initial parameters used to create the game
-		CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
-
-	}
+	//}
