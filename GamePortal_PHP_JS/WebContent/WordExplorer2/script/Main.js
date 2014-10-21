@@ -121,7 +121,7 @@ function Main(){
 
 	}
 */
-	this.mainFrame=function() {
+/*	this.mainFrame=function() {
 
 		mainFrame = new JFrame("Word Explorer");
 		mainFrame.setLayout(new GridLayout(2, 1));
@@ -248,7 +248,7 @@ function Main(){
 		}
 		return tempList;
 
-	}
+	}      */
 
 	// Generates Results based on GUI
 	this.generateResults=function() {
@@ -718,3 +718,4 @@ function Main(){
 		CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
 
 	}
+}
