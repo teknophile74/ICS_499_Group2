@@ -31,7 +31,7 @@ function BackendSystem() {
 	var rows = [];
 
 	//Creates Word and adds to wordList; Takes in int as variable
-	this.createWord=function(number)
+	this.createWord=function(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang)
 	{
 		var tempWordId = englishInEnglish + langInLang; //String 
 
@@ -43,7 +43,7 @@ function BackendSystem() {
 			wordsAdded++;
 		} else {
 
-			var isDup = wordList.searchWordIsDup(tempWordId); //boolean
+			var isDup = false; //wordList.searchWordIsDup(tempWordId); //boolean
 			if (isDup === true) {
 				//System.out.println("Sorry word is already added to list.");
 				console.log("Sorry word is already added to list.");
@@ -52,7 +52,7 @@ function BackendSystem() {
 						englishInLang, langInEnglish, themesInEnglish,
 						themesInLang, imageURI, infoURI, soundURIOfEnglish,
 						soundURIOfLang);
-				wordList.addWord(tempWord);
+				//wordList.addWord(tempWord);
 				wordsAdded++;
 			}
 		}
