@@ -52,13 +52,13 @@ function Main(){
 	var bS = BackendSystem();
 
 	// Strings
-	var englishInEnglish;
-	var langInLang;
-	var englishInLang;
-	var langInEnglish;
-	var imageURI;
-	var infoURI;
-	var soundURIOfEnglish;
+	var PrimLang_word;
+	var SecLang_word;
+	var SecLang_translit;
+	var PrimLang_translit;
+	var Image;
+	var PrimLangInfo;
+	var PrimLang_sound_url;
 	var soundURIOfLang;
 	//protected Scanner scanner1;
 	var configSEng, configSLang, configImage, configInfo;
@@ -83,7 +83,7 @@ function Main(){
 	var chooser =JFileChooser();
 
 	var wordList;
-
+/*
 	// JPanels and JFrames
 	JFrame mainFrame;
 	JPanel panel1, panel2;
@@ -107,8 +107,8 @@ function Main(){
 	JButton eIEText, lILText;
 	JLabel eILText, lIEText;
 
-	JComboBox<String> themeCombo;
-/*
+	JComboBox<String> themeCombo; 
+
 	public static void main(String[] args) {
 
 		curser = 0;
@@ -120,7 +120,7 @@ function Main(){
 		m.mainFrame();
 
 	}
-*/
+
 	this.mainFrame=function() {
 
 		mainFrame = new JFrame("Word Explorer");
@@ -234,8 +234,8 @@ function Main(){
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-
-	getThemeEngList=new array; //public List<String> getThemesEngList() {
+*/
+/*	getThemeEngList=new array; //public List<String> getThemesEngList() {
 		themesInEnglish = bS.getEngList();
 	//	List<String> tempList = new ArrayList<String>();
 		var tempList=[];
@@ -249,19 +249,19 @@ function Main(){
 		return tempList;
 
 	}
-
+*/
 	// Generates Results based on GUI
 	this.generateResults=function() {
 
 		Word tempWord = wordList.getWord(curser);
 
-		englishInEnglish = tempWord.getEnglishInEnglish();
-		langInLang = tempWord.getLangInLang();
-		englishInLang = tempWord.getEnglishInLang();
-		langInEnglish = tempWord.getLangInEnglish();
-		imageURI = tempWord.getImageURI();
-		infoURI = tempWord.getInfoURI();
-		soundURIOfEnglish = tempWord.getSoundURIOfEnglish();
+		PrimLang_word = tempWord.getPrimLang_word();
+		SecLang_word = tempWord.getSecLang_word();
+		SecLang_translit = tempWord.getSecLang_translit();
+		PrimLang_translit = tempWord.getPrimLang_translit();
+		Image = tempWord.getImage();
+		PrimLangInfo = tempWord.getPrimLangInfo();
+		PrimLang_sound_url = tempWord.getPrimLang_sound_url();
 		soundURIOfLang = tempWord.getSoundURIOfLang();
 
 
@@ -269,37 +269,37 @@ function Main(){
 
 		lILText.removeActionListener(this);
 
-		if (soundURIOfEnglish.length() > 2) {
+		if (PrimLang_sound_url.length() > 2) {
 			eIEText.setText("<HTML><FONT color=\"#000099\"><center><br><u>"
-					+ englishInEnglish + "</u></center></FONT></HTML>");
+					+ PrimLang_word + "</u></center></FONT></HTML>");
 			eIEText.addActionListener(this);
 		} else {
 			eIEText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-					+ englishInEnglish + "</center></FONT></HTML>");
+					+ PrimLang_word + "</center></FONT></HTML>");
 
 		}
 
 		if (soundURIOfLang.length() > 2) {
 			lILText.setText("<HTML><FONT color=\"#000099\"><center><br><U>"
-					+ langInLang + "</u></center></FONT></HTML>");
+					+ SecLang_word + "</u></center></FONT></HTML>");
 			lILText.addActionListener(this);
 		} else {
 			lILText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-					+ langInLang + "</center></FONT></HTML>");
+					+ SecLang_word + "</center></FONT></HTML>");
 
 		}
 
 		lIEText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-				+ langInEnglish + "</center></FONT></HTML>");
+				+ PrimLang_translit + "</center></FONT></HTML>");
 		eILText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-				+ englishInLang + "</center></FONT></HTML>");
+				+ SecLang_translit + "</center></FONT></HTML>");
 
 
-		if (imageURI.length() > 2) {
+		if (Image.length() > 2) {
 
-			if (imageURI.startsWith("http")) {
+			if (Image.startsWith("http")) {
 				try {
-					URL imageURL = new URL(imageURI);
+					URL imageURL = new URL(Image);
 					wordPicture2 = ImageIO.read(imageURL);
 
 				} catch (e) {
@@ -316,7 +316,7 @@ function Main(){
 				}
 			} else {
 
-				File tempFile = new File(configImage + imageURI);
+				File tempFile = new File(configImage + Image);
 				try {
 					wordPicture2 = ImageIO.read(tempFile);
 				} catch (e) {
@@ -353,9 +353,9 @@ function Main(){
 		MouseAdapter imageM = new MouseAdapter() {
 			public void mouseClicked(evt) {
 
-				if(infoURI.startsWith("http")){
+				if(PrimLangInfo.startsWith("http")){
 					 try {
-						 URL tempURL = new URL(infoURI);
+						 URL tempURL = new URL(PrimLangInfo);
 						 if(counter < 1){
 							 openWebpage(tempURL);
 							 counter++;
@@ -366,7 +366,7 @@ function Main(){
 
 					  URI tempURI;
 					  try {
-					  tempURI = new URI(configInfo + infoURI);
+					  tempURI = new URI(configInfo + PrimLangInfo);
 					  	if(counter < 1){
 					  		openWebpage(tempURI);
 					  		counter++;
@@ -382,7 +382,7 @@ function Main(){
 
 		picLabel.removeMouseListener(imageM);
 
-		if (infoURI.length() > 2) {
+		if (PrimLangInfo.length() > 2) {
 			picLabel.addMouseListener(imageM);
 		} else {
 
@@ -395,16 +395,16 @@ function Main(){
 
 	// Generates Results for first run
 	//public void generateFirstRun() {
-	this.generateFirstRun=function(){
+/*	this.generateFirstRun=function(){
 
-		eIEText.setText("<HTML><FONT color=\"#000099\"><U><center>englishInEnglish</center></U></FONT></HTML>");
+		eIEText.setText("<HTML><FONT color=\"#000099\"><U><center>PrimLang_word</center></U></FONT></HTML>");
 
-		lILText.setText("<HTML><FONT color=\"#000099\"><U><center>langInLang</center></U></FONT></HTML>");
+		lILText.setText("<HTML><FONT color=\"#000099\"><U><center>SecLang_word</center></U></FONT></HTML>");
 
-		eILText.setText("englishInLang");
-		lIEText.setText("langInEnglish");
+		eILText.setText("SecLang_translit");
+		lIEText.setText("PrimLang_translit");
 
-	}
+	}  */
 
 //	@Override
 	//public void actionPerformed(ActionEvent e) {
@@ -471,12 +471,12 @@ function Main(){
 			FileInputStream fis;
 			InputStream is;
 
-			if (soundURIOfEnglish.startsWith("http")
-					&& soundURIOfEnglish.endsWith(".mp3")) {
+			if (PrimLang_sound_url.startsWith("http")
+					&& PrimLang_sound_url.endsWith(".mp3")) {
 
 				try {
 
-					is = new URL(soundURIOfEnglish).openStream();
+					is = new URL(PrimLang_sound_url).openStream();
 					BufferedInputStream bis = new BufferedInputStream(is);
 
 					try {
@@ -492,11 +492,11 @@ function Main(){
 
 				}
 
-			} else if (!soundURIOfEnglish.startsWith("http")
-					&& soundURIOfEnglish.endsWith(".mp3")) {
+			} else if (!PrimLang_sound_url.startsWith("http")
+					&& PrimLang_sound_url.endsWith(".mp3")) {
 
 				try {
-					File file = new File(configSEng + soundURIOfEnglish);
+					File file = new File(configSEng + PrimLang_sound_url);
 					fis = new FileInputStream(file);
 					BufferedInputStream bis = new BufferedInputStream(fis);
 
@@ -512,9 +512,9 @@ function Main(){
 				} catch (ex) {
 
 				}
-			} else if (soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".wav")) {
+			} else if (PrimLang_sound_url.startsWith("http") && PrimLang_sound_url.endsWith(".wav")) {
 				try {
-						URL url1 = new URL(soundURIOfEnglish);
+						URL url1 = new URL(PrimLang_sound_url);
 
 				        Clip clip1 = AudioSystem.getClip();
 				        AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
@@ -525,10 +525,10 @@ function Main(){
 				}
 
 
-			} else if (!soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".wav")) {
+			} else if (!PrimLang_sound_url.startsWith("http") && PrimLang_sound_url.endsWith(".wav")) {
 
 				try {
-					File file2 = new File(configSEng + soundURIOfEnglish);
+					File file2 = new File(configSEng + PrimLang_sound_url);
 
 				        Clip clip2 = AudioSystem.getClip();
 				        AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(file2);
@@ -658,10 +658,10 @@ function Main(){
 //	}
 
 	//public void selectedFile(File tempFile) {
-	this.selectedFile=function(){
+//	this.selectedFile=function(){
 
-		bS.scanFile(tempFile);
-	}
+//		bS.scanFile(tempFile);
+//	}
 
 	//public static void openWebpage(URI uri) {
 /*	this.openWebpage=function(){
@@ -693,14 +693,13 @@ function Main(){
 	{
 
 		// set initially needed values
-		var englishInEnglish;
-		var langInLang;
-		var englishInLang;
-		var langInEnglish;
-		var imageURI;
-		var infoURI;
-		var soundURIOfEnglish;
-		var soundURIOfLang;
+		var PrimLang_word;
+		var SecLang_word;
+		var SecLang_translit;
+		var PrimLang_translit;
+		var Image;
+		var PrimLangInfo;
+		var PrimLang_sound_url;
 		
 		PopulatePageLanguageSettings();
 		if (!(GetLanguageFromQueryString()))
@@ -715,6 +714,9 @@ function Main(){
 			}
 		}
 		// initial parameters used to create the game
-		CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
+		CreateWord(PrimLang_word,SecLang_word,SecLang_translit,PrimLang_translit,Image,PrimLangInfo,PrimLang_sound_url){
+			word = new initializeWord(PrimLang_word,SecLang_word,SecLang_translit,PrimLang_translit,Image,PrimLangInfo,PrimLang_sound_url);
+		}
 
 	}
+}
