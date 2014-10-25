@@ -20,84 +20,13 @@
 	<div class="main">
 		<!-- <img class="defaultImage" src="images/default.jpg" alt="Default Image Holder" /> --> 
 		<div id="gallery">
-			<div id="fullsize">
-				<!-- 
-				<div id="pic1">
-					<img alt="Rocky Beach" src="../images/bloggallery/pic1.jpg" />
-					<a href="#pic4" class="previous">
-						<img alt="Sandy Beach" src="../images/bloggallery/pic4.jpg" />
-					</a>
-					<a href="#pic2" class="next">
-						<img alt="Oiled Beach" src="../images/bloggallery/pic2.jpg" />
-					</a>
-					<div class="nav_prilang">
-						<a href="url" onclick="">engInEng1</a><br />
-						<a href="url" onclick="">engInLang1</a> 
-					</div>
-					<div class="nav_seclang">
-						<a href="url" onclick="">langInLang1</a><br />
-						<a href="url" onclick="">langInEnglish1</a> 
-					</div>
-				</div>
-				<div id="pic2">
-					<img alt="Oiled Beach" src="../images/bloggallery/pic2.jpg" />
-					<a href="#pic1" class="previous">
-						<img alt="Rocky Beach" src="../images/bloggallery/pic1.jpg" />
-					</a>
-					<a href="#pic3" class="next">
-						<img alt="Barren Beach" src="../images/bloggallery/pic3.jpg"/>
-					</a>
-					<div class="nav_prilang">
-						<a href="url" onclick="">engInEng2</a><br/>
-						<a href="url" onclick="">engInLang2</a> 
-					</div>
-					<div class="nav_seclang">
-						<a href="url" onclick="">langInLang2</a> <br/>
-						<a href="url" onclick="">langInEnglish2</a> 
-					</div>				
-				</div>
-				<div id="pic3">
-					<img alt="Barren Beach" src="../images/bloggallery/pic3.jpg" />
-					<a href="#pic2" class="previous">
-						<img alt="Oiled Beach" src="../images/bloggallery/pic2.jpg" />
-					</a>
-					<a href="#pic4" class="next">
-						<img alt="Sandy Beach" src="../images/bloggallery/pic4.jpg" />
-					</a>
-					<div class="nav_prilang">
-						<a href="url" onclick="">engInEng3</a> <br/>
-						<a href="url" onclick="">engInLang3</a> 
-					</div>
-					<div class="nav_seclang">
-						<a href="url" onclick="">langInLang3</a> <br/>
-						<a href="url" onclick="">langInEnglish3</a> 
-					</div>				
-				</div>
-				<div id="pic4">
-					<img alt="Sandy Beach" src="../images/bloggallery/pic4.jpg" />
-					<a href="#pic3" class="previous">
-						<img alt="Barren Beach" src="../images/bloggallery/pic3.jpg" />
-					</a>
-					<a href="#pic1" class="next">
-						<img alt="Rocky Beach" src="../images/bloggallery/pic1.jpg" />
-					</a>
-					<div class="nav_prilang">
-						<a href="url" onclick="">engInEng4</a> <br/>
-						<a href="url" onclick="">engInLang4</a> 
-					</div>
-					<div class="nav_seclang">
-						<a href="url" onclick="">langInLang4</a> <br/>
-						<a href="url" onclick="">langInEnglish4</a> 
-					</div>
-				</div>
-				-->
-			</div>
+			<div id="fullsize"></div>
 		</div>
 	</div>
 	<div id="category">
 		<fieldset>
 			<legend>Select a category</legend>
-			<select id="categories" onchange="triggerUpdate();"></select>
+			<select id="categories" onchange="triggerUpdate(this.value);"></select>
 		</fieldset>
 	</div>
 	<!--<fieldset>

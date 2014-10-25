@@ -150,7 +150,7 @@ function Main()
 
 
 			//FileInputStream fis;
-			//InputStream is;
+			//InputStream is;       
 
 			if (soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".mp3")) {
 
@@ -221,7 +221,7 @@ function Main()
 
 		}
 
-		} else if (e.getSource() == lILText) {
+		} /*else*/ if (e.getSource() == lILText) {
 
 			//FileInputStream fis;
 			//InputStream is;
@@ -302,14 +302,14 @@ function Main()
 
 	};
 
-
+}
 	//public void selectedFile(File tempFile) {
 	this.selectedFile=function(){
 
 		bS.scanFile(tempFile);
 	};
 
-}
+//}
 
 window.onload=function newOnload()
 {
@@ -348,4 +348,8 @@ function init()
   BS.createWord(2);
   // initial parameters used to create the game
   //CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
+}
+function triggerUpdate(newUpdate)
+{
+	return;
 }
