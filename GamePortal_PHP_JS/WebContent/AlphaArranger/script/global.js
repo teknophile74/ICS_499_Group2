@@ -102,3 +102,14 @@ function SetLangScripts(i)
 	newScript.src = sourcesPath;
 	head.appendChild(newScript);
 }
+
+function logToConsole(msgString, debugFlag)
+{
+	if (debugFlag)
+	{
+		if (msgString)
+		{
+			console.log(msgString);
+		}
+	}
+}
