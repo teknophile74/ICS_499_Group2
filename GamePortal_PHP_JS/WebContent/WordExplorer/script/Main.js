@@ -5,61 +5,22 @@
  *  This is the Main program the starts program and builds GUI
  *  Please make sure jl1.0.1.jar is included in project build path
  */
-/*
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.io.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javazoom.jl.*;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-*/
 
+var currentLang='';
+var wordList;
 
-function Main(){
+function Main()
+{
 	var serialVersionUID = 1;
 
 	//Creates and grabs instance of BackendSystem
 	var bS = BackendSystem();
 
 	// Strings
-	var PrimLang_word;
-	var SecLang_word;
-	var SecLang_translit;
-	var PrimLang_translit;
-	var Image;
-	var PrimLangInfo;
-	var PrimLang_sound_url;
-	var soundURIOfLang;
+	var englishInEnglish,langInLang,englishInLang,langInEnglish;
+	var imageURI,infoURI;
+	var soundURIOfEnglish,soundURIOfLang;
+	var tempWord;
 	//protected Scanner scanner1;
 	var configSEng, configSLang, configImage, configInfo;
 	var tempS = []; //new var[15];
@@ -80,331 +41,51 @@ function Main(){
 	var wordPicture;
 	var wordPicture2;
 
-	var chooser =JFileChooser();
-
 	var wordList;
-/*
-	// JPanels and JFrames
-	JFrame mainFrame;
-	JPanel panel1, panel2;
-	JPanel topPanel;
-	JPanel middlePanel;
-	JPanel explorerPanel;
-	JPanel leftExplorerPanel, rightExplorerPanel, middleExplorerPanel;
 
-	// JLabels
-	JLabel selectFileLabel;
-	JLabel selectThemeLabel;
-	JLabel blankLabel;
-	JLabel picLabel;
-
-	// Buttons
-
-	JButton fileButton, executeButton;
-	JButton nextButton, backButton;
-
-	// Fields and combos
-	JButton eIEText, lILText;
-	JLabel eILText, lIEText;
-
-	JComboBox<String> themeCombo; 
-
-	public static void main(String[] args) {
-
-		curser = 0;
-
-		Main m = new Main();
-
-		m.readConfig();
-
-		m.mainFrame();
-
-	}
-
-	this.mainFrame=function() {
-
-		mainFrame = new JFrame("Word Explorer");
-		mainFrame.setLayout(new GridLayout(2, 1));
-		mainFrame.setSize(900, 600);
-
-		panel1 = new JPanel(new GridLayout(2, 1));
-		panel2 = new JPanel(new GridLayout(1, 1));
-
-		topPanel = new JPanel(new GridLayout(3, 2));
-		middlePanel = new JPanel();
-
-		explorerPanel = new JPanel(new GridLayout(1, 3));
-
-		leftExplorerPanel = new JPanel(new GridLayout(3, 1));
-		middleExplorerPanel = new JPanel(new BorderLayout());
-		rightExplorerPanel = new JPanel(new GridLayout(3, 1));
-
-		selectFileLabel = new JLabel("Select File:");
-		selectFileLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		selectThemeLabel = new JLabel("Select Theme:");
-		selectThemeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		fileButton = new JButton("Choose file");
-		themeCombo = new JComboBox<String>(themeList);
-		blankLabel = new JLabel("");
-		executeButton = new JButton("Execute");
-		backButton = new JButton("Back");
-		nextButton = new JButton("Next");
-
-		backButton.setVerticalAlignment(SwingConstants.CENTER);
-
-		eIEText = new JButton();
-
-		eIEText.setHorizontalAlignment(SwingConstants.CENTER);
-		eIEText.setBorderPainted(false);
-		eIEText.setOpaque(false);
-		eIEText.setBackground(Color.WHITE);
-
-		lILText = new JButton();
-
-		lILText.setHorizontalAlignment(SwingConstants.CENTER);
-		lILText.setBorderPainted(false);
-		lILText.setOpaque(false);
-		lILText.setBackground(Color.WHITE);
-
-		eILText = new JLabel();
-		eILText.setHorizontalAlignment(SwingConstants.CENTER);
-
-		lIEText = new JLabel();
-		lIEText.setHorizontalAlignment(SwingConstants.CENTER);
-
-		picLabel = new JLabel();
-		picLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		picLabel.setSize(200, 200);
-
-		// ActionListeners
-	//	fileButton.addActionListener(this);
-	//	executeButton.addActionListener(this);
-
-		generateFirstRun();
-
-		picFile = new File(configImage + "default.jpg");
-		try {
-			wordPicture = ImageIO.read(picFile);
-		} catch ( e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Image resizedImage = wordPicture.getScaledInstance(picLabel.getWidth(),
-				picLabel.getHeight(), 0);
-
-		picLabel.setIcon(new ImageIcon(resizedImage));
-
-		// Add to topPanel
-		topPanel.add(selectFileLabel);
-		topPanel.add(fileButton);
-		topPanel.add(selectThemeLabel);
-		topPanel.add(themeCombo);
-		topPanel.add(blankLabel);
-		topPanel.add(executeButton);
-
-		// Add to leftExplorerPanel
-		leftExplorerPanel.add(backButton);
-		leftExplorerPanel.add(eIEText);
-		leftExplorerPanel.add(eILText);
-
-		// Add to rightExplorerPanel
-		rightExplorerPanel.add(nextButton);
-		rightExplorerPanel.add(lILText);
-		rightExplorerPanel.add(lIEText);
-
-		// Add to middelExplorerPanel
-		middleExplorerPanel.add(picLabel, BorderLayout.CENTER);
-
-		// Add to explorerPanel
-		explorerPanel.add(leftExplorerPanel);
-		explorerPanel.add(middleExplorerPanel);
-		explorerPanel.add(rightExplorerPanel);
-
-		// Add to panel1+2
-		panel1.add(topPanel);
-		panel1.add(middlePanel);
-		panel2.add(explorerPanel);
-		// Add to mainFrame
-
-		mainFrame.add(panel1);
-		mainFrame.add(panel2);
-		mainFrame.setLocationRelativeTo(null);
-		mainFrame.setVisible(true);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}
-*/
-/*	getThemeEngList=new array; //public List<String> getThemesEngList() {
+	this.getThemeEngList=function() //public List<String> getThemesEngList() 
+  {
 		themesInEnglish = bS.getEngList();
 	//	List<String> tempList = new ArrayList<String>();
-		var tempList=[];
+		tempList=[];
 		tempList.add("All Words");
 
-		int counter = 0;
+		counter = 0;
 		while (counter < themesInEnglish.size()) {
 			tempList.add(themesInEnglish.get(counter));
 			counter++;
 		}
 		return tempList;
 
-	}
-*/
+	};
+
 	// Generates Results based on GUI
 	this.generateResults=function() {
 
-		Word tempWord = wordList.getWord(curser);
+		//Word tempWord = wordList.getWord(curser);
 
-		PrimLang_word = tempWord.getPrimLang_word();
-		SecLang_word = tempWord.getSecLang_word();
-		SecLang_translit = tempWord.getSecLang_translit();
-		PrimLang_translit = tempWord.getPrimLang_translit();
-		Image = tempWord.getImage();
-		PrimLangInfo = tempWord.getPrimLangInfo();
-		PrimLang_sound_url = tempWord.getPrimLang_sound_url();
+		englishInEnglish = tempWord.getEnglishInEnglish();
+		langInLang = tempWord.getLangInLang();
+		englishInLang = tempWord.getEnglishInLang();
+		langInEnglish = tempWord.getLangInEnglish();
+		imageURI = tempWord.getImageURI();
+		infoURI = tempWord.getInfoURI();
+		soundURIOfEnglish = tempWord.getSoundURIOfEnglish();
 		soundURIOfLang = tempWord.getSoundURIOfLang();
-
-
-		eIEText.removeActionListener(this);
-
-		lILText.removeActionListener(this);
-
-		if (PrimLang_sound_url.length() > 2) {
-			eIEText.setText("<HTML><FONT color=\"#000099\"><center><br><u>"
-					+ PrimLang_word + "</u></center></FONT></HTML>");
-			eIEText.addActionListener(this);
-		} else {
-			eIEText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-					+ PrimLang_word + "</center></FONT></HTML>");
-
-		}
-
-		if (soundURIOfLang.length() > 2) {
-			lILText.setText("<HTML><FONT color=\"#000099\"><center><br><U>"
-					+ SecLang_word + "</u></center></FONT></HTML>");
-			lILText.addActionListener(this);
-		} else {
-			lILText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-					+ SecLang_word + "</center></FONT></HTML>");
-
-		}
-
-		lIEText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-				+ PrimLang_translit + "</center></FONT></HTML>");
-		eILText.setText("<HTML><FONT color=\"#000099\"><center><br>"
-				+ SecLang_translit + "</center></FONT></HTML>");
-
-
-		if (Image.length() > 2) {
-
-			if (Image.startsWith("http")) {
-				try {
-					URL imageURL = new URL(Image);
-					wordPicture2 = ImageIO.read(imageURL);
-
-				} catch (e) {
-					// TODO Auto-generated catch block
-					picFile = new File(configImage + "notfound.jpg");
-					try {
-						wordPicture2 = ImageIO.read(picFile);
-					} catch (e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-
-
-				}
-			} else {
-
-				File tempFile = new File(configImage + Image);
-				try {
-					wordPicture2 = ImageIO.read(tempFile);
-				} catch (e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-			if (wordPicture2 != null) {
-				Image resizedImage = wordPicture2
-						.getScaledInstance(200, 200, 0);
-
-				picLabel.setIcon(new ImageIcon(resizedImage));
-				picLabel.revalidate();
-				picLabel.repaint();
-			}
-
-		} else {
-			picFile = new File(configImage + "notfound.jpg");
-			try {
-				wordPicture2 = ImageIO.read(picFile);
-			} catch (e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			Image resizedImage = wordPicture2.getScaledInstance(200, 200, 0);
-
-			picLabel.setIcon(new ImageIcon(resizedImage));
-			picLabel.revalidate();
-			picLabel.repaint();
-
-		}
-		counter = 0;
-		MouseAdapter imageM = new MouseAdapter() {
-			public void mouseClicked(evt) {
-
-				if(PrimLangInfo.startsWith("http")){
-					 try {
-						 URL tempURL = new URL(PrimLangInfo);
-						 if(counter < 1){
-							 openWebpage(tempURL);
-							 counter++;
-						 }
-				  } catch(e) {
-				  e.printStackTrace(); }
-				}else{
-
-					  URI tempURI;
-					  try {
-					  tempURI = new URI(configInfo + PrimLangInfo);
-					  	if(counter < 1){
-					  		openWebpage(tempURI);
-					  		counter++;
-					  	}
-					  } catch (e) { //
-
-
-					  }
-				 }
-				}
-
-				};
-
-		picLabel.removeMouseListener(imageM);
-
-		if (PrimLangInfo.length() > 2) {
-			picLabel.addMouseListener(imageM);
-		} else {
-
-		}
-
-		mainFrame.revalidate();
-		mainFrame.repaint();
-
-	}
+  };
 
 	// Generates Results for first run
 	//public void generateFirstRun() {
-/*	this.generateFirstRun=function(){
+	this.generateFirstRun=function(){
 
-		eIEText.setText("<HTML><FONT color=\"#000099\"><U><center>PrimLang_word</center></U></FONT></HTML>");
+		eIEText.setText("<HTML><FONT color=\"#000099\"><U><center>englishInEnglish</center></U></FONT></HTML>");
 
-		lILText.setText("<HTML><FONT color=\"#000099\"><U><center>SecLang_word</center></U></FONT></HTML>");
+		lILText.setText("<HTML><FONT color=\"#000099\"><U><center>langInLang</center></U></FONT></HTML>");
 
-		eILText.setText("SecLang_translit");
-		lIEText.setText("PrimLang_translit");
+		eILText.setText("englishInLang");
+		lIEText.setText("langInEnglish");
 
-	}  */
+	};
 
 //	@Override
 	//public void actionPerformed(ActionEvent e) {
@@ -418,13 +99,13 @@ function Main(){
 			chooser.setCurrentDirectory(new java.io.File("."));
 			chooser.setDialogTitle("Select File");
 
-			int returnVal = chooser.showOpenDialog(mainFrame);
+			var returnVal = chooser.showOpenDialog(mainFrame);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				file = chooser.getSelectedFile();
 				bS.scanFile(file);
 				themesList = getThemesEngList();
-				int counter = 1;
+				var counter = 1;
 				while (counter < themesList.size()) {
 					themeCombo.addItem(themesList.get(counter));
 					counter++;
@@ -438,7 +119,7 @@ function Main(){
 
 		} else if (e.getSource() == executeButton) {
 
-			themeSelection = (String) themeCombo.getSelectedItem();
+			themeSelection = themeCombo.getSelectedItem();
 			bS.randomN(themeSelection);
 			wordList = bS.getTempList();
 			curser = 0;
@@ -447,7 +128,7 @@ function Main(){
 			generateResults();
 
 		} else if (e.getSource() == backButton) {
-			if (curser == 0) {
+			if (curser === 0) {
 				curser = wordList.getSize() - 1;
 			} else {
 				curser--;
@@ -468,19 +149,18 @@ function Main(){
 		} else if (e.getSource() == eIEText) {
 
 
-			FileInputStream fis;
-			InputStream is;
+			//FileInputStream fis;
+			//InputStream is;
 
-			if (PrimLang_sound_url.startsWith("http")
-					&& PrimLang_sound_url.endsWith(".mp3")) {
+			if (soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".mp3")) {
 
 				try {
 
-					is = new URL(PrimLang_sound_url).openStream();
-					BufferedInputStream bis = new BufferedInputStream(is);
+					is = new URL(soundURIOfEnglish).openStream();
+					//BufferedInputStream bis = new BufferedInputStream(is);
 
 					try {
-						Player player = new Player(bis);
+						//Player player = new Player(bis);
 
 						player.play();
 
@@ -492,16 +172,15 @@ function Main(){
 
 				}
 
-			} else if (!PrimLang_sound_url.startsWith("http")
-					&& PrimLang_sound_url.endsWith(".mp3")) {
+			} else if (!soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".mp3")) {
 
 				try {
-					File file = new File(configSEng + PrimLang_sound_url);
+					//File file = new File(configSEng + soundURIOfEnglish);
 					fis = new FileInputStream(file);
-					BufferedInputStream bis = new BufferedInputStream(fis);
+					//BufferedInputStream bis = new BufferedInputStream(fis);
 
 					try {
-						Player player = new Player(bis);
+						//Player player = new Player(bis);
 
 						player.play();
 
@@ -512,12 +191,12 @@ function Main(){
 				} catch (ex) {
 
 				}
-			} else if (PrimLang_sound_url.startsWith("http") && PrimLang_sound_url.endsWith(".wav")) {
+			} else if (soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".wav")) {
 				try {
-						URL url1 = new URL(PrimLang_sound_url);
+						//URL url1 = new URL(soundURIOfEnglish);
 
-				        Clip clip1 = AudioSystem.getClip();
-				        AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
+				        //Clip clip1 = AudioSystem.getClip();
+				       // AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
 				        clip1.open(audioIn1);
 				        clip1.start();
 
@@ -525,13 +204,13 @@ function Main(){
 				}
 
 
-			} else if (!PrimLang_sound_url.startsWith("http") && PrimLang_sound_url.endsWith(".wav")) {
+			} else if (!soundURIOfEnglish.startsWith("http") && soundURIOfEnglish.endsWith(".wav")) {
 
 				try {
-					File file2 = new File(configSEng + PrimLang_sound_url);
+					//File file2 = new File(configSEng + soundURIOfEnglish);
 
-				        Clip clip2 = AudioSystem.getClip();
-				        AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(file2);
+				        //Clip clip2 = AudioSystem.getClip();
+				        //AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(file2);
 				        clip2.open(audioIn2);
 				        clip2.start();
 
@@ -544,18 +223,17 @@ function Main(){
 
 		} else if (e.getSource() == lILText) {
 
-			FileInputStream fis;
-			InputStream is;
-			if (soundURIOfLang.startsWith("http")
-					&& soundURIOfLang.endsWith(".mp3")) {
+			//FileInputStream fis;
+			//InputStream is;
+			if (soundURIOfLang.startsWith("http")	&& soundURIOfLang.endsWith(".mp3")) {
 
 				try {
 
 					is = new URL(soundURIOfLang).openStream();
-					BufferedInputStream bis = new BufferedInputStream(is);
+					//BufferedInputStream bis = new BufferedInputStream(is);
 
 					try {
-						Player player = new Player(bis);
+						//Player player = new Player(bis);
 
 						player.play();
 
@@ -567,16 +245,15 @@ function Main(){
 
 				}
 
-			} else if ((!soundURIOfLang.startsWith("http"))
-					&& soundURIOfLang.endsWith(".mp3")) {
+			} else if ((!soundURIOfLang.startsWith("http"))	&& soundURIOfLang.endsWith(".mp3")) {
 
 				try {
-					File file = new File(configSLang + soundURIOfLang);
+					//File file = new File(configSLang + soundURIOfLang);
 					fis = new FileInputStream(file);
-					BufferedInputStream bis = new BufferedInputStream(fis);
+					//BufferedInputStream bis = new BufferedInputStream(fis);
 
 					try {
-						Player player = new Player(bis);
+						//Player player = new Player(bis);
 
 						player.play();
 
@@ -593,11 +270,11 @@ function Main(){
 				try {
 
 
-					URL url1 = new URL(soundURIOfLang);
+					//URL url1 = new URL(soundURIOfLang);
 
 
-			        Clip clip1 = AudioSystem.getClip();
-			        AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
+			       // Clip clip1 = AudioSystem.getClip();
+			        //AudioInputStream audioIn1 = AudioSystem.getAudioInputStream(url1);
 			        clip1.open(audioIn1);
 			        clip1.start();
 
@@ -609,10 +286,10 @@ function Main(){
 			} else if ((!soundURIOfLang.startsWith("http")) && soundURIOfLang.endsWith(".wav")) {
 
 				try {
-					File file4 = new File(configSLang + soundURIOfLang);
+					//File file4 = new File(configSLang + soundURIOfLang);
 
-				        Clip clip4 = AudioSystem.getClip();
-				        AudioInputStream audioIn = AudioSystem.getAudioInputStream(file4);
+				       // Clip clip4 = AudioSystem.getClip();
+				       // AudioInputStream audioIn = AudioSystem.getAudioInputStream(file4);
 				        clip4.open(audioIn);
 				        clip4.start();
 
@@ -623,100 +300,52 @@ function Main(){
 
 		}
 
-	}
+	};
 
-//	//public void readConfig() {
-//	this.readConfig(){
-//		var scanner1 = null;
-//		File file = new File("config.txt");
-//
-//		try {
-//			scanner1 = new Scanner(file, "UTF-8");
-//		} catch (e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		scanner1.reset();
-//
-//		int count = 0;
-//		while (scanner1.hasNext()) {
-//			tempS[count] = scanner1.next();
-//			count++;
-//		}
-//
-//		configSEng = tempS[2];
-//		configSLang = tempS[5];
-//		configImage = tempS[8];
-//		configInfo = tempS[11];
-//
-//		System.out.println("Config File:");
-//		System.out.println(configSEng);
-//		System.out.println(configSLang);
-//		System.out.println(configImage);
-//		System.out.println(configInfo);
-//
-//	}
 
 	//public void selectedFile(File tempFile) {
-//	this.selectedFile=function(){
+	this.selectedFile=function(){
 
-//		bS.scanFile(tempFile);
-//	}
+		bS.scanFile(tempFile);
+	};
 
-	//public static void openWebpage(URI uri) {
-/*	this.openWebpage=function(){
-		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop()
-				: null;
-		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-			try {
-				desktop.browse(uri);
-			} catch (e) {
-				e.printStackTrace();
-			}
-		}
-	}
+}
 
-	public static void openWebpage(url) {
-		try {
-			openWebpage(url.toURI());
-		} catch (e) {
-			e.printStackTrace();
-		}
-	}
-*/
-	window.onload=function newOnload()
-	{
-	  init();
-	}
+window.onload=function newOnload()
+{
+  init();
+};
 
-	function init()
-	{
-
-		// set initially needed values
-		var PrimLang_word;
-		var SecLang_word;
-		var SecLang_translit;
-		var PrimLang_translit;
-		var Image;
-		var PrimLangInfo;
-		var PrimLang_sound_url;
-		
-		PopulatePageLanguageSettings();
-		if (!(GetLanguageFromQueryString()))
-		{
-			var selectBox = document.getElementById('Lang');
-			for(var i=0; i < selectBox.length; i++)
-			{
-			   if (currentLang == selectBox.options[i].text)
-			   {
-				   selectBox.selectedIndex = i;
-			   }
-			}
-		}
-		// initial parameters used to create the game
-		CreateWord(PrimLang_word,SecLang_word,SecLang_translit,PrimLang_translit,Image,PrimLangInfo,PrimLang_sound_url){
-			word = new initializeWord(PrimLang_word,SecLang_word,SecLang_translit,PrimLang_translit,Image,PrimLangInfo,PrimLang_sound_url);
-		}
-
-	}
+function init()
+{
+  
+  // set initially needed values
+  var englishInEnglish;
+  var langInLang;
+  var englishInLang;
+  var langInEnglish;
+  var imageURI;
+  var infoURI;
+  var soundURIOfEnglish;
+  var soundURIOfLang;
+  
+  PopulatePageLanguageSettings();
+  if (!(GetLanguageFromQueryString()))
+  {
+    var selectBox = document.getElementById('categories');
+    for(var i=0; i < selectBox.length; i++)
+    {
+      if (currentLang == selectBox.options[i].text)
+      {
+        selectBox.selectedIndex = i;
+      }
+    }
+  }
+  var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
+  newExplorer.writeInterface();
+  
+  var BS = new BackendSystem(); 
+  BS.createWord(2);
+  // initial parameters used to create the game
+  //CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
 }
