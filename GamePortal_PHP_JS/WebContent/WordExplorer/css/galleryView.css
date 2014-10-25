@@ -47,17 +47,23 @@
 }
 #gallery #fullsize div div.nav_prilang {
     font-size: 18px;
+    left: 800px;
     margin: 0;
+    max-height: 80px;
+    max-width: 100px;
     padding: 10px 0 0;
     position: relative;
-    left: 300px;
+    top: 0;
 }
 #gallery #fullsize div div.nav_seclang {
     font-size: 18px;
+    left: 50px;
     margin: 0;
+    max-height: 100px;
+    max-width: 150px;
     padding: 10px 0 0;
     position: relative;
-    left: -300px;
+    top: -100px;
 }
 #gallery #fullsize a.previous {
     border: 10px solid #FFFFFF;
