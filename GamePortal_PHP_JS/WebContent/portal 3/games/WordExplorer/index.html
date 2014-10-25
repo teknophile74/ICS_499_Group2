@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Word Explorer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/galleryView.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+<script id="DefaultLangArray" src="lang/US/en/te/Cat_Family.js"></script>
+<script src="lang/CurrentLangDirs.js"></script>
+<script src="lang/CategoryList.js"></script>
+<script src="script/global.js"></script>
+<!-- <script src="lang/US/en/te/Cat_Family.js"></script> -->
+<script src="script/BackendSystem.js"></script>
+<script src="script/WordListInterface.js"></script>
+<script src="script/Word.js"></script>
+</head>
+<body onload="PopulatePageLanguageSettings();var BS = new BackendSystem(); BS.createWord(2);">
+	<h1 class="banner">Word Explorer</h1>
+	<div class="main">
+		<!-- <img class="defaultImage" src="images/pic5.jpg" alt="Default Image Holder" /> --> 
+		<div id="gallery">
+			<div id="fullsize">
+				<div id="pic1">
+					<img alt="Grandma" src="images/pic1.jpg" />
+					<a href="#pic4" class="previous">
+						<img alt="Dad" src="images/pic4.jpg" />
+					</a>
+					<a href="#pic2" class="next">
+						<img alt="Grandpa" src="images/pic2.jpg" />
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng1</a><br />
+						<a href="url" onclick="">engInLang1</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang1</a><br />
+						<a href="url" onclick="">langInEnglish1</a> 
+					</div>
+				</div>
+				<div id="pic2">
+					<img alt="Grandpa" src="images/pic2.jpg" />
+					<a href="#pic1" class="previous">
+						<img alt="Grandma" src="images/pic1.jpg" />
+					</a>
+					<a href="#pic3" class="next">
+						<img alt="Granddaughter" src="images/pic3.jpg"/>
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng2</a><br/>
+						<a href="url" onclick="">engInLang2</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang2</a> <br/>
+						<a href="url" onclick="">langInEnglish2</a> 
+					</div>				
+				</div>
+				<div id="pic3">
+					<img alt="Granddaughter" src="images/pic3.jpg" />
+					<a href="#pic2" class="previous">
+						<img alt="Grandpa" src="images/pic2.jpg" />
+					</a>
+					<a href="#pic4" class="next">
+						<img alt="Dad" src="images/pic4.jpg" />
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng3</a> <br/>
+						<a href="url" onclick="">engInLang3</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang3</a> <br/>
+						<a href="url" onclick="">langInEnglish3</a> 
+					</div>				
+				</div>
+				<div id="pic4">
+					<img alt="Dad" src="images/pic4.jpg" />
+					<a href="#pic3" class="previous">
+						<img alt="Granddaughter" src="images/pic3.jpg" />
+					</a>
+					<a href="#pic1" class="next">
+						<img alt="Grandma" src="images/pic1.jpg" />
+					</a>
+					<div class="nav_prilang">
+						<a href="url" onclick="">engInEng4</a> <br/>
+						<a href="url" onclick="">engInLang4</a> 
+					</div>
+					<div class="nav_seclang">
+						<a href="url" onclick="">langInLang4</a> <br/>
+						<a href="url" onclick="">langInEnglish4</a> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="category">
+		<fieldset>
+			<legend>Select a category</legend>
+			<select id="categories" onchange="triggerUpdate();"></select>
+		</fieldset>
+	</div>
+	<!--<fieldset>
+		<legend>Controls</legend>
+		<input TYPE="button" VALUE="<< Back" onClick="Back1()" /> 
+		<input TYPE="button" VALUE="Forward >>" onClick="Forward1()" />
+	</fieldset>-->
+</body>
+</html>
