@@ -24,48 +24,39 @@ function RemoveLocalChildElement(parentName, childName)
 
 function initializeWordExplorer(inboundCatArray) 
 {
-	var i;
-	
 	/*
-	this.width=puzzleWidth;
-	this.height=puzzleHeight;	
-	//this.emptyVal=0;
-	this.emptyVal="";
-	this.pieces=[];
-	this.fields=[];
-	this.name=aName;
-	this.moveCounter=0;
-	*/
+	 * This function takes inthe word array and writes out 
+	 * the new interface for the user to play
+	 */
+	var i;
 	this.wordArray=[];
+
+	function SetElemObjClsOrIdName(imgElemObj,updateStr,classoridStr)
+	{
+		if (imgElemObj)
+		{
+			if ((classoridStr) && (updateStr))
+			{
+				imgElemObj.setAttribute(classoridStr,updateStr);
+			}
+			else
+			{
+				// TODO Write out error message for not including both values
+			}
+		}
+	} // End SetElemObjClsOrIdName(imgElemObj,classStr,idStr)
 	
 	function SetImageAttr(imgElemObj,srcStr,altStr)
 	{
-		var arrowName = arguments[3];
-		var setArrowImg = arguments[4];
 		if (imgElemObj)
 		{
 			if ((srcStr) && (altStr))
 			{
-				if (setArrowImg)
-				{
-					if (arrowName == 'previous')
-					{
-						imgElemObj.setAttribute('src','../images/prevArrow.png');
-					}
-					else
-					{
-						imgElemObj.setAttribute('src','../images/nextArrow.png');
-					}
-					imgElemObj.setAttribute('alt',arrowName);	
-				}
-				else 
-				{
-					imgElemObj.setAttribute('src',srcStr);
-					imgElemObj.setAttribute('alt',altStr);					
-				}
+				imgElemObj.setAttribute('src',srcStr);
+				imgElemObj.setAttribute('alt',altStr);					
 			}
 		}
-	}
+	} // End SetImageAttr(imgElemObj,srcStr,altStr)
 
 	function SetAnchorProperties(aElemObj,classStr,hrefStr)
 	{
@@ -82,7 +73,7 @@ function initializeWordExplorer(inboundCatArray)
 				aElemObj.textContent = aStr;
 			}
 		}
-	}
+	} // End SetAnchorProperties(aElemObj,classStr,hrefStr)
 	
 	function CreatePrevLink(parentDivElement, id)
 	{
@@ -95,20 +86,21 @@ function initializeWordExplorer(inboundCatArray)
 		SetAnchorProperties(prevLink,'previous',prevLinkID);
 		if (addArrowNav)
 		{
-			SetImageAttr(prevLinkImg,('srcPlaceHolder'+id),('altPlaceHolder'+id),'previous',addArrowNav);
+			SetImageAttr(prevLinkImg,'images/prevArrow.png','previous');
+			SetElemObjClsOrIdName(prevLinkImg,'AltNav','class');
 		}
 		else
 		{
-			SetImageAttr(prevLinkImg,('srcPlaceHolder'+id),('altPlaceHolder'+id));
+			SetImageAttr(prevLinkImg,(inboundCatArray[id].Image),(inboundCatArray[id].PrimLang_word));
 		}
 		prevLink.appendChild(prevLinkImg);
 		
 		parentDivElement.appendChild(prevLink);
-	}
+	} // End CreatePrevLink(parentDivElement, id)
 
 	function CreateNextLink(parentDivElement, id)
 	{
-    var addArrowNav = arguments[2];
+		var addArrowNav = arguments[2];
 		// Create next Link and image tags			
 		var nextLink = document.createElement("a");
 		var nextLinkID = "word"+id;
@@ -117,23 +109,26 @@ function initializeWordExplorer(inboundCatArray)
 		SetAnchorProperties(nextLink,'next',nextLinkID);
 		if (addArrowNav)
 		{
-			SetImageAttr(nextLinkImg,('srcPlaceHolder'+id),('altPlaceHolder'+id),'next',addArrowNav);
+			SetImageAttr(nextLinkImg,'images/nextArrow.png','next');
+			SetElemObjClsOrIdName(nextLinkImg,'AltNav','class');
 		}
 		else
 		{
-			SetImageAttr(nextLinkImg,('srcPlaceHolder'+i),('altPlaceHolder'+id));
-		}
-		SetImageAttr(nextLinkImg,('srcPlaceHolder'+nextLinkID),('altPlaceHolder'+nextLinkID));
-		
+			SetImageAttr(nextLinkImg,(inboundCatArray[id].Image),(inboundCatArray[id].PrimLang_word));
+		}		
 		nextLink.appendChild(nextLinkImg);
 
 		parentDivElement.appendChild(nextLink);
-	}
+	} // End CreateNextLink(parentDivElement, id)
 	
 	function CreateLangDiv(parentDivElement, divElementName, id)
 	{
 		if (divElementName)
 		{
+			var LiteralWord = null;
+			var TransLitWord = null;
+			var urlForSoundLink = null;
+			var urlForinfoLink = null;
 			var newDiv = document.createElement('div');
 			newDiv.setAttribute('class',divElementName);
 	
@@ -141,28 +136,43 @@ function initializeWordExplorer(inboundCatArray)
 			var langLink1 = document.createElement("a");
 			var langLink2 = document.createElement("a");
 			var breakElement = document.createElement("br");
+			var speakerImgElement = document.createElement("img");
 			
-			
-			// Update Link with sound?
+			// TODO: Update Link with sound?
 			if (divElementName === 'nav_prilang')
 			{
-				SetAnchorProperties(langLink1,'prilangLiteral','',('LiteralWord'+id));
-				SetAnchorProperties(langLink2,'prilangTransLit','',('TransLitWord'+id));
-			}
-			else
-			{
-				SetAnchorProperties(langLink1,'seclangLiteral','',('LiteralWord'+id));
-				SetAnchorProperties(langLink2,'seclangTransLit','',('TransLitWord'+id));				
+				LiteralWord = inboundCatArray[id].PrimLang_word;
+				TransLitWord = inboundCatArray[id].PrimLang_translit;
+				urlForinfoLink = inboundCatArray[id].PrimLangInfo;
+				urlForSoundLink = inboundCatArray[id].PrimLang_sound_url;
+
+				SetAnchorProperties(langLink1,'prilangLiteral',urlForinfoLink,LiteralWord);
+				SetAnchorProperties(langLink2,'prilangTransLit',urlForSoundLink,TransLitWord);
 			}
 			
+			if (divElementName === 'nav_seclang')
+			{
+				LiteralWord = inboundCatArray[id].SecLang_word;
+				TransLitWord = inboundCatArray[id].SecLang_translit;
+				urlForinfoLink = '';
+				urlForSoundLink = inboundCatArray[id].SecLang_sound_url;
+				
+				SetAnchorProperties(langLink1,'seclangLiteral',urlForinfoLink,LiteralWord);
+				SetAnchorProperties(langLink2,'seclangTransLit',urlForSoundLink,TransLitWord);				
+			}
+			
+			SetImageAttr(speakerImgElement,'images/icon-loud-speaker.png','Speaker Image');
+			SetElemObjClsOrIdName(speakerImgElement,'speakerImg','class');
+
 			// attach new elements
 			newDiv.appendChild(langLink1);
 			newDiv.appendChild(breakElement);
 			newDiv.appendChild(langLink2);
+			newDiv.appendChild(speakerImgElement);
 			
 			parentDivElement.appendChild(newDiv);
 		}
-	}
+	} // End CreateLangDiv(parentDivElement, divElementName, id)
 	
 	this.cleanGame=function()
 	{
@@ -182,16 +192,16 @@ function initializeWordExplorer(inboundCatArray)
 					logToConsole(msgStr, true);
 				}
 		}
-	};
+	}; // End this.cleanGame=function()
 	
 	this.writeInterface=function()
 	{
 		var WExPlaceHolder = document.getElementById('gallery');
 		var backgroundArrows = true;
     
-    //TODO set value for backgroundArrows from config file
-		
-    if (WExPlaceHolder)
+	    //TODO set value for backgroundArrows from config file
+			
+	    if (WExPlaceHolder)
 		{
 			if (inboundCatArray)
 			{
@@ -206,12 +216,12 @@ function initializeWordExplorer(inboundCatArray)
 				// Build div array interface
 				for(i=0; i<=this.wordArray.length-1; ++i)
 				{
-					var currentDivID,nextDivID;
+					var currentDivID,nextDivID,prevDivID;
 					currentDivID=i;
 					// Check for first array value to create loop
-					var prevDivID = (i===0) ? (this.wordArray.length-1) : (i-1);
+					prevDivID = (i===0) ? (this.wordArray.length-1) : (i-1);
 					// Check for end value to look back to zero
-					var nextDivID = (i===this.wordArray.length-1) ? (0) : (i+1);
+					nextDivID = (i===this.wordArray.length-1) ? (0) : (i+1);
 					
 					var newDivElement = document.createElement('div');
 					var newElementID = "word"+currentDivID;
@@ -221,7 +231,7 @@ function initializeWordExplorer(inboundCatArray)
 					// Create Main display image
 					var mainWordDisplay = document.createElement("img");
 					//TODO: Set img values to array info
-					SetImageAttr(mainWordDisplay,('srcPlaceHolder'+currentDivID),('altPlaceHolder'+currentDivID));
+					SetImageAttr(mainWordDisplay,(this.wordArray[currentDivID].Image),(this.wordArray[currentDivID].PrimLang_word));
 					newDivElement.appendChild(mainWordDisplay);
 					
 					CreatePrevLink(newDivElement,prevDivID);
@@ -231,14 +241,13 @@ function initializeWordExplorer(inboundCatArray)
 					if (backgroundArrows === true)
 					{
 						CreatePrevLink(newDivElement,prevDivID,true);
-						
 						CreateNextLink(newDivElement,nextDivID,true);
 					}
 					// Create Primary Language Links
-					CreateLangDiv(newDivElement,'nav_prilang',prevDivID);
+					CreateLangDiv(newDivElement,'nav_prilang',currentDivID);
 					
 					// Create Secondary Language Links
-					CreateLangDiv(newDivElement,'nav_seclang',nextDivID);
+					CreateLangDiv(newDivElement,'nav_seclang',currentDivID);
 					
 					newGUI.appendChild(newDivElement);
 				}
@@ -246,5 +255,5 @@ function initializeWordExplorer(inboundCatArray)
 				WExPlaceHolder.appendChild(newGUI);
 			}
 		}
-	};
+	}; // End this.writeInterface=function()
 }
