@@ -142,4 +142,4 @@
     "Info":"http://en.wikipedia.org/wiki/Family",
     "EnglishSound":"https://ssl.gstatic.com/dictionary/static/sounds/de/0/granddaughter.mp3"
   }
-]
+];
