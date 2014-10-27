@@ -341,7 +341,8 @@ function init()
       }
     }
   }
-  var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
+//  var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
+  var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
   newExplorer.writeInterface();
   
   var BS = new BackendSystem(); 

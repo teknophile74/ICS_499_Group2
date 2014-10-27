@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="css/galleryView.css" />
 <!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> cat -->
 <script id="DefaultLangArray" src="lang/US/en/te/Cat_Family.js"></script>
+<script id="DefaultLangArray" src="lang/US/en/te/country.js"></script>
 <script src="lang/CurrentLangDirs.js"></script>
 <script src="lang/CategoryList.js"></script>
 <script src="script/global.js"></script>
@@ -26,6 +27,12 @@
 	<div id="category">
 		<fieldset>
 			<legend>Select a category</legend>
+			<select id="categories" onchange="triggerUpdate(this.value);"></select>
+		</fieldset>
+	</div>
+	<div id="category">
+		<fieldset>
+			<legend>Select a country</legend>
 			<select id="categories" onchange="triggerUpdate(this.value);"></select>
 		</fieldset>
 	</div>
