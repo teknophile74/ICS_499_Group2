@@ -342,7 +342,8 @@ function init()
     }
   }
 //  var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
-  var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
+//  var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
+  var newExplorer = new initializeWordExplorer(window.EnglishTelugu_Cartoons);
   newExplorer.writeInterface();
   
   var BS = new BackendSystem(); 
