@@ -7,26 +7,30 @@ var CategoryList =
 [
 	{
 		id: 1,
-		category: "Family"
+		category: "Airlines"
 	},
 	{
 		id: 2,
-		category: "Animals"
+		category: "Cartoons"
 	},
 	{
 		id: 3,
-		category: "Greetings"
+		category: "Cartoons Characters"
 	},
 	{
 		id: 4,
-		category: "Directions"
+		category: "Chinese Zodiacs"
 	},
 	{
 		id: 5,
-		category: "Transportation"
+		category: "Continents"
 	},
 	{
 		id: 6,
-		category: "Food"
+		category: "Countries"
+	},
+	{
+		id: 6,
+		category: "Toys"
 	}
 ];
