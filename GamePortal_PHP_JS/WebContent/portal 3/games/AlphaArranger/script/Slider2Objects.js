@@ -4,20 +4,17 @@
  * @Author Aaron Burke
  */
 
-var puzzleName = PuzzleBaseConfig[0].puzzleName;
-var useSymbol = PuzzleBaseConfig[0].useSymbol;
-var initialWidth = PuzzleBaseConfig[0].initialWidth;
-var initialHeight = PuzzleBaseConfig[0].initialHeight;
-var initialOffset = PuzzleBaseConfig[0].initialOffset;
-var currentLang = PuzzleBaseConfig[0].currentLang;
-var puzzle=null
-CreatePuzzle();
+var PuzzleBaseConfig = window.PuzzleBaseConfig;
+var currentLang=null;
+var puzzle=null;
+var puzzleName=null;
+var useSymbol=null;
 
-function CreatePuzzle() 
+function CreatePuzzle(puzzleName, useSymbol, Offset, Lang, Width, Height) 
 {
-	puzzle = new initializePuzzle(puzzleName, initialWidth, initialHeight);
+	puzzle = new initializePuzzle(puzzleName, Width, Height);
 	// Load in the requested alpha array
-	loadCharArray(useSymbol, initialHeight, initialHeight, initialOffset, currentLang);
+	loadCharArray(useSymbol, Width, Height, Offset, Lang);
 }
 
 function initializePuzzle(aName,puzzleWidth,puzzleHeight)
@@ -27,8 +24,8 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 	this.height=puzzleHeight;	
 	//this.emptyVal=0;
 	this.emptyVal="";
-	this.pieces=new Array();
-	this.fields=new Array();
+	this.pieces=[];
+	this.fields=[];
 	this.name=aName;
 	this.moveCounter=0;
 	this.writePuzzle=function()
@@ -48,9 +45,9 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 			{
 				var P=Math.floor(Math.random()*(tempArray.length-I));
 				this.fields[I]=tempArray[P];
-				for(J=P;J<tempArray.length-1;J++)
+				for(var J=P;J<tempArray.length-1;J++)
 				{
-					tempArray[J]=tempArray[J+1]
+					tempArray[J]=tempArray[J+1];
 				}				
 			}
 	
@@ -87,7 +84,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 			HTML.appendChild(tbl);
 			gamePlaceHolder.appendChild(HTML);
 		}
-	}
+	};
 
 	this.move=function(aY,aX)
 	{
@@ -101,6 +98,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 				document.getElementById(aY*this.width+aX).innerHTML='';
 				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
 				document.getElementById(aY*this.width+aX+1).setAttribute("class", "");
+				UpdateCounter()
 			}
 		}
 		if(aX>0)
@@ -113,6 +111,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 				document.getElementById(aY*this.width+aX).innerHTML='';
 				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
 				document.getElementById(aY*this.width+aX-1).setAttribute("class", "");
+				UpdateCounter()
 			}
 		}		
 		if(aY>0)
@@ -125,6 +124,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 				document.getElementById(aY*this.width+aX).innerHTML='';
 				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
 				document.getElementById((aY-1)*this.width+aX).setAttribute("class", "");
+				UpdateCounter()
 			}
 		}
 		if(aY<this.height-1)
@@ -137,6 +137,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 				document.getElementById(aY*this.width+aX).innerHTML='';
 				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
 				document.getElementById((aY+1)*this.width+aX).setAttribute("class", "");
+				UpdateCounter()
 			}
 		}
 
@@ -144,9 +145,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 		if (IsSolved(this.pieces, this.fields)) {
 			alert('Puzzle Solved');
 		}
-		this.moveCounter++;
-		document.getElementById("MoveCounter").innerHTML=this.moveCounter;
-	}
+	};
 
 	this.cleanGame=function()
 	{
@@ -155,44 +154,41 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 		if (element) {
 			gamePlaceHolder.removeChild(element);
 		}
-	}
+	};
 }
 
 function changePuzzleSize(newSize)
 {
-	this.Size = parseInt(newSize);
-	this.Lang = (document.getElementById("Lang")).value;
-	this.Offset = parseInt((document.getElementById("Offset")).value);
-	puzzle.cleanGame();
-	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
-	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
-	ResetCounter();
-	puzzle.writePuzzle();
+	var Size = parseInt(newSize);
+	var Lang = (document.getElementById("Lang")).value;
+	var Offset = parseInt((document.getElementById("Offset")).value);
+	changePuzzle(Size, Lang, Offset);
 }
 
-function changeLanguage(newLang)
+function changePuzzleLanguage(newLang)
 {
-	this.Size = parseInt((document.getElementById("Size")).value);
-	this.Lang = newLang;
-	this.Offset = parseInt((document.getElementById("Offset")).value);
-	puzzle.cleanGame();
-	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
-	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
-	ResetCounter();
-	puzzle.writePuzzle();
+	var Size = parseInt((document.getElementById("Size")).value);
+	var Lang = newLang;
+	var Offset = parseInt((document.getElementById("Offset")).value);
+	changePuzzle(Size, Lang, Offset);
 }
 
 function changePuzzleOffset(newOffset)
 {
-	this.Size = parseInt((document.getElementById("Size")).value);
-	this.Lang = (document.getElementById("Lang")).value;
-	this.Offset = parseInt(newOffset);
+	var Size = parseInt((document.getElementById("Size")).value);
+	var Lang = (document.getElementById("Lang")).value;
+	var Offset = parseInt(newOffset);
+	changePuzzle(Size, Lang, Offset);
+}
+
+function changePuzzle(Size, Lang, Offset)
+{
 	puzzle.cleanGame();
-	puzzle = new initializePuzzle(puzzleName, this.Size, this.Size);
-	loadCharArray(useSymbol, this.Size, this.Size, this.Offset, this.Lang);
+	CreatePuzzle(puzzleName, useSymbol, Offset, Lang, Size, Size);
 	ResetCounter();
 	puzzle.writePuzzle();
 }
+
 
 function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
 {
@@ -217,7 +213,7 @@ function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
 				puzzle.pieces[i]="";
 			}
 			else {
-				initializePuzzle(puzzle.name, intWidth, intHeight);
+				//initializePuzzle(puzzle.name, intWidth, intHeight);
 				if (useSymbol) {
 					if (i+intOffset > charArray.lenth-1) {
 						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].symbol;
@@ -253,25 +249,48 @@ function IsSolved(pieces, fields)
 }
 
 
-function ResetCounter() 
+function init()
 {
-	// Check for puzzle being changed and reset counter value to zero
-	this.moveCounter=0;
-	document.getElementById("MoveCounter").innerHTML=this.moveCounter;
-}
-
-function init() 
-{
+	// set initially needed values
+	puzzleName = PuzzleBaseConfig.puzzleName;
+	useSymbol = PuzzleBaseConfig.useSymbol;
+	currentLang = PuzzleBaseConfig.currentLang;
+	
 	PopulatePageLanguageSettings();
-	GetLanguageFromQueryString();
-	CreatePuzzle();
+	if (!(GetLanguageFromQueryString()))
+	{
+		var selectBox = document.getElementById('Lang');
+		for(var i=0; i < selectBox.length; i++)
+		{
+		   if (currentLang == selectBox.options[i].text)
+		   {
+			   selectBox.selectedIndex = i;
+		   }
+		}
+	}
+	// initial parameters used to create the game
+	CreatePuzzle(puzzleName, useSymbol, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
 	ResetCounter();
 	puzzle.writePuzzle();
 }
 
 function ResetPuzzle()
 {
-	(document.getElementById("Size")).value = initialHeight;
-	(document.getElementById("Offset")).value = initialOffset;
-	changeLanguage((document.getElementById('Lang')).value);
+	(document.getElementById("Size")).value = PuzzleBaseConfig.initialWidth;
+	(document.getElementById("Offset")).value = PuzzleBaseConfig.initialOffset;
+	changePuzzleLanguage((document.getElementById('Lang')).value);
+}
+
+function UpdateCounter()
+{
+	// sent by puzzle movement and sets the counter value for the page
+	puzzle.moveCounter++;
+	document.getElementById("MoveCounter").innerHTML=puzzle.moveCounter;
+}
+
+function ResetCounter()
+{
+	// Check for puzzle being changed and reset counter value to zero
+	puzzle.moveCounter=0;
+	document.getElementById("MoveCounter").innerHTML=puzzle.moveCounter;
 }
