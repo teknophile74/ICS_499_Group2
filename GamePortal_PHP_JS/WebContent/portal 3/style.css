@@ -1,0 +1,136 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: #000000 url(images/bg.jpg) repeat-x;
+	font: 62.5% arial, sans-serif;
+}
+
+a:link, a:visited { 
+    color: #f43900;
+    text-decoration: none;
+    cursor: auto;
+}
+
+.wrapper{
+	width: 1100px;
+	margin: 0 auto;
+}
+#sidebg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: transparent url(images/sidebg.png) no-repeat;
+	width: 104px;
+	height: 761px;
+	
+}
+#nav{
+	height: 45px;
+	background: #fcff26;
+	text-align: center;
+	line-height: 45px;
+	font-size: 2em;
+	//padding-right: 10px;
+}
+
+#google_translate_element{
+text-align: right;
+}
+#content{
+	padding: 25px 15px;
+	margin-top: 50px;
+	font-size: 1.2em;
+	color: #fff;
+}
+
+/* ---- FONT FACE ---- */
+@font-face {
+    font-family: 'ArmorPiercing20BB';
+    src: url('fonts/ArmorPiercing20BB.eot');
+    src: url('fonts/ArmorPiercing20BB.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ArmorPiercing20BB.woff') format('woff'),
+         url('fonts/ArmorPiercing20BB.ttf') format('truetype'),
+         url('fonts/ArmorPiercing20BB.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/* ---- HEADER STYLES ---- */
+#header{
+	height: 170px;
+}
+h1#title{
+	color: #f43900;
+	font: normal 6.5em/1 'ArmorPiercing20BB', arial, sans-serif;
+	text-align: center;
+	padding-top: 40px;
+	letter-spacing: 2px;
+    text-shadow: -1px 1px 0 #fcff26;
+	text-transform: uppercase;
+}
+div#subtitle{
+	color: #fcff26;
+	font: normal 1.2em/1 arial, sans-serif;
+	font-style: italic;
+	letter-spacing: 1px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* ---- CONTENT ---- */
+#games{
+	position: relative;
+	z-index: 100;
+	width: 1011px;
+	margin: 25px auto;
+	overflow: hidden;
+}
+.gameBox{
+	background: #f43900 url(images/gameboxbg.jpg) repeat-x;
+	height: 125px;
+	width: 315px;
+	border: 1px solid #fcff26;
+	margin: 10px;
+	float: left;
+	overflow: hidden;
+	color: #000;
+}
+.gameBox a.gameImg{
+	margin: 10px 5px;
+	width: 100px;
+	height: 100px;
+	background: #000;
+	padding: 1px;
+	border: 3px solid #fcff26;
+	float: left;
+}
+.gameBox a:hover.gameImg{
+	background: #f43900;
+	padding: 1px;
+	border: 3px solid #000000;
+}
+.gameBox .gameImg img{
+	width: 100px;
+	height: 100px;
+}
+.gameBox h3{
+	color: #000000;
+	font: normal 2em/1 'ArmorPiercing20BB', arial, sans-serif;
+	margin: 7px 0 5px;
+    text-shadow: -1px 1px 0 #efefef;
+	text-transform: uppercase;
+}
+.gameBox h3 a{
+	color: #000000;
+}
+.gameBox h3 a:hover{
+	color: #333;
+}
+.gameBox p{
+	margin: 0 5px 0 0;
+}
