@@ -11,22 +11,38 @@ var CategoryList =
 	},
 	{
 		id: 2,
-		category: "Animals"
+		category: "Airlines"
 	},
 	{
 		id: 3,
-		category: "Greetings"
+		category: "Cartoons"
 	},
 	{
 		id: 4,
-		category: "Directions"
+		category: "Cartoons Characters"
 	},
 	{
 		id: 5,
-		category: "Transportation"
+		category: "Chinese Zodiacs"
 	},
 	{
 		id: 6,
+		category: "Continents"
+	},
+	{
+		id: 7,
+		category: "Countries"
+	},
+	{
+		id: 8,
+		category: "Toys"
+	},
+	{
+		id: 9,
+		category: "Animals"
+	},
+	{
+		id: 10,
 		category: "Food"
 	}
 ];

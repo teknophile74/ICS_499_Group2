@@ -1,3 +1,4 @@
+
 #gallery {
     background: none repeat scroll 0 0 #F8F8F8;
     border-bottom: 1px solid #DDDDDD;
@@ -31,7 +32,7 @@
     margin: 0 auto;
     position: relative;
     width: 720px;
-    z-index: 500;
+    z-index: 50;
 }
 #gallery #fullsize div h3 {
     font-size: 18px;
@@ -46,16 +47,46 @@
 }
 #gallery #fullsize div div.nav_prilang {
     font-size: 18px;
+    left: 800px;
     margin: 0;
+    max-height: 80px;
+    max-width: 100px;
     padding: 10px 0 0;
-left: 300px;
+    position: relative;
+    top: 0;
 }
+
+#gallery #fullsize div div.nav_prilang img.speakerImg {
+    top: 0;
+    left: 50px;
+    margin: 0;
+    height: 25px;
+    width: 25px;
+    padding: 10px 0 0;
+    position: relative;
+}
+
 #gallery #fullsize div div.nav_seclang {
     font-size: 18px;
+    left: 50px;
     margin: 0;
+    max-height: 100px;
+    max-width: 150px;
     padding: 10px 0 0;
-right: -300px;
+    position: relative;
+    top: -100px;
 }
+
+#gallery #fullsize div div.nav_seclang img.speakerImg {
+    top: 0;
+    left: 50px;
+    margin: 0;
+    height: 25px;
+    width: 25px;
+    padding: 10px 0 0;
+    position: relative;
+}
+
 #gallery #fullsize a.previous {
     border: 10px solid #FFFFFF;
     display: block;
@@ -76,6 +107,7 @@ right: -300px;
     width: 240px;
     z-index: 10;
 }
+
 #gallery #fullsize a.previous img, #gallery #fullsize a.next img {
     border: 0 none;
     display: block;
@@ -83,10 +115,24 @@ right: -300px;
     opacity: 0.4;
     width: 240px;
 }
+
+#gallery #fullsize div a.previous img:hover {
+	z-index: 10;
+}
+
+#gallery #fullsize div a.next img:hover {
+	z-index: 10;	
+}
+
 #gallery #fullsize a:hover {
     direction: ltr;
     z-index: 600;
 }
+
 #gallery #fullsize a:hover img {
     opacity: 0.8;
+}
+
+#gallery #fullsize a img.AltNav {
+	display: none;
 }

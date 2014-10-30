@@ -1,6 +1,6 @@
 /**
  * Global Page level JavaScript
- * Group: 2
+ * Group: 2 <<better.
  * @Author Aaron Burke
  */
 
@@ -101,4 +101,15 @@ function SetLangScripts(i)
 	newScript.id = scriptId;
 	newScript.src = sourcesPath;
 	head.appendChild(newScript);
+}
+
+function logToConsole(msgString, debugFlag)
+{
+	if (debugFlag)
+	{
+		if (msgString)
+		{
+			console.log(msgString);
+		}
+	}
 }
