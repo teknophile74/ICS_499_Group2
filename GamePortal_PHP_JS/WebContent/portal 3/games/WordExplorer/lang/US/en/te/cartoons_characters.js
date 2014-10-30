@@ -1,0 +1,13 @@
+var EnglishTelugu_Cartoons_Characters=
+	[
+	 {PrimLang_word:"harry the dirty dog",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"హ్యార్రి ద డర్టీ డాగ్",Image:"https://zoobean.s3.amazonaws.com/book_images/308/large/HarryDirtyDog.jpg?1363969745"},
+	 {PrimLang_word:"horton the elephant",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"హోర్టన్ ద ఎలఫెంట్",Image:"http://www.jimcarreyonline.com/img/recent/news/horton34.jpg"},
+	 {PrimLang_word:"homer simpson",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"హోమర్ సింప్సన్",Image:"http://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png"},
+	 {PrimLang_word:"heffalumps",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"హెఫా ల౦మ్ప్",Image:"http://www.paigebowers.com/wp-content/uploads/2011/11/heffalump.jpg"},
+	 {PrimLang_word:"hulk",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"హల్క్",Image:"http://p5.s1.flirtic.com/photos/1/5/4/15422746850.jpg"},
+	 {PrimLang_word:"hello kitty",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"హలో కిట్టి",Image:"http://allucanjump.com.au/communities/7/004/012/094/077/images/4597577774.swf"},
+	 {PrimLang_word:"spider man",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"స్పైడర్ మాన్",Image:"http://pic.pimg.tw/harukainusa/1381480050-1120524539.jpg"},
+	 {PrimLang_word:"space ghost",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"స్పేస్ ఘోస్ట్",Image:"http://www.michigandaily.com/files/leg/4264e0fe2ab2d-12-1.jpg"},
+	 {PrimLang_word:"speed racer",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"స్పీడ్ రేసర్",Image:"http://bstrap.artfixdaily.com/images/pr/speed_head(2)CloseupWaving.jpg"},
+	 {PrimLang_word:"spot the dog",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"స్పాట్ ద డాగ్",Image:"http://d26kxapmp05apn.cloudfront.net/cms_media/images/600x1000_fitbox-spot_buggy_buddy_b1.jpg"}
+	 ]
