@@ -329,21 +329,30 @@ function init()
   var soundURIOfEnglish;
   var soundURIOfLang;
   
+  var initialLanguage = WordExBaseConfig.intialLang;
+  var intialCategory = WordExBaseConfig.intialCategory;
+  
+  // Call out to global.js for settings
   PopulatePageLanguageSettings();
-  if (!(GetLanguageFromQueryString()))
-  {
+  PopulateLanguageDropDowns();
+  //if (!(GetLanguageFromQueryString()))
+  //{
     var selectBox = document.getElementById('categories');
     for(var i=0; i < selectBox.length; i++)
     {
-      if (currentLang == selectBox.options[i].text)
+      if (intialCategory === (selectBox.options[i].text).toLowerCase())
       {
         selectBox.selectedIndex = i;
       }
     }
-  }
-//  var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
-  var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
-//  var newExplorer = new initializeWordExplorer(window.EnglishTelugu_Cartoons);
+  //}
+  //var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
+  //var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
+  
+  // Call out to get the initially loaded array
+  var currentCatArray = GetCategoryArray();
+    
+  var newExplorer = new initializeWordExplorer(window[currentCatArray]);
   newExplorer.writeInterface();
   
   var BS = new BackendSystem(); 

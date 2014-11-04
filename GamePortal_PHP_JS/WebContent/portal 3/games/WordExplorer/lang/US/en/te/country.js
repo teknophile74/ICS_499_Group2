@@ -1,4 +1,4 @@
-﻿var EnglishTeluguCountry =
+﻿var EnglishTelugu_Country =
 [
 {PrimLang_word:"Zimbabwe",PrimLang_sound_url:"",PrimLang_translit:"Zimbabwe",PrimLangInfo:"",SecLang_word:"జింబాబ్వే",SecLang_sound_url:"",SecLang_translit:"జింబాబ్వే",Image:"http://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Flag_of_Zimbabwe.svg/800px-Flag_of_Zimbabwe.svg.png"},{PrimLang_word:"Zambia",PrimLang_sound_url:"",PrimLang_translit:"Zambia",PrimLangInfo:"",SecLang_word:"జాంబియా",SecLang_sound_url:"",SecLang_translit:"జాంబియా",Image:"http://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Flag_of_Zambia.svg/800px-Flag_of_Zambia.svg.png"},
 {PrimLang_word:"Yemen",PrimLang_sound_url:"",PrimLang_translit:"Yemen",PrimLangInfo:"",SecLang_word:"యెమెన్",SecLang_sound_url:"",SecLang_translit:"యెమెన్",Image:"http://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Flag_of_Yemen.svg/800px-Flag_of_Yemen.svg.png"},
