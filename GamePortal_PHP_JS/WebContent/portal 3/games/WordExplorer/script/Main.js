@@ -368,6 +368,7 @@ function GetCategoryArray()
 	var catArrayValue;
 	var selectBox = document.getElementById('categories');
 	var category = selectBox.options[selectBox.selectedIndex].text;
+
 	category = category.replace(/%20+/g, '_')
 	
 	selectBox = document.getElementById('primaryLang');
