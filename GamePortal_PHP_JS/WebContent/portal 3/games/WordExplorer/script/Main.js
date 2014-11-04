@@ -334,7 +334,7 @@ function init()
   
   // Call out to global.js for settings
   PopulatePageLanguageSettings();
-  PopulateLanguageDropDowns();
+  // TODO: PopulateLanguageDropDowns();
   //if (!(GetLanguageFromQueryString()))
   //{
     var selectBox = document.getElementById('categories');
@@ -360,6 +360,9 @@ function init()
   // initial parameters used to create the game
   //CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
 }
+
+
+
 function triggerUpdate(newUpdate)
 {
 	return;
