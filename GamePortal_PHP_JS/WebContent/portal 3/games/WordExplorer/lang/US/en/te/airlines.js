@@ -1,4 +1,4 @@
-var EnglishTeluguAirlines =
+var EnglishTelugu_Airlines =
 [
 {PrimLang_word:"air canada",PrimLang_sound_url:"",PrimLang_translit:"air canada",PrimLangInfo:"",SecLang_word:"ఎయిర్ కెనడా",SecLang_sound_url:"",SecLang_translit:"ఎయిర్ కెనడా",Image:"http://www.logoeps.com/wp-content/uploads/AutoGen/0e285347a913924f81b0cdcbf0257c52.jpg"},
 {PrimLang_word:"airtran",PrimLang_sound_url:"",PrimLang_translit:"airtran",PrimLangInfo:"",SecLang_word:"ఎయిర్ ట్రాన్",SecLang_sound_url:"",SecLang_translit:"ఎయిర్ ట్రాన్",Image:"http://www.jlhr.org/ama/orig/bronzeairtran.jpg"},

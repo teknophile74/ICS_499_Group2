@@ -329,21 +329,30 @@ function init()
   var soundURIOfEnglish;
   var soundURIOfLang;
   
+  var initialLanguage = WordExBaseConfig.intialLang;
+  var intialCategory = WordExBaseConfig.intialCategory;
+  
+  // Call out to global.js for settings
   PopulatePageLanguageSettings();
-  if (!(GetLanguageFromQueryString()))
-  {
+  PopulateLanguageDropDowns();
+  //if (!(GetLanguageFromQueryString()))
+  //{
     var selectBox = document.getElementById('categories');
     for(var i=0; i < selectBox.length; i++)
     {
-      if (currentLang == selectBox.options[i].text)
+      if (intialCategory === (selectBox.options[i].text).toLowerCase())
       {
         selectBox.selectedIndex = i;
       }
     }
-  }
-//  var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
-//  var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
-  var newExplorer = new initializeWordExplorer(window.EnglishTelugu_Cartoons);
+  //}
+  //var newExplorer = new initializeWordExplorer(window.EnglishTeluguFamily);
+  //var newExplorer = new initializeWordExplorer(window.EnglishTeluguCountry);
+  
+  // Call out to get the initially loaded array
+  var currentCatArray = GetCategoryArray();
+    
+  var newExplorer = new initializeWordExplorer(window[currentCatArray]);
   newExplorer.writeInterface();
   
   var BS = new BackendSystem(); 
@@ -351,6 +360,25 @@ function init()
   // initial parameters used to create the game
   //CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
 }
+
+function GetCategoryArray()
+{
+	var catArrayValue;
+	var selectBox = document.getElementById('categories');
+	var category = selectBox.options[selectBox.selectedIndex].text;
+	
+	selectBox = document.getElementById('primaryLang');
+	var primaryLang = selectBox.options[selectBox.selectedIndex].text;
+	
+	selectBox = document.getElementById('secondaryLang');
+	var secondaryLang = selectBox.options[selectBox.selectedIndex].text;
+	// Build this string EnglishTelugu_Cartoons
+	
+	CatArray = primaryLang+secondaryLang+'_'+category;
+	
+	return catArrayValue;
+}
+
 function triggerUpdate(newUpdate)
 {
 	return;

@@ -1,4 +1,4 @@
-﻿var EnglishTeluguFamily =
+﻿var EnglishTelugu_Family =
 [
   {
     PrimLang_word:"grandmother",

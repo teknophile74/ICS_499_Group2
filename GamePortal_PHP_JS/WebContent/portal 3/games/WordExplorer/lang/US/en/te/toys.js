@@ -1,4 +1,4 @@
-var EnglishTelugu_toys=
+var EnglishTelugu_Toys=
 	[
 	 {PrimLang_word:"",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"క్లాసిక్ యో యో",Image:"http://m4.i.pbase.com/u9/willa/medium/4113844.ClassicYoYoBlue.jpg"},
 	 {PrimLang_word:"",PrimLang_sound_url:"",PrimLang_translit:"",PrimLangInfo:"",SecLang_word:"",SecLang_sound_url:"",SecLang_translit:"బంగాళాదుంప స్థితి",Image:"http://f00.inventorspot.com/images/6_1202toys.jpg"},
