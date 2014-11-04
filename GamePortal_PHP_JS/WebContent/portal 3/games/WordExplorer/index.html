@@ -13,6 +13,7 @@
 	<script src="script/baseSettingsJSON.js"></script>
 	<!-- Script -->
 	<script src="script/global.js"></script>
+	<script src="script/initWordExplorer.js"></script>
 	<script src="script/Main.js"></script>
 </head>
 <!--<body onload="PopulatePageLanguageSettings();"> -->
@@ -29,12 +30,8 @@
 			<legend>Select A Category or Language</legend>
 			<select id="categories" onchange="triggerUpdate(this.value);"></select>
 			<select id="primaryLang" onchange="triggerPrimaryLangUpdate(this.value);">
-				<option selected>English</option>
-				<option>Telegu</option>
 			</select>
 			<select id="secondaryLang" onchange="triggerSecondaryLangUpdate(this.value);">
-				<option>English</option>
-				<option selected>Telegu</option>
 			</select>
 		</fieldset>
 	</div>

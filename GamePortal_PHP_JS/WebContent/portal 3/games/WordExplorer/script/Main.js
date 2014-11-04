@@ -333,8 +333,8 @@ function init()
   var intialCategory = WordExBaseConfig.intialCategory;
   
   // Call out to global.js for settings
-  PopulatePageLanguageSettings();
-  // TODO: PopulateLanguageDropDowns();
+  PopulatePageDropDownSettings();
+  //PopulateLanguageDropDowns();
   //if (!(GetLanguageFromQueryString()))
   //{
     var selectBox = document.getElementById('categories');
@@ -351,19 +351,58 @@ function init()
   
   // Call out to get the initially loaded array
   var currentCatArray = GetCategoryArray();
-    
-  var newExplorer = new initializeWordExplorer(window[currentCatArray]);
-  newExplorer.writeInterface();
   
-  var BS = new BackendSystem(); 
-  BS.createWord(2);
+  	if (window[currentCatArray])
+	{  
+		var newExplorer = new initializeWordExplorer(window[currentCatArray]);
+		newExplorer.writeInterface();
+	}
+  //var BS = new BackendSystem(); 
+  //BS.createWord(2);
   // initial parameters used to create the game
   //CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
 }
 
-
+function GetCategoryArray()
+{
+	var catArrayValue;
+	var selectBox = document.getElementById('categories');
+	var category = selectBox.options[selectBox.selectedIndex].text;
+	category = category.replace(/%20+/g, '_')
+	
+	selectBox = document.getElementById('primaryLang');
+	var primaryLang = selectBox.options[selectBox.selectedIndex].text;
+	
+	selectBox = document.getElementById('secondaryLang');
+	var secondaryLang = selectBox.options[selectBox.selectedIndex].text;
+	// Build this string EnglishTelugu_Cartoons
+	
+	catArrayValue = primaryLang+secondaryLang+'_'+category;
+	
+	return catArrayValue;
+}
 
 function triggerUpdate(newUpdate)
 {
+	if (newUpdate)
+	{
+		var selectBox;
+		var category = newUpdate.replace(" ", "_");
+		
+		selectBox = document.getElementById('primaryLang');
+		var primaryLang = selectBox.options[selectBox.selectedIndex].text;
+		
+		selectBox = document.getElementById('secondaryLang');
+		var secondaryLang = selectBox.options[selectBox.selectedIndex].text;
+		// Build this string EnglishTelugu_Cartoons
+		
+		var catArrayValue = primaryLang+secondaryLang+'_'+category;
+
+	  	if (window[catArrayValue])
+		{  
+			var newExplorer = new initializeWordExplorer(window[catArrayValue]);
+			newExplorer.writeInterface();
+		}
+	}
 	return;
 }

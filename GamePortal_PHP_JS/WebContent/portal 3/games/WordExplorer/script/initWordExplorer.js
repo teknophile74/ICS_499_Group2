@@ -29,8 +29,8 @@ function initializeWordExplorer(inboundCatArray)
 	 * the new interface for the user to play
 	 */
 	var i;
-	this.wordArray=[];
-
+	var wordArray = (inboundCatArray).slice(0);
+	
 	function SetElemObjClsOrIdName(imgElemObj,updateStr,classoridStr)
 	{
 		if (imgElemObj)
@@ -203,25 +203,23 @@ function initializeWordExplorer(inboundCatArray)
 			
 	    if (WExPlaceHolder)
 		{
-			if (inboundCatArray)
+			if (wordArray)
 			{
 				// remove game from page if it already exists
 				this.cleanGame();
 				
 				var newGUI = document.createElement('div');
 				newGUI.setAttribute('id','fullsize');
-				
-				this.wordArray = inboundCatArray.slice(0);
 		
 				// Build div array interface
-				for(i=0; i<=this.wordArray.length-1; ++i)
+				for(i=0; i<=wordArray.length-1; ++i)
 				{
 					var currentDivID,nextDivID,prevDivID;
 					currentDivID=i;
 					// Check for first array value to create loop
-					prevDivID = (i===0) ? (this.wordArray.length-1) : (i-1);
+					prevDivID = (i===0) ? (wordArray.length-1) : (i-1);
 					// Check for end value to look back to zero
-					nextDivID = (i===this.wordArray.length-1) ? (0) : (i+1);
+					nextDivID = (i===wordArray.length-1) ? (0) : (i+1);
 					
 					var newDivElement = document.createElement('div');
 					var newElementID = "word"+currentDivID;
@@ -231,7 +229,7 @@ function initializeWordExplorer(inboundCatArray)
 					// Create Main display image
 					var mainWordDisplay = document.createElement("img");
 					//TODO: Set img values to array info
-					SetImageAttr(mainWordDisplay,(this.wordArray[currentDivID].Image),(this.wordArray[currentDivID].PrimLang_word));
+					SetImageAttr(mainWordDisplay,(wordArray[currentDivID].Image),(wordArray[currentDivID].PrimLang_word));
 					newDivElement.appendChild(mainWordDisplay);
 					
 					CreatePrevLink(newDivElement,prevDivID);
