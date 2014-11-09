@@ -10,14 +10,19 @@ var puzzle=null;
 var puzzleName=null;
 var useSymbol=null;
 
-function CreatePuzzle(puzzleName, useSymbol, Offset, Lang, Width, Height) 
+function CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Width, Height) 
 {
-	puzzle = new initializePuzzle(puzzleName, Width, Height);
+	var useImage = false;
+	if (outputStyle === "image") 
+	{
+		useImage = true;
+	}
+	puzzle = new initializePuzzle(puzzleName, Width, Height, useImage);
 	// Load in the requested alpha array
-	loadCharArray(useSymbol, Width, Height, Offset, Lang);
+	loadCharArray(outputStyle, Width, Height, Offset, Lang);
 }
 
-function initializePuzzle(aName,puzzleWidth,puzzleHeight)
+function initializePuzzle(aName,puzzleWidth,puzzleHeight,useImage)
 {
 	var I=0;
 	this.width=puzzleWidth;
@@ -28,6 +33,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 	this.fields=[];
 	this.name=aName;
 	this.moveCounter=0;
+	this.useImage=useImage;
 	this.writePuzzle=function()
 	{
 		if (document.getElementById("gameHolder")){
@@ -72,7 +78,17 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 						cellText = document.createTextNode("");
 					}
 					else {
-						cellText = document.createTextNode(this.fields[I*this.width+J]);
+						if (this.useImage)
+						{
+							//cellText = document.createTextNode(this.fields[I*this.width+J]);
+							
+							cellText = document.createElement("img");
+							cellText.setAttribute('src',this.fields[I*this.width+J]);
+						}
+						else
+						{
+							cellText = document.createTextNode(this.fields[I*this.width+J]);
+						}
 					}
 					cell.appendChild(cellText);
 					row.appendChild(cell);
@@ -184,15 +200,15 @@ function changePuzzleOffset(newOffset)
 function changePuzzle(Size, Lang, Offset)
 {
 	puzzle.cleanGame();
-	CreatePuzzle(puzzleName, useSymbol, Offset, Lang, Size, Size);
+	CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Size, Size);
 	ResetCounter();
 	puzzle.writePuzzle();
 }
 
 
-function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
+function loadCharArray(outputStyle, intWidth, intHeight, intOffset, newLang)
 {
-	
+	var increment;
 	if (intOffset.NaN) {
 		intOffset = 0;
 	}
@@ -213,22 +229,27 @@ function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
 				puzzle.pieces[i]="";
 			}
 			else {
-				//initializePuzzle(puzzle.name, intWidth, intHeight);
-				if (useSymbol) {
-					if (i+intOffset > charArray.lenth-1) {
-						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].symbol;
-					}
-					else {
-						puzzle.pieces[i]=charArray[(i+intOffset)].symbol;
-					}
+				// initializePuzzle(puzzle.name, intWidth, intHeight);
+				if (i+intOffset > charArray.lenth-1) {
+					increment = i+intOffset-(charArray.lenth-1);
 				}
 				else {
-					if (i+intOffset > charArray.lenth-1) {
-						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].char;
-					}
-					else {
-						puzzle.pieces[i]=charArray[(i+intOffset)].char;
-					}
+					increment = i+intOffset;
+				}
+				
+				switch(outputStyle) {
+				    case "char":
+				    	puzzle.pieces[i]=charArray[increment].char;
+				        break;
+				    case "word":
+				    	puzzle.pieces[i]=charArray[increment].word;
+				        break;
+				    case "image":
+				    	puzzle.pieces[i]=charArray[increment].image;
+				    	break;
+				    default:
+				        // default to glyph
+				    	puzzle.pieces[i]=charArray[increment].glyph;
 				}
 			}
 		}
@@ -253,7 +274,7 @@ function init()
 {
 	// set initially needed values
 	puzzleName = PuzzleBaseConfig.puzzleName;
-	useSymbol = PuzzleBaseConfig.useSymbol;
+	outputStyle = PuzzleBaseConfig.outputStyle;
 	currentLang = PuzzleBaseConfig.currentLang;
 	
 	PopulatePageLanguageSettings();
@@ -269,7 +290,7 @@ function init()
 		}
 	}
 	// initial parameters used to create the game
-	CreatePuzzle(puzzleName, useSymbol, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
+	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
 	ResetCounter();
 	puzzle.writePuzzle();
 }

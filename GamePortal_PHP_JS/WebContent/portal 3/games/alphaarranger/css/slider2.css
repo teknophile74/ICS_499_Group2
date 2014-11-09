@@ -1,3 +1,7 @@
+body{
+	background: #000000 url(images/bg.jpg) repeat-x;
+}
+
 table 
 {
 	border: solid blue 2px;
