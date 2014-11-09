@@ -1,7 +1,12 @@
+<<<<<<< Upstream, based on origin/Prod
 
 body {
 	background: #FFFFFF url(../images/aabg.jpg) repeat;
 	font-size: 1em;
+=======
+body{
+	background: #000000 url(images/bg.jpg) repeat-x;
+>>>>>>> 6a6ffc6 Multiple Changes to allow for additional functionality for slider game
 }
 
 table 

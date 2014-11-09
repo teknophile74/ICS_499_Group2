@@ -9,7 +9,11 @@ var English =
 	{
 		char: "0041",
 		glyph: "A",
+<<<<<<< Upstream, based on origin/Prod
 		word: "Alfa",
+=======
+		word: "Alpfa",
+>>>>>>> 6a6ffc6 Multiple Changes to allow for additional functionality for slider game
 		image: "http://www.framethealphabet.com/media/myuploads/characters-5x7/black/A/thumbnails/A3.jpg?time=1397444267"
 	},
 	{
