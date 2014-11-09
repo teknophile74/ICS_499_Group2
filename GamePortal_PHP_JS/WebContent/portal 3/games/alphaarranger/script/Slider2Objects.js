@@ -22,6 +22,31 @@ function CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Width, Height)
 	loadCharArray(outputStyle, Width, Height, Offset, Lang);
 }
 
+function init()
+{
+	// set initially needed values
+	puzzleName = PuzzleBaseConfig.puzzleName;
+	outputStyle = PuzzleBaseConfig.outputStyle;
+	currentLang = PuzzleBaseConfig.currentLang;
+	
+	PopulatePageLanguageSettings();
+	if (!(GetLanguageFromQueryString()))
+	{
+		var selectBox = document.getElementById('Lang');
+		for(var i=0; i < selectBox.length; i++)
+		{
+		   if (currentLang == selectBox.options[i].text)
+		   {
+			   selectBox.selectedIndex = i;
+		   }
+		}
+	}
+	// initial parameters used to create the game
+	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
+	ResetCounter();
+	puzzle.writePuzzle();
+}
+
 <<<<<<< Upstream, based on origin/Prod
 function init()
 {
@@ -272,6 +297,7 @@ function IsSolved(pieces, fields)
 function applyGridUpdate(fields, emptyVal, useImage, iteratorA, iteratorB)
 {
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 	if(fields[iteratorA]==emptyVal)
 =======
 	// set initially needed values
@@ -282,6 +308,9 @@ function applyGridUpdate(fields, emptyVal, useImage, iteratorA, iteratorB)
 	PopulatePageLanguageSettings();
 	if (!(GetLanguageFromQueryString()))
 >>>>>>> 6a6ffc6 Multiple Changes to allow for additional functionality for slider game
+=======
+	if(fields[iteratorA]==emptyVal)
+>>>>>>> 5a20809 Update for slider - added functions to enable words and images for interface
 	{
 		fields[iteratorA]=fields[iteratorB];
 		fields[iteratorB]=emptyVal;
@@ -305,12 +334,15 @@ function applyGridUpdate(fields, emptyVal, useImage, iteratorA, iteratorB)
 		UpdateCounter()
 	}
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 =======
 	// initial parameters used to create the game
 	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
 	ResetCounter();
 	puzzle.writePuzzle();
 >>>>>>> 6a6ffc6 Multiple Changes to allow for additional functionality for slider game
+=======
+>>>>>>> 5a20809 Update for slider - added functions to enable words and images for interface
 }
 
 function ResetPuzzle()

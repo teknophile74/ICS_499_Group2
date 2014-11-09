@@ -1,4 +1,5 @@
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 
 body {
 	background: #FFFFFF url(../images/aabg.jpg) repeat;
@@ -7,6 +8,12 @@ body {
 body{
 	background: #000000 url(images/bg.jpg) repeat-x;
 >>>>>>> 6a6ffc6 Multiple Changes to allow for additional functionality for slider game
+=======
+
+body {
+	background: #FFFFFF url(../images/aabg.jpg) repeat;
+	font-size: 1em;
+>>>>>>> 5a20809 Update for slider - added functions to enable words and images for interface
 }
 
 table 
@@ -83,4 +90,8 @@ input#Size, input#Offset
 select#Lang option
 {
 	padding: 0px 10px;
+<<<<<<< Upstream, based on origin/Prod
 }
+=======
+}
+>>>>>>> 5a20809 Update for slider - added functions to enable words and images for interface
