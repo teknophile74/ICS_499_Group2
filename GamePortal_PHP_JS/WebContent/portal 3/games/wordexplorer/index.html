@@ -28,9 +28,11 @@
 	<div>
 		<fieldset>
 			<legend>Select A Category or Language</legend>
-			<select id="primaryLang" onchange="triggerPrimaryLangUpdate(this.value);"></select>
-			<select id="secondaryLang" onchange="triggerSecondaryLangUpdate(this.value);"></select>
 			<select id="categories" onchange="triggerUpdate(this.value);"></select>
+			<select id="primaryLang" onchange="triggerPrimaryLangUpdate(this.value);">
+			</select>
+			<select id="secondaryLang" onchange="triggerSecondaryLangUpdate(this.value);">
+			</select>
 		</fieldset>
 	</div>
 </body>
