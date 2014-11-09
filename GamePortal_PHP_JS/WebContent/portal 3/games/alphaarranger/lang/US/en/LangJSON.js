@@ -9,7 +9,7 @@ var English =
 	{
 		char: "0041",
 		glyph: "A",
-		word: "Alpfa",
+		word: "Alfa",
 		image: "http://www.framethealphabet.com/media/myuploads/characters-5x7/black/A/thumbnails/A3.jpg?time=1397444267"
 	},
 	{

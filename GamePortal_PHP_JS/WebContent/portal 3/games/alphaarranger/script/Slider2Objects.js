@@ -8,7 +8,7 @@ var PuzzleBaseConfig = window.PuzzleBaseConfig;
 var currentLang=null;
 var puzzle=null;
 var puzzleName=null;
-var useSymbol=null;
+var outputStyle=null;
 
 function CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Width, Height) 
 {
@@ -20,6 +20,31 @@ function CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Width, Height)
 	puzzle = new initializePuzzle(puzzleName, Width, Height, useImage);
 	// Load in the requested alpha array
 	loadCharArray(outputStyle, Width, Height, Offset, Lang);
+}
+
+function init()
+{
+	// set initially needed values
+	puzzleName = PuzzleBaseConfig.puzzleName;
+	outputStyle = PuzzleBaseConfig.outputStyle;
+	currentLang = PuzzleBaseConfig.currentLang;
+	
+	PopulatePageLanguageSettings();
+	if (!(GetLanguageFromQueryString()))
+	{
+		var selectBox = document.getElementById('Lang');
+		for(var i=0; i < selectBox.length; i++)
+		{
+		   if (currentLang == selectBox.options[i].text)
+		   {
+			   selectBox.selectedIndex = i;
+		   }
+		}
+	}
+	// initial parameters used to create the game
+	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
+	ResetCounter();
+	puzzle.writePuzzle();
 }
 
 function initializePuzzle(aName,puzzleWidth,puzzleHeight,useImage)
@@ -101,68 +126,40 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight,useImage)
 			gamePlaceHolder.appendChild(HTML);
 		}
 	};
-
+	
 	this.move=function(aY,aX)
 	{
 		if(aX<this.width-1)
 		{
-			if(this.fields[aY*this.width+aX+1]==this.emptyVal)
-			{
-				this.fields[aY*this.width+aX+1]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById(aY*this.width+aX+1).innerHTML=this.fields[(aY*this.width+aX+1)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById(aY*this.width+aX+1).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = aY*this.width+aX+1;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}
 		if(aX>0)
 		{
-			if(this.fields[aY*this.width+aX-1]==this.emptyVal)
-			{
-				this.fields[aY*this.width+aX-1]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById(aY*this.width+aX-1).innerHTML=this.fields[(aY*this.width+aX-1)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById(aY*this.width+aX-1).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = aY*this.width+aX-1;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}		
 		if(aY>0)
 		{
-			if(this.fields[(aY-1)*this.width+aX]==this.emptyVal)
-			{
-				this.fields[(aY-1)*this.width+aX]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById((aY-1)*this.width+aX).innerHTML=this.fields[((aY-1)*this.width+aX)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById((aY-1)*this.width+aX).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = (aY-1)*this.width+aX;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}
 		if(aY<this.height-1)
 		{
-			if(this.fields[(aY+1)*this.width+aX]==this.emptyVal)
-			{
-				this.fields[(aY+1)*this.width+aX]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById((aY+1)*this.width+aX).innerHTML=this.fields[((aY+1)*this.width+aX)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById((aY+1)*this.width+aX).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = (aY+1)*this.width+aX;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}
-
+		
 		// Check for puzzle being solved
 		if (IsSolved(this.pieces, this.fields)) {
-			alert('Puzzle Solved');
+			alert('Congratulations! You Solved the puzzle!');
 		}
 	};
-
+	
 	this.cleanGame=function()
 	{
 		var gamePlaceHolder = document.getElementById("gameHolder");
@@ -269,30 +266,31 @@ function IsSolved(pieces, fields)
 	return true;
 }
 
-
-function init()
+function applyGridUpdate(fields, emptyVal, useImage, iteratorA, iteratorB)
 {
-	// set initially needed values
-	puzzleName = PuzzleBaseConfig.puzzleName;
-	outputStyle = PuzzleBaseConfig.outputStyle;
-	currentLang = PuzzleBaseConfig.currentLang;
-	
-	PopulatePageLanguageSettings();
-	if (!(GetLanguageFromQueryString()))
+	if(fields[iteratorA]==emptyVal)
 	{
-		var selectBox = document.getElementById('Lang');
-		for(var i=0; i < selectBox.length; i++)
+		fields[iteratorA]=fields[iteratorB];
+		fields[iteratorB]=emptyVal;
+	
+		document.getElementById(iteratorA).setAttribute("class", "");
+		document.getElementById(iteratorB).setAttribute("class", "graysq");
+		if (useImage)
 		{
-		   if (currentLang == selectBox.options[i].text)
-		   {
-			   selectBox.selectedIndex = i;
-		   }
+			var cell = document.getElementById(iteratorA);
+			var imageNode = document.createElement("img");
+			imageNode.setAttribute('src',fields[(iteratorA)]);
+			cell.appendChild(imageNode);
+			document.getElementById(iteratorB).innerHTML='';
 		}
+		else
+		{
+			document.getElementById(iteratorA).innerHTML=fields[(iteratorA)];
+			document.getElementById(iteratorB).innerHTML='';
+		}
+	
+		UpdateCounter()
 	}
-	// initial parameters used to create the game
-	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
-	ResetCounter();
-	puzzle.writePuzzle();
 }
 
 function ResetPuzzle()

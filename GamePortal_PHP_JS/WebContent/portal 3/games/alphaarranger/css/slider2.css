@@ -1,5 +1,7 @@
-body{
-	background: #000000 url(images/bg.jpg) repeat-x;
+
+body {
+	background: #FFFFFF url(../images/aabg.jpg) repeat;
+	font-size: 1em;
 }
 
 table 
@@ -12,10 +14,19 @@ td
 	margin: 0px;
 	padding: 0px;
 	border: solid 2px;
-	width: 80px;
-	height: 80px;
+	width: 90px;
+	height: 90px;
 	text-align: center;
-	font-size: 1em;
+	font-size: .9em;
+	background: #FFFFFF;
+}
+
+td img
+{
+	margin: 0px;
+	padding: 0px;
+	width: 90px;
+	height: 90px;
 }
 
 td.graysq 
@@ -31,11 +42,20 @@ a
 fieldset.gameSettings
 {
 	max-width: 825px;
+	background: #FFFFFF;
+	padding: 5px;
+	margin: 20px;
+	font-size: 1em;
+}
+
+div#gameHolder 
+{
+	margin: 20px;
 }
 
 div#counter 
 {
-	margin: 20px 0px;
+	margin: 20px;
 }
 
 #MoveCounter 
@@ -48,4 +68,14 @@ span.nonwraplabels
 	padding: 5px;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+input#Size, input#Offset
+{
+	width: 40px;
+}
+
+select#Lang option
+{
+	padding: 0px 10px;
 }
