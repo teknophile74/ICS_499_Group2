@@ -8,16 +8,46 @@ var PuzzleBaseConfig = window.PuzzleBaseConfig;
 var currentLang=null;
 var puzzle=null;
 var puzzleName=null;
-var useSymbol=null;
+var outputStyle=null;
 
-function CreatePuzzle(puzzleName, useSymbol, Offset, Lang, Width, Height) 
+function CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Width, Height) 
 {
-	puzzle = new initializePuzzle(puzzleName, Width, Height);
+	var useImage = false;
+	if (outputStyle === "image") 
+	{
+		useImage = true;
+	}
+	puzzle = new initializePuzzle(puzzleName, Width, Height, useImage);
 	// Load in the requested alpha array
-	loadCharArray(useSymbol, Width, Height, Offset, Lang);
+	loadCharArray(outputStyle, Width, Height, Offset, Lang);
 }
 
-function initializePuzzle(aName,puzzleWidth,puzzleHeight)
+function init()
+{
+	// set initially needed values
+	puzzleName = PuzzleBaseConfig.puzzleName;
+	outputStyle = PuzzleBaseConfig.outputStyle;
+	currentLang = PuzzleBaseConfig.currentLang;
+	
+	PopulatePageLanguageSettings();
+	if (!(GetLanguageFromQueryString()))
+	{
+		var selectBox = document.getElementById('Lang');
+		for(var i=0; i < selectBox.length; i++)
+		{
+		   if (currentLang == selectBox.options[i].text)
+		   {
+			   selectBox.selectedIndex = i;
+		   }
+		}
+	}
+	// initial parameters used to create the game
+	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
+	ResetCounter();
+	puzzle.writePuzzle();
+}
+
+function initializePuzzle(aName,puzzleWidth,puzzleHeight,useImage)
 {
 	var I=0;
 	this.width=puzzleWidth;
@@ -28,6 +58,7 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 	this.fields=[];
 	this.name=aName;
 	this.moveCounter=0;
+	this.useImage=useImage;
 	this.writePuzzle=function()
 	{
 		if (document.getElementById("gameHolder")){
@@ -72,7 +103,17 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 						cellText = document.createTextNode("");
 					}
 					else {
-						cellText = document.createTextNode(this.fields[I*this.width+J]);
+						if (this.useImage)
+						{
+							//cellText = document.createTextNode(this.fields[I*this.width+J]);
+							
+							cellText = document.createElement("img");
+							cellText.setAttribute('src',this.fields[I*this.width+J]);
+						}
+						else
+						{
+							cellText = document.createTextNode(this.fields[I*this.width+J]);
+						}
 					}
 					cell.appendChild(cellText);
 					row.appendChild(cell);
@@ -85,68 +126,40 @@ function initializePuzzle(aName,puzzleWidth,puzzleHeight)
 			gamePlaceHolder.appendChild(HTML);
 		}
 	};
-
+	
 	this.move=function(aY,aX)
 	{
 		if(aX<this.width-1)
 		{
-			if(this.fields[aY*this.width+aX+1]==this.emptyVal)
-			{
-				this.fields[aY*this.width+aX+1]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById(aY*this.width+aX+1).innerHTML=this.fields[(aY*this.width+aX+1)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById(aY*this.width+aX+1).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = aY*this.width+aX+1;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}
 		if(aX>0)
 		{
-			if(this.fields[aY*this.width+aX-1]==this.emptyVal)
-			{
-				this.fields[aY*this.width+aX-1]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById(aY*this.width+aX-1).innerHTML=this.fields[(aY*this.width+aX-1)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById(aY*this.width+aX-1).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = aY*this.width+aX-1;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}		
 		if(aY>0)
 		{
-			if(this.fields[(aY-1)*this.width+aX]==this.emptyVal)
-			{
-				this.fields[(aY-1)*this.width+aX]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById((aY-1)*this.width+aX).innerHTML=this.fields[((aY-1)*this.width+aX)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById((aY-1)*this.width+aX).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = (aY-1)*this.width+aX;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}
 		if(aY<this.height-1)
 		{
-			if(this.fields[(aY+1)*this.width+aX]==this.emptyVal)
-			{
-				this.fields[(aY+1)*this.width+aX]=this.fields[aY*this.width+aX];
-				this.fields[aY*this.width+aX]=this.emptyVal;
-				document.getElementById((aY+1)*this.width+aX).innerHTML=this.fields[((aY+1)*this.width+aX)];
-				document.getElementById(aY*this.width+aX).innerHTML='';
-				document.getElementById(aY*this.width+aX).setAttribute("class", "graysq");
-				document.getElementById((aY+1)*this.width+aX).setAttribute("class", "");
-				UpdateCounter()
-			}
+			var iteratorB = aY*this.width+aX;
+			var iteratorA = (aY+1)*this.width+aX;
+			applyGridUpdate(this.fields, this.emptyVal, this.useImage, iteratorA, iteratorB)
 		}
-
+		
 		// Check for puzzle being solved
 		if (IsSolved(this.pieces, this.fields)) {
-			alert('Puzzle Solved');
+			alert('Congratulations! You Solved the puzzle!');
 		}
 	};
-
+	
 	this.cleanGame=function()
 	{
 		var gamePlaceHolder = document.getElementById("gameHolder");
@@ -184,15 +197,15 @@ function changePuzzleOffset(newOffset)
 function changePuzzle(Size, Lang, Offset)
 {
 	puzzle.cleanGame();
-	CreatePuzzle(puzzleName, useSymbol, Offset, Lang, Size, Size);
+	CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Size, Size);
 	ResetCounter();
 	puzzle.writePuzzle();
 }
 
 
-function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
+function loadCharArray(outputStyle, intWidth, intHeight, intOffset, newLang)
 {
-	
+	var increment;
 	if (intOffset.NaN) {
 		intOffset = 0;
 	}
@@ -213,22 +226,27 @@ function loadCharArray(Symbols, intWidth, intHeight, intOffset, newLang)
 				puzzle.pieces[i]="";
 			}
 			else {
-				//initializePuzzle(puzzle.name, intWidth, intHeight);
-				if (useSymbol) {
-					if (i+intOffset > charArray.lenth-1) {
-						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].symbol;
-					}
-					else {
-						puzzle.pieces[i]=charArray[(i+intOffset)].symbol;
-					}
+				// initializePuzzle(puzzle.name, intWidth, intHeight);
+				if (i+intOffset > charArray.lenth-1) {
+					increment = i+intOffset-(charArray.lenth-1);
 				}
 				else {
-					if (i+intOffset > charArray.lenth-1) {
-						puzzle.pieces[i]=charArray[(i+intOffset-(charArray.lenth-1))].char;
-					}
-					else {
-						puzzle.pieces[i]=charArray[(i+intOffset)].char;
-					}
+					increment = i+intOffset;
+				}
+				
+				switch(outputStyle) {
+				    case "char":
+				    	puzzle.pieces[i]=charArray[increment].char;
+				        break;
+				    case "word":
+				    	puzzle.pieces[i]=charArray[increment].word;
+				        break;
+				    case "image":
+				    	puzzle.pieces[i]=charArray[increment].image;
+				    	break;
+				    default:
+				        // default to glyph
+				    	puzzle.pieces[i]=charArray[increment].glyph;
 				}
 			}
 		}
@@ -248,30 +266,31 @@ function IsSolved(pieces, fields)
 	return true;
 }
 
-
-function init()
+function applyGridUpdate(fields, emptyVal, useImage, iteratorA, iteratorB)
 {
-	// set initially needed values
-	puzzleName = PuzzleBaseConfig.puzzleName;
-	useSymbol = PuzzleBaseConfig.useSymbol;
-	currentLang = PuzzleBaseConfig.currentLang;
-	
-	PopulatePageLanguageSettings();
-	if (!(GetLanguageFromQueryString()))
+	if(fields[iteratorA]==emptyVal)
 	{
-		var selectBox = document.getElementById('Lang');
-		for(var i=0; i < selectBox.length; i++)
+		fields[iteratorA]=fields[iteratorB];
+		fields[iteratorB]=emptyVal;
+	
+		document.getElementById(iteratorA).setAttribute("class", "");
+		document.getElementById(iteratorB).setAttribute("class", "graysq");
+		if (useImage)
 		{
-		   if (currentLang == selectBox.options[i].text)
-		   {
-			   selectBox.selectedIndex = i;
-		   }
+			var cell = document.getElementById(iteratorA);
+			var imageNode = document.createElement("img");
+			imageNode.setAttribute('src',fields[(iteratorA)]);
+			cell.appendChild(imageNode);
+			document.getElementById(iteratorB).innerHTML='';
 		}
+		else
+		{
+			document.getElementById(iteratorA).innerHTML=fields[(iteratorA)];
+			document.getElementById(iteratorB).innerHTML='';
+		}
+	
+		UpdateCounter()
 	}
-	// initial parameters used to create the game
-	CreatePuzzle(puzzleName, useSymbol, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
-	ResetCounter();
-	puzzle.writePuzzle();
 }
 
 function ResetPuzzle()

@@ -1,8 +1,20 @@
 /**
  * Global Page level JavaScript
- * Group: 2 <<better.
+ * Group: 2
  * @Author Aaron Burke
  */
+
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function(prefix) {
+        return this.slice(0, prefix.length) == prefix;
+    };
+}
+ 
+if (typeof String.prototype.endsWith != 'function') {
+    String.prototype.endsWith = function(suffix) {
+        return this.slice(-suffix.length) == suffix;
+    };
+}
 
 function GetInboundLanguage(queryString)
 {
