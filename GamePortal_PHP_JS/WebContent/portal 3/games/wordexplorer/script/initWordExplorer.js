@@ -178,6 +178,7 @@ function initializeWordExplorer(inboundCatArray)
 
 				SetAnchorProperties(langLink1,'prilangLiteral',urlForinfoLink,LiteralWord);
 				SetAnchorProperties(langLink2,'prilangTransLit',urlForSoundLink,TransLitWord);
+<<<<<<< Upstream, based on origin/Prod
 				
 				if((urlForSoundLink.startsWith('http://') || urlForSoundLink.startsWith('https://')))
 					if (urlForSoundLink.endsWith('.mp3'))
@@ -188,6 +189,17 @@ function initializeWordExplorer(inboundCatArray)
 					}
 				//}
 			} // end of function CreateLangDiv(parentDivElement, divElementName, id)
+=======
+				if((urlForSoundLink.startsWith('http://') || urlForSoundLink.startsWith('https://')))
+					if (urlForSoundLink.endsWith('.mp3'))
+						{
+							//<object data="https://ssl.gstatic.com/dictionary/static/sounds/de/0/grandfather.mp3"></object>
+							setObjectTagProperties(soundElement, urlForSoundLink);
+						}
+					}
+				}
+//			} // end of function CreateLangDiv(parentDivElement, divElementName, id)
+>>>>>>> 5be39b5 Updated to the sound in word exporer
 			
 			if (divElementName === 'nav_seclang')
 			{
