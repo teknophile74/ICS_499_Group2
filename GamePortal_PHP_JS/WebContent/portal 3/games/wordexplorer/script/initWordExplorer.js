@@ -20,10 +20,21 @@ function RemoveLocalChildElement(parentName, childName)
 		}
 	}
 	return retVal;
-}
+}  //function RemoveLocalChildElement(parentName, childName)
 
 function initializeWordExplorer(inboundCatArray) 
 {
+	if (typeof String.prototype.startsWith != 'function') {
+	    String.prototype.startsWith = function(prefix) {
+	        return this.slice(0, prefix.length) == prefix;
+	    };
+	}
+	 
+	if (typeof String.prototype.endsWith != 'function') {
+	    String.prototype.endsWith = function(suffix) {
+	        return this.slice(-suffix.length) == suffix;
+	    };
+	}
 	/*
 	 * This function takes inthe word array and writes out 
 	 * the new interface for the user to play
@@ -66,14 +77,29 @@ function initializeWordExplorer(inboundCatArray)
 			if ((classStr) && (hrefStr))
 			{
 				aElemObj.setAttribute('class',classStr);
-				aElemObj.setAttribute('href','#'+hrefStr);
+				if((hrefStr.startsWith('http://') || hrefStr.startsWith('https://')))
+				{
+					aElemObj.setAttribute('href', hrefStr);
+				} 
+				else{
+					aElemObj.setAttribute('href', '#'+hrefStr);
+				}
 			}
+		}
 			if (aStr)
 			{
 				aElemObj.textContent = aStr;
 			}
-		}
+	
 	} // End SetAnchorProperties(aElemObj,classStr,hrefStr)
+	
+	function setObjectTagProperties(aElemObj, hrefStr)
+	{
+			if (aElemObj)
+			{
+				aElemObj.setAttribute('data', hrefStr);
+			}
+	} // setObjectTagProperties(aElemObj, hrefStr)
 	
 	function CreatePrevLink(parentDivElement, id)
 	{
@@ -137,6 +163,7 @@ function initializeWordExplorer(inboundCatArray)
 			var langLink2 = document.createElement("a");
 			var breakElement = document.createElement("br");
 			var speakerImgElement = document.createElement("img");
+			var soundElement = document.createElement("object");
 			
 			// TODO: Update Link with sound?
 			if (divElementName === 'nav_prilang')
@@ -148,7 +175,15 @@ function initializeWordExplorer(inboundCatArray)
 
 				SetAnchorProperties(langLink1,'prilangLiteral',urlForinfoLink,LiteralWord);
 				SetAnchorProperties(langLink2,'prilangTransLit',urlForSoundLink,TransLitWord);
-			}
+				if((urlForSoundLink.startsWith('http://') || urlForSoundLink.startsWith('https://')))
+					if (urlForSoundLink.endsWith('.mp3'))
+						{
+							//<object data="https://ssl.gstatic.com/dictionary/static/sounds/de/0/grandfather.mp3"></object>
+							setObjectTagProperties(soundElement, urlForSoundLink);
+						}
+					}
+				}
+//			} // end of function CreateLangDiv(parentDivElement, divElementName, id)
 			
 			if (divElementName === 'nav_seclang')
 			{
@@ -171,8 +206,8 @@ function initializeWordExplorer(inboundCatArray)
 			newDiv.appendChild(speakerImgElement);
 			
 			parentDivElement.appendChild(newDiv);
-		}
-	} // End CreateLangDiv(parentDivElement, divElementName, id)
+	//	}
+} // End CreateLangDiv(parentDivElement, divElementName, id)
 	
 	this.cleanGame=function()
 	{
