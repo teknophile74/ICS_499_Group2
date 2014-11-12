@@ -6,7 +6,7 @@
     PrimLang_translit:"MAMA",
     PrimLangInfo:"http://en.wikipedia.org/wiki/Grandmother",
     SecLang_word:"అమ్మమ్మ",
-    SecLang_sound_url:"",
+    SecLang_sound_url:"https://ssl.gstatic.com/dictionary/static/sounds/de/0/grandmother.mp3",
     SecLang_translit:"కుటుంబం",
     Image:"http://evolutionofhatred.files.wordpress.com/2011/11/grandmother-festival1.jpg"
   },
@@ -16,15 +16,15 @@
 	 PrimLang_translit:"TATA",
 	 PrimLangInfo:"http://en.wikipedia.org/wiki/Grandfather",
 	 SecLang_word:"తాత",
-	 SecLang_sound_url:"",
+	 SecLang_sound_url:"https://ssl.gstatic.com/dictionary/static/sounds/de/0/grandmother.mp3",
      SecLang_translit:"కుటుంబం",
      Image:"http://upload.wikimedia.org/wikipedia/commons/4/46/My_Grandfather_Photo_from_January_17.JPG"
     
   },
   {
-     PrimLang_word:"mother",
+    PrimLang_word:"mother",
     SecLang_word:"తల్లి",
-    SecLang_sound_url:"",
+    SecLang_sound_url:"https://ssl.gstatic.com/dictionary/static/sounds/de/0/grandmother.mp3",
     PrimLang_translit:"MADRAY",
     SecLang_translit:"కుటుంబం",
     Image:"http://niniu.ir/wp-content/uploads/2012/07/photograph-mother-baby.jpg",
