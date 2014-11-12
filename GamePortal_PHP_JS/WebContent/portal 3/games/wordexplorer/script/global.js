@@ -111,11 +111,11 @@ function SetCatOption(selectBox, i)
 function SetLangOption(selectBox, currentLang, i)
 {
     var newOption = document.createElement('option');
-    var stupidCatArray = CurrentLangDirs[i];
+    var strCatArray = CurrentLangDirs[i];     // Replace stupidCatArray with strCatArray
     
     newOption.id = CurrentLangDirs[i].dir;
-    newOption.innerHTML = stupidCatArray[currentLang];
-    newOption.value = stupidCatArray[currentLang];
+    newOption.innerHTML = strCatArray[currentLang];
+    newOption.value = strCatArray[currentLang];
     selectBox.appendChild(newOption);
 }
 
@@ -127,7 +127,7 @@ function SetCatScripts(i)
     var currentCatValue = ((CategoryList[i].category).toLowerCase()).replace(" ", "_");
     
     var scriptId = CurrentLangDirs[0].PrimaryLang+CurrentLangDirs[0].SecondaryLang+'_Cat_'+currentCatValue;
-    
+  //  var scriptId = CurrentLangDirs[0].SecondaryLang+CurrentLangDirs[0].PrimaryLang+'_Cat_'+currentCatValue;
     
     sourcesPath = 'lang/' + sourcesPath.replace(/_+/g, "/") + '/' + currentCatValue + '.js';
   
