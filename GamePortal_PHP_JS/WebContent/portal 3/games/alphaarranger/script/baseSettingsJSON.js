@@ -7,10 +7,14 @@ var PuzzleBaseConfig =
 { 
 	puzzleName : 'puzzle',
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 	initialStyle : 'image',
 =======
 	outputStyle : 'glyph',
 >>>>>>> 6a6ffc6 Multiple Changes to allow for additional functionality for slider game
+=======
+	outputStyle : 'image',
+>>>>>>> 8f78698 Commiting changes for master from TEST
 	currentLang : 'English',
 	initialWidth : 4,
 	initialHeight : 4,
