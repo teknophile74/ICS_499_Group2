@@ -6,27 +6,17 @@
 var CurrentLangDirs = 
 [
 	{
-		dir: "IN_hi_te",
-		PrimaryLang: "Hindi",
+		dir: "US_en_te",
+		PrimaryLang: "English",
 		SecondaryLang: "Telugu",
-		Categories: []
+		Categories: [1,2]
 	},
+    
 	{
 		dir: "IN_te_en",
 		PrimaryLang: "Telugu",
 		SecondaryLang: "English",
-		Categories: []
+		Categories: [1,2]
 	},
-	{
-		dir: "US_en_te",
-		PrimaryLang: "English",
-		SecondaryLang: "Telugu",
-		Categories: [ 1,2 ]
-	},
-	{
-		dir: "US_en_hi",
-		PrimaryLang: "English",
-		SecondaryLang: "Hindi",
-		Categories: []
-	}
+	
 ];

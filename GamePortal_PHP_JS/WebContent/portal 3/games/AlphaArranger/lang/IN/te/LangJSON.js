@@ -8,206 +8,308 @@ var Telugu =
 [
 	{
 		char: "0c05",
-		symbol: "అ"
+		glyph: "అ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c06",
-		symbol: "ఆ"
+		glyph: "ఆ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c07",
-		symbol: "ఇ"
+		glyph: "ఇ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c08",
-		symbol: "ఈ"
+		glyph: "ఈ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c09",
-		symbol: "ఉ"
+		glyph: "ఉ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c0a",
-		symbol: "ఊ"
+		glyph: "ఊ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c0b",
-		symbol: "ఋ"
+		glyph: "ఋ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c60",
-		symbol: "ౠ"
+		glyph: "ౠ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c0e",
-		symbol: "ఎ"
+		glyph: "ఎ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c0f",
-		symbol: "ఏ"
+		glyph: "ఏ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c10",
-		symbol: "ఐ"
+		glyph: "ఐ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c12",
-		symbol: "ఒ"
+		glyph: "ఒ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c13",
-		symbol: "ఓ"
+		glyph: "ఓ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c14",
-		symbol: "ఔ"
+		glyph: "ఔ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c05+0co2",
-		symbol: "అం"
+		glyph: "అం",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c05+0co3",
-		symbol: "అః"
+		glyph: "అః",
+		word: "",
+		image: ""
 	},	
 	{
 		char: "0c15",
-		symbol: "క"
+		glyph: "క",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c16",
-		symbol: "ఖ"
+		glyph: "ఖ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c17",
-		symbol: "గ"
+		glyph: "గ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c18",
-		symbol: "ఘ"
+		glyph: "ఘ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c19",
-		symbol: "ఙ"
+		glyph: "ఙ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c1a",
-		symbol: "చ"
+		glyph: "చ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c1b",
-		symbol: "ఛ"
+		glyph: "ఛ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c1c",
-		symbol: "జ"
+		glyph: "జ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c1d",
-		symbol: "ఝ"
+		glyph: "ఝ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c1e",
-		symbol: "ఞ"
+		glyph: "ఞ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c1f",
-		symbol: "ట"
+		glyph: "ట",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c20",
-		symbol: "ఠ"
+		glyph: "ఠ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c21",
-		symbol: "డ"
+		glyph: "డ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c22",
-		symbol: "ఢ"
+		glyph: "ఢ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c23",
-		symbol: "ణ"
+		glyph: "ణ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c24",
-		symbol: "త"
+		glyph: "త",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c25",
-		symbol: "థ"
+		glyph: "థ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c26",
-		symbol: "ద"
+		glyph: "ద",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c27",
-		symbol: "ధ"
+		glyph: "ధ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c28",
-		symbol: "న"
+		glyph: "న",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c2a",
-		symbol: "ప"
+		glyph: "ప",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c2b",
-		symbol: "ఫ"
+		glyph: "ఫ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c2c",
-		symbol: "బ"
+		glyph: "బ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c2d",
-		symbol: "భ"
+		glyph: "భ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c2e",
-		symbol: "మ"
+		glyph: "మ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c2f",
-		symbol: "య"
+		glyph: "య",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c30",
-		symbol: "ర"
+		glyph: "ర",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c32",
-		symbol: "ల"
+		glyph: "ల",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c35",
-		symbol: "వ"
+		glyph: "వ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c36",
-		symbol: "శ"
+		glyph: "శ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c37",
-		symbol: "ష"
+		glyph: "ష",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c38",
-		symbol: "స"
+		glyph: "స",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c39",
-		symbol: "హ"
+		glyph: "హ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c33",
-		symbol: "ళ"
+		glyph: "ళ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0c15",
-		symbol: "క్ష"
+		glyph: "క్ష",
+		word: "",
+		image: ""
 	}
 ];

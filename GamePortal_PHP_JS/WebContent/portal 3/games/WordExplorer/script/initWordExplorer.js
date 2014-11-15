@@ -20,17 +20,28 @@ function RemoveLocalChildElement(parentName, childName)
 		}
 	}
 	return retVal;
-}
+}  //function RemoveLocalChildElement(parentName, childName)
 
 function initializeWordExplorer(inboundCatArray) 
 {
+	if (typeof String.prototype.startsWith != 'function') {
+	    String.prototype.startsWith = function(prefix) {
+	        return this.slice(0, prefix.length) == prefix;
+	    };
+	}
+	 
+	if (typeof String.prototype.endsWith != 'function') {
+	    String.prototype.endsWith = function(suffix) {
+	        return this.slice(-suffix.length) == suffix;
+	    };
+	}
 	/*
 	 * This function takes inthe word array and writes out 
 	 * the new interface for the user to play
 	 */
 	var i;
-	this.wordArray=[];
-
+	var wordArray = (inboundCatArray).slice(0);
+	
 	function SetElemObjClsOrIdName(imgElemObj,updateStr,classoridStr)
 	{
 		if (imgElemObj)
@@ -66,14 +77,29 @@ function initializeWordExplorer(inboundCatArray)
 			if ((classStr) && (hrefStr))
 			{
 				aElemObj.setAttribute('class',classStr);
-				aElemObj.setAttribute('href','#'+hrefStr);
+				if((hrefStr.startsWith('http://') || hrefStr.startsWith('https://')))
+				{
+					aElemObj.setAttribute('href', hrefStr);
+				} 
+				else{
+					aElemObj.setAttribute('href', '#'+hrefStr);
+				}
 			}
+		}
 			if (aStr)
 			{
 				aElemObj.textContent = aStr;
 			}
-		}
+	
 	} // End SetAnchorProperties(aElemObj,classStr,hrefStr)
+	
+	function setObjectTagProperties(aElemObj, hrefStr)
+	{
+			if (aElemObj)
+			{
+				aElemObj.setAttribute('data', hrefStr);
+			}
+	} // setObjectTagProperties(aElemObj, hrefStr)
 	
 	function CreatePrevLink(parentDivElement, id)
 	{
@@ -128,6 +154,7 @@ function initializeWordExplorer(inboundCatArray)
 			var LiteralWord = null;
 			var TransLitWord = null;
 			var urlForSoundLink = null;
+			//var urlForinfoImg = null;  // add image variable
 			var urlForinfoLink = null;
 			var newDiv = document.createElement('div');
 			newDiv.setAttribute('class',divElementName);
@@ -135,8 +162,10 @@ function initializeWordExplorer(inboundCatArray)
 			// Create Links with break
 			var langLink1 = document.createElement("a");
 			var langLink2 = document.createElement("a");
+			//var langLink3 = document.createElement("a");  // add another link
 			var breakElement = document.createElement("br");
 			var speakerImgElement = document.createElement("img");
+			var soundElement = document.createElement("object");
 			
 			// TODO: Update Link with sound?
 			if (divElementName === 'nav_prilang')
@@ -145,10 +174,20 @@ function initializeWordExplorer(inboundCatArray)
 				TransLitWord = inboundCatArray[id].PrimLang_translit;
 				urlForinfoLink = inboundCatArray[id].PrimLangInfo;
 				urlForSoundLink = inboundCatArray[id].PrimLang_sound_url;
+				//urlForinfoImg = inboundCatArray[id].Image; // Update Image
 
 				SetAnchorProperties(langLink1,'prilangLiteral',urlForinfoLink,LiteralWord);
 				SetAnchorProperties(langLink2,'prilangTransLit',urlForSoundLink,TransLitWord);
-			}
+				
+				if((urlForSoundLink.startsWith('http://') || urlForSoundLink.startsWith('https://')))
+					if (urlForSoundLink.endsWith('.mp3'))
+						{
+							//<object data="https://ssl.gstatic.com/dictionary/static/sounds/de/0/grandfather.mp3"></object>
+							setObjectTagProperties(soundElement, urlForSoundLink);
+						}
+					}
+				//}
+			} // end of function CreateLangDiv(parentDivElement, divElementName, id)
 			
 			if (divElementName === 'nav_seclang')
 			{
@@ -171,8 +210,8 @@ function initializeWordExplorer(inboundCatArray)
 			newDiv.appendChild(speakerImgElement);
 			
 			parentDivElement.appendChild(newDiv);
-		}
-	} // End CreateLangDiv(parentDivElement, divElementName, id)
+	//	}
+} // End CreateLangDiv(parentDivElement, divElementName, id)
 	
 	this.cleanGame=function()
 	{
@@ -203,25 +242,23 @@ function initializeWordExplorer(inboundCatArray)
 			
 	    if (WExPlaceHolder)
 		{
-			if (inboundCatArray)
+			if (wordArray)
 			{
 				// remove game from page if it already exists
 				this.cleanGame();
 				
 				var newGUI = document.createElement('div');
 				newGUI.setAttribute('id','fullsize');
-				
-				this.wordArray = inboundCatArray.slice(0);
 		
 				// Build div array interface
-				for(i=0; i<=this.wordArray.length-1; ++i)
+				for(i=0; i<=wordArray.length-1; ++i)
 				{
 					var currentDivID,nextDivID,prevDivID;
 					currentDivID=i;
 					// Check for first array value to create loop
-					prevDivID = (i===0) ? (this.wordArray.length-1) : (i-1);
+					prevDivID = (i===0) ? (wordArray.length-1) : (i-1);
 					// Check for end value to look back to zero
-					nextDivID = (i===this.wordArray.length-1) ? (0) : (i+1);
+					nextDivID = (i===wordArray.length-1) ? (0) : (i+1);
 					
 					var newDivElement = document.createElement('div');
 					var newElementID = "word"+currentDivID;
@@ -231,7 +268,7 @@ function initializeWordExplorer(inboundCatArray)
 					// Create Main display image
 					var mainWordDisplay = document.createElement("img");
 					//TODO: Set img values to array info
-					SetImageAttr(mainWordDisplay,(this.wordArray[currentDivID].Image),(this.wordArray[currentDivID].PrimLang_word));
+					SetImageAttr(mainWordDisplay,(wordArray[currentDivID].Image),(wordArray[currentDivID].PrimLang_word));
 					newDivElement.appendChild(mainWordDisplay);
 					
 					CreatePrevLink(newDivElement,prevDivID);

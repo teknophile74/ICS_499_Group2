@@ -1,8 +1,20 @@
 /**
  * Global Page level JavaScript
- * Group: 2 <<better.
+ * Group: 2
  * @Author Aaron Burke
  */
+
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function(prefix) {
+        return this.slice(0, prefix.length) == prefix;
+    };
+}
+ 
+if (typeof String.prototype.endsWith != 'function') {
+    String.prototype.endsWith = function(suffix) {
+        return this.slice(-suffix.length) == suffix;
+    };
+}
 
 function GetInboundLanguage(queryString)
 {
@@ -62,17 +74,31 @@ function GetLanguageFromQueryString()
 	return success;
 }
 
-function PopulatePageLanguageSettings()
+function PopulatePageDropDownSettings()
 {
-	var selectBox = document.getElementById('categories');
+	var selectBox;
+
+	selectBox = document.getElementById('primaryLang');
+	for (var i=0; i < CurrentLangDirs.length; i++) 
+	{
+		SetLangOption(selectBox, 'PrimaryLang', i);
+	}
+	
+	selectBox = document.getElementById('secondaryLang');
+	for (var i=0; i < CurrentLangDirs.length; i++) 
+	{
+		SetLangOption(selectBox, 'SecondaryLang', i);
+	}
+	
+	selectBox = document.getElementById('categories');
 	for (var i=0; i < CategoryList.length; i++) 
 	{
-	    SetOption(selectBox, i);
-	    //SetLangScripts(i);
+	    SetCatOption(selectBox, i);
+	    SetCatScripts(i);
 	}
 }
 
-function SetOption(selectBox, i)
+function SetCatOption(selectBox, i)
 {
     var newOption = document.createElement('option');
     
@@ -82,13 +108,28 @@ function SetOption(selectBox, i)
     selectBox.appendChild(newOption);
 }
 
-function SetLangScripts(i)
+function SetLangOption(selectBox, currentLang, i)
+{
+    var newOption = document.createElement('option');
+    var strCatArray = CurrentLangDirs[i];     // Replace stupidCatArray with strCatArray
+    
+    newOption.id = CurrentLangDirs[i].dir;
+    newOption.innerHTML = strCatArray[currentLang];
+    newOption.value = strCatArray[currentLang];
+    selectBox.appendChild(newOption);
+}
+
+function SetCatScripts(i)
 {
     var head = document.getElementsByTagName("head")[0];
-    var sourcesPath = CurrentLangDirs[i].dir;
-    var scriptId = CurrentLangDirs[i].arrayName+'LangArray';
+    var sourcesPath = CurrentLangDirs[0].dir;
     
-    sourcesPath = 'lang/' + sourcesPath.replace("_", "/") + '/LangJSON.js';
+    var currentCatValue = ((CategoryList[i].category).toLowerCase()).replace(" ", "_");
+    
+    var scriptId = CurrentLangDirs[0].PrimaryLang+CurrentLangDirs[0].SecondaryLang+'_Cat_'+currentCatValue;
+  //  var scriptId = CurrentLangDirs[0].SecondaryLang+CurrentLangDirs[0].PrimaryLang+'_Cat_'+currentCatValue;
+    
+    sourcesPath = 'lang/' + sourcesPath.replace(/_+/g, "/") + '/' + currentCatValue + '.js';
   
     var oldScript = document.getElementById(scriptId);
 	if (oldScript) 

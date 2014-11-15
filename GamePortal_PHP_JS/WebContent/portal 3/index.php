@@ -27,16 +27,17 @@ function googleTranslateElementInit() {
 <div class="wrapper" id="content">
 	<div id="games">
 	<?php
-		<--get the games directorys subdirectories-->
+		//get the games directories sub-directories
 		$path = 'games';
 		$games = glob($path . '/*' , GLOB_ONLYDIR);
 		
-		//count the number of subdirectories found in 'games'
+		//count the number of sub-directories found in 'games'
 		$gameCount = count($games);
-		
+		//echo "Count of games".$gameCount; 
+
 		//loop through the array for games
-		for($i = 0; $i < $gameCount; $i++){
-		
+		for($i = 0; $i < $gameCount; $i++)
+                {
 			//get the individual game's folder name
 			$theGame = explode("/", $games[$i]);
 			$theGame = $theGame[1];
@@ -45,35 +46,22 @@ function googleTranslateElementInit() {
 			$infoPage = $games[$i]."/".$theGame.".php";
 			include($infoPage);
 
+			$description = $theGame." and stuff...";
+
 			//display information for each game
 			$gameInfo = "
-		<div class=\"gameBox\">
-		<a href=\"games/$theGame/\" class=\"gameImg\"><img src=\"games/$theGame/images/$theGame.jpg\" alt=\"AlphaArranger\"></a>
-			<h3><a href=\"games/$theGame/\">$title</a></h3>
-			<p>
-				$description
-			</p>
-		</div>
-		<div class=\"gameBox\">
-		<a href=\"games/$theGame/\" class=\"gameImg\"><img src=\"games/$theGame/images/$theGame.jpg\" alt=\"WordExplorer\"></a>
-			<h3><a href=\"games/$theGame/\">$title</a></h3>
-			<p>
-				$description
-			</p>
-		</div>
-		<div class=\"gameBox\">
-		<a href=\"games/$theGame/\" class=\"gameImg\"><img src=\"games/$theGame/images/$theGame.jpg\" alt=\"FourPixOneWord\"></a>
-			<h3><a href=\"games/$theGame/\">$title</a></h3>
-			<p>
-				$description
-			</p>
-		</div>
-		";
+				<div class=\"gameBox\">
+					<a href=\"games/$theGame/\" class=\"gameImg\">
+						<img src=\"games/$theGame/images/$theGame.jpg\" alt=\"$theGame\">
+					</a>
+					<h3><a href=\"games/$theGame/\">$theGame</a></h3>
+					<p>$description</p>
+				</div>";
+		        //display the games
+		        echo $gameInfo;
 		}
-		
-		//display the games
-		echo $gameInfo;
 	?>
+	</div>
 	</div>
 </div>
 </body>

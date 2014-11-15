@@ -8,190 +8,284 @@ var Hindi =
 [
 	{
 		char: "0905",
-		symbol: "अ"
+		glyph: "अ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0906",
-		symbol: "आ"
+		glyph: "आ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0907",
-		symbol: "इ"
+		glyph: "इ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0908",
-		symbol: "ई"
+		glyph: "ई",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0909",
-		symbol: "उ"
+		glyph: "उ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "090a",
-		symbol: "ऊ"
+		glyph: "ऊ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "090b",
-		symbol: "ऋ"
+		glyph: "ऋ",
+		word: "",
+		image: ""
 	},
 {
 		char: "090f",
-		symbol: "ए"
+		glyph: "ए",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0910",
-		symbol: "ऐ"
+		glyph: "ऐ",
+		word: "",
+		image: ""
 	},
 {
 		char: "0913",
-		symbol: "ओ"
+		glyph: "ओ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0914",
-		symbol: "औ"
+		glyph: "औ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0915",
-		symbol: "क"
+		glyph: "क",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0916",
-		symbol: "ख"
+		glyph: "ख",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0917",
-		symbol: "ग"
+		glyph: "ग",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0918",
-		symbol: "घ"
+		glyph: "घ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0919",
-		symbol: "ङ"
+		glyph: "ङ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091a",
-		symbol: "च"
+		glyph: "च",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091b",
-		symbol: "छ"
+		glyph: "छ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091c",
-		symbol: "ज"
+		glyph: "ज",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091d",
-		symbol: "झ"
+		glyph: "झ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091e",
-		symbol: "ञ"
+		glyph: "ञ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091f",
-		symbol: "ट"
+		glyph: "ट",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0920",
-		symbol: "ठ"
+		glyph: "ठ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0921",
-		symbol: "ड"
+		glyph: "ड",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0922",
-		symbol: "ढ"
+		glyph: "ढ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0923",
-		symbol: "ण"
+		glyph: "ण",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0924",
-		symbol: "त"
+		glyph: "त",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0925",
-		symbol: "थ"
+		glyph: "थ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0926",
-		symbol: "द"
+		glyph: "द",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0927",
-		symbol: "ध"
+		glyph: "ध",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0928",
-		symbol: "न"
+		glyph: "न",
+		word: "",
+		image: ""
 	},
 	{
 		char: "092a",
-		symbol: "प"
+		glyph: "प",
+		word: "",
+		image: ""
 	},
 	{
 		char: "092b",
-		symbol: "फ"
+		glyph: "फ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "092c",
-		symbol: "ब"
+		glyph: "ब",
+		word: "",
+		image: ""
 	},
 	{
 		char: "092d",
-		symbol: "भ"
+		glyph: "भ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "092e",
-		symbol: "म"
+		glyph: "म",
+		word: "",
+		image: ""
 	},
 	{
 		char: "092f",
-		symbol: "य"
+		glyph: "य",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0930",
-		symbol: "र"
+		glyph: "र",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0932",
-		symbol: "ल"
+		glyph: "ल",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0935",
-		symbol: "व"
+		glyph: "व",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0936",
-		symbol: "श"
+		glyph: "श",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0937",
-		symbol: "ष"
+		glyph: "ष",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0938",
-		symbol: "स"
+		glyph: "स",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0939",
-		symbol: "ह"
+		glyph: "ह",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0933",
-		symbol: "ळ"
+		glyph: "ळ",
+		word: "",
+		image: ""
 	},
 	{
 		char: "0915+0937",
-		symbol: "क्ष"
+		glyph: "क्ष",
+		word: "",
+		image: ""
 	},
 	{
 		char: "091C",
-		symbol: "ज्"
+		glyph: "ज्",
+		word: "",
+		image: ""
 	}
 ];
