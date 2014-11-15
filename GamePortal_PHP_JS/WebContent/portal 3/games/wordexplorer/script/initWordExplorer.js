@@ -154,6 +154,7 @@ function initializeWordExplorer(inboundCatArray)
 			var LiteralWord = null;
 			var TransLitWord = null;
 			var urlForSoundLink = null;
+			//var urlForinfoImg = null;  // add image variable
 			var urlForinfoLink = null;
 			var newDiv = document.createElement('div');
 			newDiv.setAttribute('class',divElementName);
@@ -161,6 +162,7 @@ function initializeWordExplorer(inboundCatArray)
 			// Create Links with break
 			var langLink1 = document.createElement("a");
 			var langLink2 = document.createElement("a");
+			//var langLink3 = document.createElement("a");  // add another link
 			var breakElement = document.createElement("br");
 			var speakerImgElement = document.createElement("img");
 			var soundElement = document.createElement("object");
@@ -172,9 +174,11 @@ function initializeWordExplorer(inboundCatArray)
 				TransLitWord = inboundCatArray[id].PrimLang_translit;
 				urlForinfoLink = inboundCatArray[id].PrimLangInfo;
 				urlForSoundLink = inboundCatArray[id].PrimLang_sound_url;
+				//urlForinfoImg = inboundCatArray[id].Image; // Update Image
 
 				SetAnchorProperties(langLink1,'prilangLiteral',urlForinfoLink,LiteralWord);
 				SetAnchorProperties(langLink2,'prilangTransLit',urlForSoundLink,TransLitWord);
+				
 				if((urlForSoundLink.startsWith('http://') || urlForSoundLink.startsWith('https://')))
 					if (urlForSoundLink.endsWith('.mp3'))
 						{
@@ -182,8 +186,8 @@ function initializeWordExplorer(inboundCatArray)
 							setObjectTagProperties(soundElement, urlForSoundLink);
 						}
 					}
-				}
-//			} // end of function CreateLangDiv(parentDivElement, divElementName, id)
+				//}
+			} // end of function CreateLangDiv(parentDivElement, divElementName, id)
 			
 			if (divElementName === 'nav_seclang')
 			{

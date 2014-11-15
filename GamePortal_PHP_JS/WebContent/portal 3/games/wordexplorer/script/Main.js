@@ -405,5 +405,38 @@ function triggerUpdate(newUpdate)
 			newExplorer.writeInterface();
 		}
 	}
+	
+	// Add function to be able to switch between English to Telugu and Telugu to English
+	// Todo dynamically switch the language
+	if (newUpdate)
+	{
+		var selectBox;
+		var category = newUpdate.replace(" ", "_");
+		
+		selectBox = document.getElementById('secondaryLang');
+		var secondaryLang = selectBox.options[selectBox.selectedIndex].text;
+		// Build this string EnglishTelugu_Cartoons
+		selectBox = document.getElementById('primaryLang');
+		var primaryLang = selectBox.options[selectBox.selectedIndex].text;
+		
+		var catArrayValue = secondaryLang+primaryLang+'_'+category;
+
+	  	if (window[catArrayValue])
+		{  
+			var newExplorer = new initializeWordExplorer(window[catArrayValue]);
+			newExplorer.writeInterface();
+		}
+	}
 	return;
+}
+
+function triggerSecondaryLangUpdate(someValue)
+{
+	if (someValue)
+	{
+		var selectBox;
+		var secLanguage = someValue.replace(" ", "_");
+		
+		//postback to server - get new page
+	}	
 }
