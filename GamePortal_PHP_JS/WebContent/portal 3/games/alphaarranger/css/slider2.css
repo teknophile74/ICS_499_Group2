@@ -33,12 +33,22 @@ td
 	background: #FFFFFF;
 }
 
+td:hover
+{
+	background-color: #FFFF99;
+}
+
 td img
 {
 	margin: 0px;
 	padding: 0px;
 	width: 90px;
 	height: 90px;
+}
+
+td img:hover
+{
+	opacity: 0.5;
 }
 
 td.graysq 
@@ -51,21 +61,29 @@ a
 	text-decoration: none;
 }
 
+legend
+{
+	color: gray;
+}
+
 fieldset.gameSettings
 {
-	max-width: 825px;
+	max-width: 840px;
 	background: #FFFFFF;
 	padding: 5px;
 	margin: 20px;
 	font-size: 1em;
 }
 
-div#gameHolder 
-{
-	margin: 20px;
+#gameSettings > input {
+    background-color: red;
+    border: medium none;
+    color: white;
+    padding: 5px;
+    vertical-align: top;
 }
 
-div#counter 
+div#gameHolder, div#counter 
 {
 	margin: 20px;
 }
@@ -80,6 +98,7 @@ span.nonwraplabels
 	padding: 5px;
 	white-space: nowrap;
 	overflow: hidden;
+	display: inline-block;
 }
 
 input#Size, input#Offset
@@ -87,7 +106,8 @@ input#Size, input#Offset
 	width: 40px;
 }
 
-select#Lang option
+
+select option
 {
 	padding: 0px 10px;
 <<<<<<< Upstream, based on origin/Prod
