@@ -27,7 +27,7 @@ function googleTranslateElementInit() {
 <div class="wrapper" id="content">
 	<div id="games">
 	<?php
-		<--get the games directorys subdirectories-->
+		//<--get the games directorys subdirectories-->
 		$path = 'games';
 		$games = glob($path . '/*' , GLOB_ONLYDIR);
 		
@@ -47,32 +47,19 @@ function googleTranslateElementInit() {
 
 			//display information for each game
 			$gameInfo = "
-		<div class=\"gameBox\">
-		<a href=\"games/$theGame/\" class=\"gameImg\"><img src=\"games/$theGame/images/$theGame.jpg\" alt=\"AlphaArranger\"></a>
-			<h3><a href=\"games/$theGame/\">$title</a></h3>
-			<p>
-				$description
-			</p>
-		</div>
-		<div class=\"gameBox\">
-		<a href=\"games/$theGame/\" class=\"gameImg\"><img src=\"games/$theGame/images/$theGame.jpg\" alt=\"WordExplorer\"></a>
-			<h3><a href=\"games/$theGame/\">$title</a></h3>
-			<p>
-				$description
-			</p>
-		</div>
-		<div class=\"gameBox\">
-		<a href=\"games/$theGame/\" class=\"gameImg\"><img src=\"games/$theGame/images/$theGame.jpg\" alt=\"FourPixOneWord\"></a>
-			<h3><a href=\"games/$theGame/\">$title</a></h3>
-			<p>
-				$description
-			</p>
-		</div>
-		";
+				<div class=\"gameBox\">
+					<a href=\"games/$theGame/\" class=\"gameImg\">
+						<img src=\"games/$theGame/images/$theGame.jpg\" alt=\"$theGame\">
+					</a>
+					<h3>
+						<a href=\"games/$theGame/\">$theGame</a>
+					</h3>
+					<p>$description</p>
+				</div>";
+			
+			//display the games
+			echo $gameInfo;
 		}
-		
-		//display the games
-		echo $gameInfo;
 	?>
 	</div>
 </div>
