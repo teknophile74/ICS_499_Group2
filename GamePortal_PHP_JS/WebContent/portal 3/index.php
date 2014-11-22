@@ -28,10 +28,14 @@ function googleTranslateElementInit() {
 	<div id="games">
 	<?php
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 		//get the games directories sub-directories
 =======
 		//<--get the games directorys subdirectories-->
 >>>>>>> af97253 Adding Admin portal + updates to 4P1W game files
+=======
+		//get the games directories sub-directories
+>>>>>>> 533201e Updated index.php code
 		$path = 'games';
 		$games = glob($path . '/*' , GLOB_ONLYDIR);
 		
@@ -59,6 +63,7 @@ function googleTranslateElementInit() {
 						<img src=\"games/$theGame/images/$theGame.jpg\" alt=\"$theGame\">
 					</a>
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 					<h3><a href=\"games/$theGame/\">$theGame</a></h3>
 					<p>$description</p>
 				</div>";
@@ -68,12 +73,20 @@ function googleTranslateElementInit() {
 					<h3>
 						<a href=\"games/$theGame/\">$theGame</a>
 					</h3>
+=======
+					<h3><a href=\"games/$theGame/\">$theGame</a></h3>
+>>>>>>> 533201e Updated index.php code
 					<p>$description</p>
 				</div>";
+<<<<<<< Upstream, based on origin/Prod
 			
 			//display the games
 			echo $gameInfo;
 >>>>>>> af97253 Adding Admin portal + updates to 4P1W game files
+=======
+		        //display the games
+		        echo $gameInfo;
+>>>>>>> 533201e Updated index.php code
 		}
 	?>
 	</div>
