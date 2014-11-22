@@ -6,7 +6,7 @@
 var PuzzleBaseConfig = 
 { 
 	puzzleName : 'puzzle',
-	outputStyle : 'glyph',
+	outputStyle : 'image',
 	currentLang : 'English',
 	initialWidth : 4,
 	initialHeight : 4,
