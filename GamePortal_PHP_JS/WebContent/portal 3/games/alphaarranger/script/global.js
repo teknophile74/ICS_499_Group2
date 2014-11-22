@@ -74,24 +74,49 @@ function GetLanguageFromQueryString()
 	return success;
 }
 
+function PopulateGameStyleSettings()
+{
+	var tagToPop = 'Style';
+	var selectBox = document.getElementById(tagToPop);
+	for (var i=0; i < PuzzleOutputStyles.length; i++) 
+	{
+	    SetOption(selectBox, i, tagToPop);
+	}
+}
+
 function PopulatePageLanguageSettings()
 {
-	var selectBox = document.getElementById('Lang');
+	var tagToPop = 'Lang';
+	var selectBox = document.getElementById(tagToPop);
 	for (var i=0; i < CurrentLangDirs.length; i++) 
 	{
-	    SetOption(selectBox, i);
+	    SetOption(selectBox, i, tagToPop);
 	    SetLangScripts(i);
 	}
 }
 
-function SetOption(selectBox, i)
+function SetOption(selectBox, i, tagToPop)
 {
     var newOption = document.createElement('option');
     
-    newOption.id = CurrentLangDirs[i].dir;
-    newOption.innerHTML = CurrentLangDirs[i].arrayName;
-    newOption.value = CurrentLangDirs[i].arrayName;
-    selectBox.appendChild(newOption);
+    if (tagToPop === 'Style')
+	{
+        newOption.id = PuzzleOutputStyles[i].name;
+        newOption.innerHTML = PuzzleOutputStyles[i].name;
+        newOption.value = PuzzleOutputStyles[i].style;
+	}
+    if (tagToPop === 'Lang')
+	{
+        newOption.id = CurrentLangDirs[i].dir;
+        newOption.innerHTML = CurrentLangDirs[i].arrayName;
+        newOption.value = CurrentLangDirs[i].arrayName;
+	}
+    
+    if (newOption) 
+    {
+	    // Add options to select tag
+	    selectBox.appendChild(newOption);
+    }
 }
 
 function SetLangScripts(i)

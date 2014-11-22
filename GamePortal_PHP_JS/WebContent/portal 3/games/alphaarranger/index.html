@@ -20,24 +20,29 @@
       <legend>Game Settings</legend>
       	<div id="gameSettings">
       		<span class="nonwraplabels">
-      		<label for="Lang">Language:</label>
-			<select id="Lang" name="Lang" onchange="changePuzzleLanguage(this.value);"></select>
+	      		<label for="Style">Game Style:</label>
+				<select id="Style" name="Style" onchange="changePuzzleStyle(this.value);"></select>
 			</span>
 			<span class="nonwraplabels">
-			<label for="Offset">Character Offset:</label>
-			<input id="Offset" name="Offset" onchange="changePuzzleOffset(this.value)" 
-				type="number" min="0" max="20" step="1" value="0" />
+	      		<label for="Lang">Language:</label>
+				<select id="Lang" name="Lang" onchange="changePuzzleLanguage(this.value);"></select>
+			</span>
+			<span class="nonwraplabels">
+				<label for="Offset">Starting Position:</label>
+				<input id="Offset" name="Offset" onchange="changePuzzleOffset(this.value)" 
+					type="number" min="0" max="20" step="1" value="0" />
       		</span>
       		<span class="nonwraplabels">
-      		<label for="Size">Cells Per Row:</label>
-      		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
-      			type="number" min="3" max="8" step="1" value="4" />
+	      		<label for="Size">Cells Per Row:</label>
+	      		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
+	      			type="number" min="3" max="8" step="1" value="4" />
       		</span>
       		<input type="button" value="Reset Puzzle" onClick="ResetPuzzle();">
 		</div>
 	</fieldset>
 	<!-- Holds Game Board -->
-	<div id="gameHolder"></div>	
+	<div id="gameHolder"></div>
+	<div id="errorDisplay"></div>	
 	<div id="counter">
 		<span>Moves this game: </span><span id="MoveCounter"></span>
 	</div>
