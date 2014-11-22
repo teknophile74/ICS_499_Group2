@@ -62,7 +62,6 @@ function googleTranslateElementInit() {
 		}
 	?>
 	</div>
-	</div>
 </div>
 </body>
 </html>
