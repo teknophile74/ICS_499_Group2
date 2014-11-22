@@ -37,6 +37,7 @@ function GetInboundLanguage(queryString)
 	return returnLang;
 }
 
+<<<<<<< Upstream, based on origin/Prod
 function doDecode(inObject) 
 {
 	var outObject = null;
@@ -113,6 +114,62 @@ function SetCountryOption(selectBox, counter)
     var newOption = document.createElement('option');
     newOption.innerHTML = countryCodes[counter].name;
     newOption.value = countryCodes[counter].code;
+=======
+function doDecode(object) 
+{
+    if (object) 
+    {
+        // decode URI and change + to spaces
+        object = decodeURIComponent((object.replace(/\+/g, '%20')));
+    }
+    return object;
+}
+
+function GetLanguageFromQueryString()
+{
+	var success = false;
+	if (location) 
+	{
+		var queryString = location.search;
+		
+		if (queryString) 
+		{
+			var userChosenLang = GetInboundLanguage(queryString);
+			// Get languageSelector object
+			var selectBox = document.getElementById("Lang");
+			// Iterate nodes in the select tag
+			for(var i=0; i < selectBox.length-1; i++)
+			{
+			   if (userChosenLang == selectBox.options[i].text)
+			   {
+				   selectBox.selectedIndex = i;
+			   }
+			}
+			currentLang = userChosenLang;
+			success = true;
+		}
+	}
+	return success;
+}
+
+function PopulatePageLanguageSettings()
+{
+	var selectBox = document.getElementById('Lang');
+	for (var i=0; i < CurrentLangDirs.length; i++) 
+	{
+	    SetOption(selectBox, i);
+	    SetLangScripts(i);
+	}
+}
+
+function SetOption(selectBox, i)
+{
+    var newOption = document.createElement('option');
+    
+    newOption.id = CurrentLangDirs[i].dir;
+    newOption.innerHTML = CurrentLangDirs[i].arrayName;
+    newOption.value = CurrentLangDirs[i].arrayName;
+>>>>>>> af97253 Adding Admin portal + updates to 4P1W game files
     selectBox.appendChild(newOption);
 }
 
