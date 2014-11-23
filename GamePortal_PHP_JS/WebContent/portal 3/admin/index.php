@@ -22,7 +22,7 @@ else
         $mysql_password = 'mysql_password';
 
         /*** database name ***/
-        $mysql_dbname = 'phpro_auth';
+        $mysql_dbname = 'hzwxuoyr_adminlogin';
 
 
         /*** select the users name from the database ***/
