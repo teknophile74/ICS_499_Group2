@@ -39,6 +39,7 @@ function GetInboundLanguage(queryString)
 
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 function doDecode(inObject) 
 {
 	var outObject = null;
@@ -117,14 +118,19 @@ function SetCountryOption(selectBox, counter)
     newOption.value = countryCodes[counter].code;
 =======
 function doDecode(object) 
+=======
+function doDecode(inObject) 
+>>>>>>> 1c9feb3 Changes for portal admin and slider
 {
-    if (object) 
+	var outObject = null;
+    if (inObject) 
     {
         // decode URI and change + to spaces
-        object = decodeURIComponent((object.replace(/\+/g, '%20')));
+    	outObject = decodeURIComponent((inObject.replace(/\+/g, '%20')));
     }
-    return object;
+    return outObject;
 }
+
 
 function GetLanguageFromQueryString()
 {
@@ -153,19 +159,25 @@ function GetLanguageFromQueryString()
 	return success;
 }
 
-function PopulatePageLanguageSettings()
+function PopulatePageDropDownSettings()
 {
-	var selectBox = document.getElementById('Lang');
-	for (var i=0; i < CurrentLangDirs.length; i++) 
+	var selectBox;
+	
+	for (var key in languageCodes) 
 	{
-	    SetOption(selectBox, i);
-	    SetLangScripts(i);
+		selectBox = document.getElementById('primaryLang');
+		SetLangOption(selectBox, key);
+		
+		selectBox = document.getElementById('secondaryLang');
+		SetLangOption(selectBox, key);
 	}
+	
 }
 
-function SetOption(selectBox, i)
+function SetLangOption(selectBox, key)
 {
     var newOption = document.createElement('option');
+<<<<<<< Upstream, based on origin/Prod
     
     newOption.id = CurrentLangDirs[i].dir;
     newOption.innerHTML = CurrentLangDirs[i].arrayName;
@@ -227,6 +239,10 @@ function SetOption(selectBox, i)
     newOption.innerHTML = CurrentLangDirs[i].arrayName;
     newOption.value = CurrentLangDirs[i].arrayName;
 >>>>>>> 2fb107e Adding base admin portal
+=======
+    newOption.innerHTML =  languageCodes[key];
+    newOption.value = key;
+>>>>>>> 1c9feb3 Changes for portal admin and slider
     selectBox.appendChild(newOption);
 }
 

@@ -7,6 +7,7 @@ width:960px;
 margin:50px auto;
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 font-family:raleway;
 }
 span, span#error {
@@ -96,22 +97,41 @@ i {
 color:#6495ed;
 =======
 font-family:raleway
+=======
+font-family:raleway;
+>>>>>>> 1c9feb3 Changes for portal admin and slider
 }
-span {
-color:red
+span, span#error {
+color:red;
+}
+span#success {
+color:green;
 }
 h2 {
 background-color:#FEFFED;
 text-align:center;
 border-radius:10px 10px 0 0;
 margin:-10px -40px;
-padding:15px
+padding:15px;
 }
 hr {
 border:0;
 border-bottom:1px solid #ccc;
 margin:10px -40px;
-margin-bottom:30px
+margin-bottom:30px;
+}
+fieldset {
+border-radius: 10px;
+margin: 10px;
+}
+#upload {
+width:400px;
+float:left;
+border-radius:10px;
+font-family:raleway;
+border:2px solid #ccc;
+padding:10px 20px 25px;
+margin-top:70px;
 }
 #login {
 width:300px;
@@ -120,7 +140,7 @@ border-radius:10px;
 font-family:raleway;
 border:2px solid #ccc;
 padding:10px 40px 25px;
-margin-top:70px
+margin-top:70px;
 }
 input[type=text],input[type=password] {
 width:99.5%;
@@ -129,7 +149,7 @@ margin-top:8px;
 border:1px solid #ccc;
 padding-left:5px;
 font-size:16px;
-font-family:raleway
+font-family:raleway;
 }
 input[type=submit] {
 width:100%;
@@ -140,24 +160,32 @@ padding:10px;
 font-size:20px;
 cursor:pointer;
 border-radius:5px;
-margin-bottom:15px
+margin-bottom:15px;
+}
+#fileToUpload {
+margin-top:5px;
+margin-bottom:5px;
 }
 #profile {
-padding:50px;
-border:1px dashed grey;
-font-size:20px;
-background-color:#DCE6F7
+background-color: #dce6f7;
+border: 1px solid grey;
+font-size: 20px;
+margin: 5px;
+padding: 0 10px 50px;
+border-radius: 10px;
 }
 #logout {
 float:right;
 padding:5px;
-border:dashed 1px gray
+border:solid 1px gray;
+border-radius:5px;
 }
 a {
 text-decoration:none;
-color:#6495ed
+color:#6495ed;
 }
 i {
+<<<<<<< Upstream, based on origin/Prod
 color:#6495ed
 >>>>>>> af97253 Adding Admin portal + updates to 4P1W game files
 }
@@ -228,3 +256,7 @@ i {
 color:#6495ed
 }
 >>>>>>> 2fb107e Adding base admin portal
+=======
+color:#6495ed;
+}
+>>>>>>> 1c9feb3 Changes for portal admin and slider
