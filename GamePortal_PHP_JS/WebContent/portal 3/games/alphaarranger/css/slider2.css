@@ -54,19 +54,28 @@ legend
 	color: gray;
 }
 
-fieldset.gameSettings
-{
-	max-width: 840px;
-	background: #FFFFFF;
-	padding: 5px;
-	margin: 20px;
-	font-size: 1em;
+fieldset.gameSettings {
+    background: none repeat scroll 0 0 #ffffff;
+    font-size: 1em;
+    margin: 20px;
+    max-width: 710px;
+    padding: 5px;
 }
 
-#gameSettings > input {
+#reset {
     background-color: red;
     border: medium none;
     color: white;
+    margin: 5px;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#portal {
+    background-color: purple;
+    border: medium none;
+    color: papayawhip;
+    margin: 5px;
     padding: 5px;
     vertical-align: top;
 }

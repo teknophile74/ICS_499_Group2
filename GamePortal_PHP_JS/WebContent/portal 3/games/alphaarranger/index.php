@@ -36,8 +36,9 @@
 	      		<label for="Size">Cells Per Row:</label>
 	      		<input id="Size" name="Size" onchange="changePuzzleSize(this.value);" 
 	      			type="number" min="3" max="8" step="1" value="4" />
-      		</span>
-      		<input type="button" value="Reset Puzzle" onClick="ResetPuzzle();">
+      		</span><br />
+      		<input id="reset" type="button" value="Reset Puzzle" onClick="ResetPuzzle();" />
+      		<input id="portal" type="button" value="Back to Portal" onclick="history.go(-1);" />
 		</div>
 	</fieldset>
 	<!-- Holds Game Board -->
