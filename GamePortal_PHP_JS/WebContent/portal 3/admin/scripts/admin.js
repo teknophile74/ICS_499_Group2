@@ -1,4 +1,5 @@
 /**
+<<<<<<< Upstream, based on origin/Prod
  * Main admin init and processing script
  */
 
@@ -42,4 +43,19 @@ function init()
 window.onload=function newOnload()
 {
 	init();
+=======
+ * Main init admin script
+ */
+
+function init()
+{
+	
+	PopulatePageDropDownSettings();
+
+}
+
+window.onload=function newOnload()
+{
+  init();
+>>>>>>> ff02009 new admin script to drive upload page
 };
