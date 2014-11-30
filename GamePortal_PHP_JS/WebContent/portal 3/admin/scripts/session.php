@@ -1,6 +1,6 @@
 <?php
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "P@ssword!" );
+$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
 // Selecting Database
 $db = mysql_select_db ( "hzwxuoyr_adminlogin", $connection );
 session_start (); // Starting Session
