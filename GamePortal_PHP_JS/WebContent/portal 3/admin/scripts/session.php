@@ -3,10 +3,14 @@
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 $connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
 =======
 $connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "P@ssword!" );
 >>>>>>> 1c9feb3 Changes for portal admin and slider
+=======
+$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
+>>>>>>> 49fd840 Updating GamePortal Admin site with needed controller info and needed settings Added [origin] country to upload page
 // Selecting Database
 $db = mysql_select_db ( "hzwxuoyr_adminlogin", $connection );
 session_start (); // Starting Session

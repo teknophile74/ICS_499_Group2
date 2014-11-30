@@ -206,6 +206,14 @@ include('scripts/upload.php'); // Includes upload Script
 						</select>
 					</label>
 				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Language Information</legend>
+				<div id="countrySelectionControls">
+					<label>Country Associated to Language
+						<select id="country"></select>
+					</label>
+				</div>
 				<div id="langSelectionControls">
 					<label>Primary Language
 						<select id="primaryLang"></select>
@@ -216,7 +224,7 @@ include('scripts/upload.php'); // Includes upload Script
 				</div>
 			</fieldset>
 			<fieldset>
-				<legend>File Info</legend>
+				<legend>File Location</legend>
 				<label>Select a file to upload:
 			    	<input id="fileToUpload" type="file" name="fileToUpload">
 			    </label>

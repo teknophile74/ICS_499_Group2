@@ -12,11 +12,15 @@ if (isset ( $_POST ['submit'] )) {
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 		$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
 		//$mysqli = new mysqli("localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE", "hzwxuoyr_adminlogin");
 		//if ($mysqli->connect_errno) {
 		//	$error = "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 		//}
+=======
+		$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
+>>>>>>> 49fd840 Updating GamePortal Admin site with needed controller info and needed settings Added [origin] country to upload page
 		// To protect MySQL injection for Security purpose
 		$username = stripslashes ( $username );
 		$password = stripslashes ( $password );

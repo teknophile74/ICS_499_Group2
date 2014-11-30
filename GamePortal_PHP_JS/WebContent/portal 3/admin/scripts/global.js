@@ -162,7 +162,16 @@ function GetLanguageFromQueryString()
 function PopulatePageDropDownSettings()
 {
 	var selectBox;
+	var msgString = "Adding countries to country select tag";
+	logToConsole(msgString, true)
+	for (var i=0; 1 >countryCodes.lenght; i++) 
+	{
+		selectBox = document.getElementById('country');
+		SetCountryOption(selectBox, i);
+	}
 	
+	msgString = "Adding languages to primaryLang and secondaryLang select tags";
+	logToConsole(msgString, true)	
 	for (var key in languageCodes) 
 	{
 		selectBox = document.getElementById('primaryLang');
@@ -243,6 +252,14 @@ function SetOption(selectBox, i)
     newOption.innerHTML =  languageCodes[key];
     newOption.value = key;
 >>>>>>> 1c9feb3 Changes for portal admin and slider
+    selectBox.appendChild(newOption);
+}
+
+function SetCountryOption(selectBox, counter)
+{
+    var newOption = document.createElement('option');
+    newOption.innerHTML =  countryCodes[counter].name;
+    newOption.value = countryCodes[counter].code;
     selectBox.appendChild(newOption);
 }
 
