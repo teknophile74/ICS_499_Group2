@@ -24,7 +24,7 @@ include('scripts/upload.php'); // Includes upload Script
 				<legend>Game Info</legend>
 				<div id="gameSelectionControls">
 					<label>Game Selection
-						<select id="gameSelector">
+						<select id="gameSelector" name="game" onchange="updateInputDisplay(this.value);">
 							<?php
 								//<--get the games directorys subdirectories-->
 								$path = '../games';
@@ -55,15 +55,23 @@ include('scripts/upload.php'); // Includes upload Script
 				<legend>Language Information</legend>
 				<div id="countrySelectionControls">
 					<label>Country Associated to Language
-						<select id="country"></select>
+						<select id="country" name="country"></select>
 					</label>
 				</div>
 				<div id="langSelectionControls">
 					<label>Primary Language
-						<select id="primaryLang"></select>
+						<select id="primaryLang" name="primaryLang"></select>
 					</label><br />
 					<label>Secondary Language
-						<select id="secondaryLang"></select>
+						<select id="secondaryLang" name="secondaryLang"></select>
+					</label>
+				</div>
+			</fieldset>
+			<fieldset id="categoryNameControl">
+				<legend>Category Name</legend>
+				<div id="categoryNameDiv">
+					<label>User Assigned Category Name (Required)
+						<input id="categoryName" type="text" name="categoryName">
 					</label>
 				</div>
 			</fieldset>
