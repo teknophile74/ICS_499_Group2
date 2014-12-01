@@ -2,6 +2,9 @@
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
+=======
+>>>>>>> ed5ac9a Updating upload files and conversion settings for admin page
 include('controller/gameLangController.php');
 
 $error = ''; // Variable To Store Error Message
@@ -129,7 +132,22 @@ if ( $_FILES ["fileToUpload"] ["name"] ) {
 		// if everything is ok, try to upload file
 	} else {
 		if (move_uploaded_file ( $_FILES ["fileToUpload"] ["tmp_name"], $target_file )) {
-			$success = "The file " . basename ( $_FILES ["fileToUpload"] ["name"] ) . " has been uploaded.";
+			if(isset($_POST['submit'])){
+				//Get postback values for form
+				$game_name = (isset($_POST['game'])) ? $_POST ['game'] : "";
+				$country_code = (isset($_POST['country'])) ? $_POST ['country'] : "";
+				$primary_lang_code = (isset($_POST['primaryLang'])) ? $_POST ['primaryLang'] : "";
+				$secondary_lang_code = (isset($_POST['secondaryLang'])) ? $_POST ['secondaryLang'] : "";
+				$category_name = (isset($_POST['categoryName'])) ? $_POST ['categoryName'] : "";
+				$error = controller($target_file, $game_name, $country_code, 
+						$primary_lang_code, $secondary_lang_code, $category_name);
+			}
+			
+			if ($error == "") {
+				$success = "The file " . basename ( $_FILES ["fileToUpload"] ["name"] ) . " has been uploaded.";
+			} else {
+				$error = "Sorry, there was an error uploading your file.";
+			}
 		} else {
 			$error = "Sorry, there was an error uploading your file.";
 		}
