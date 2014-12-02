@@ -6,9 +6,26 @@
 var PuzzleBaseConfig = 
 { 
 	puzzleName : 'puzzle',
-	outputStyle : 'image',
+	initialStyle : 'image',
 	currentLang : 'English',
 	initialWidth : 4,
 	initialHeight : 4,
 	initialOffset : 0
 };
+
+var PuzzleOutputStyles = 
+[ 
+	//Character : 'char',
+	{ 
+		name  : 'Letter',
+		style : 'glyph'
+	},
+	{ 
+		name  : 'Word',
+		style : 'word' 
+	},
+	{ 
+		name  : 'Image',
+		style : 'image'
+	}
+];

@@ -37,15 +37,17 @@ function GetInboundLanguage(queryString)
 	return returnLang;
 }
 
-function doDecode(object)
+function doDecode(inObject) 
 {
-	if (object) 
-	{
-		// decode URI and change + to spaces
-		object = decodeURIComponent((object.replace(/\+/g, '%20')));
-	}
-	return object;
+	var outObject = null;
+    if (inObject) 
+    {
+        // decode URI and change + to spaces
+    	outObject = decodeURIComponent((inObject.replace(/\+/g, '%20')));
+    }
+    return outObject;
 }
+
 
 function GetLanguageFromQueryString()
 {
@@ -77,59 +79,50 @@ function GetLanguageFromQueryString()
 function PopulatePageDropDownSettings()
 {
 	var selectBox;
-
-	selectBox = document.getElementById('primaryLang');
-	for (var i=0; i < CurrentLangDirs.length; i++) 
+	var msgString = "Adding countries to country select tag";
+	logToConsole(msgString, true)
+	for (var i=0; i < countryCodes.length-1; i++) 
 	{
-		SetLangOption(selectBox, 'PrimaryLang', i);
+		selectBox = document.getElementById('country');
+		SetCountryOption(selectBox, i);
 	}
 	
-	selectBox = document.getElementById('secondaryLang');
-	for (var i=0; i < CurrentLangDirs.length; i++) 
+	msgString = "Adding languages to primaryLang and secondaryLang select tags";
+	logToConsole(msgString, true)	
+	for (var key in languageCodes) 
 	{
-		SetLangOption(selectBox, 'SecondaryLang', i);
+		selectBox = document.getElementById('primaryLang');
+		SetLangOption(selectBox, key);
+		
+		selectBox = document.getElementById('secondaryLang');
+		SetLangOption(selectBox, key);
 	}
 	
-	selectBox = document.getElementById('categories');
-	for (var i=0; i < CategoryList.length; i++) 
-	{
-	    SetCatOption(selectBox, i);
-	    SetCatScripts(i);
-	}
 }
 
-function SetCatOption(selectBox, i)
+function SetLangOption(selectBox, key)
 {
     var newOption = document.createElement('option');
-    
-    newOption.id = CategoryList[i].id;
-    newOption.innerHTML = CategoryList[i].category;
-    newOption.value = CategoryList[i].category;
+    newOption.innerHTML = languageCodes[key];
+    newOption.value = key;
     selectBox.appendChild(newOption);
 }
 
-function SetLangOption(selectBox, currentLang, i)
+function SetCountryOption(selectBox, counter)
 {
     var newOption = document.createElement('option');
-    var strCatArray = CurrentLangDirs[i];     // Replace stupidCatArray with strCatArray
-    
-    newOption.id = CurrentLangDirs[i].dir;
-    newOption.innerHTML = strCatArray[currentLang];
-    newOption.value = strCatArray[currentLang];
+    newOption.innerHTML = countryCodes[counter].name;
+    newOption.value = countryCodes[counter].code;
     selectBox.appendChild(newOption);
 }
 
-function SetCatScripts(i)
+function SetLangScripts(i)
 {
     var head = document.getElementsByTagName("head")[0];
-    var sourcesPath = CurrentLangDirs[0].dir;
+    var sourcesPath = CurrentLangDirs[i].dir;
+    var scriptId = CurrentLangDirs[i].arrayName+'LangArray';
     
-    var currentCatValue = ((CategoryList[i].category).toLowerCase()).replace(" ", "_");
-    
-    var scriptId = CurrentLangDirs[0].PrimaryLang+CurrentLangDirs[0].SecondaryLang+'_Cat_'+currentCatValue;
-  //  var scriptId = CurrentLangDirs[0].SecondaryLang+CurrentLangDirs[0].PrimaryLang+'_Cat_'+currentCatValue;
-    
-    sourcesPath = 'lang/' + sourcesPath.replace(/_+/g, "/") + '/' + currentCatValue + '.js';
+    sourcesPath = 'lang/' + sourcesPath.replace("_", "/") + '/LangJSON.js';
   
     var oldScript = document.getElementById(scriptId);
 	if (oldScript) 
