@@ -43,8 +43,8 @@ function googleTranslateElementInit() {
 			$theGame = $theGame[1];
 			
 			//get the individual game's info page
-			$infoPage = $games[$i]."/".$theGame.".php";
-			include($infoPage);
+			//$infoPage = $games[$i]."/".$theGame.".php";
+			//include($infoPage);
 
 			$description = $theGame." and stuff...";
 

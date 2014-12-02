@@ -81,7 +81,7 @@ function PopulatePageDropDownSettings()
 	var selectBox;
 	var msgString = "Adding countries to country select tag";
 	logToConsole(msgString, true)
-	for (var i=0; 1 >countryCodes.lenght; i++) 
+	for (var i=0; i < countryCodes.length-1; i++) 
 	{
 		selectBox = document.getElementById('country');
 		SetCountryOption(selectBox, i);
@@ -103,7 +103,7 @@ function PopulatePageDropDownSettings()
 function SetLangOption(selectBox, key)
 {
     var newOption = document.createElement('option');
-    newOption.innerHTML =  languageCodes[key];
+    newOption.innerHTML = languageCodes[key];
     newOption.value = key;
     selectBox.appendChild(newOption);
 }
@@ -111,7 +111,7 @@ function SetLangOption(selectBox, key)
 function SetCountryOption(selectBox, counter)
 {
     var newOption = document.createElement('option');
-    newOption.innerHTML =  countryCodes[counter].name;
+    newOption.innerHTML = countryCodes[counter].name;
     newOption.value = countryCodes[counter].code;
     selectBox.appendChild(newOption);
 }
