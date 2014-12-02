@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Getting values from json
  * http://www.academia.edu/4092169/Get_data_from_string_with_JSON_object_in_PHP
  */
@@ -12,11 +12,11 @@ function writeJSON() {
 function fileConversion() {
 	// Get lang file name from game upload.format file
 	// Load the format and header settings into arrays
-	/**
+	/*
 	 * Load uploaded file in an array, or read it in line by line,
 	 * into altername array
 	 */
-	/**
+	/*
 	 * Read in expected output file name from upload.format and
 	 * get needed info from POST variables
 	 */

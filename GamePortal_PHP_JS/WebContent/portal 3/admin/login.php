@@ -4,12 +4,12 @@ include ('scripts/login.php'); // Includes Login Script
 <!DOCTYPE html>
 <html>
 <head>
-<title>Game Portal Login</title>
+<title>Game Portal Admin Login</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="main">
-		<h1>Game Portal Login</h1>
+		<h1>Game Portal Admin Login</h1>
 		<div id="login">
 			<h2>Login Form</h2>
 			<form action="" method="post">

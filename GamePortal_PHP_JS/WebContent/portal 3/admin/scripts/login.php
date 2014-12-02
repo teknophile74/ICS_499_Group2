@@ -11,6 +11,10 @@ if (isset ( $_POST ['submit'] )) {
 		$password = $_POST ['password'];
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
+		//$mysqli = new mysqli("localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE", "hzwxuoyr_adminlogin");
+		//if ($mysqli->connect_errno) {
+		//	$error = "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+		//}
 		// To protect MySQL injection for Security purpose
 		$username = stripslashes ( $username );
 		$password = stripslashes ( $password );
