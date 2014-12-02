@@ -21,12 +21,22 @@ td
 	background: #FFFFFF;
 }
 
+td:hover
+{
+	background-color: #FFFF99;
+}
+
 td img
 {
 	margin: 0px;
 	padding: 0px;
 	width: 90px;
 	height: 90px;
+}
+
+td img:hover
+{
+	opacity: 0.5;
 }
 
 td.graysq 
@@ -39,21 +49,38 @@ a
 	text-decoration: none;
 }
 
-fieldset.gameSettings
+legend
 {
-	max-width: 825px;
-	background: #FFFFFF;
-	padding: 5px;
-	margin: 20px;
-	font-size: 1em;
+	color: gray;
 }
 
-div#gameHolder 
-{
-	margin: 20px;
+fieldset.gameSettings {
+    background: none repeat scroll 0 0 #ffffff;
+    font-size: 1em;
+    margin: 20px;
+    max-width: 710px;
+    padding: 5px;
 }
 
-div#counter 
+#reset {
+    background-color: red;
+    border: medium none;
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#portal {
+    background-color: purple;
+    border: medium none;
+    color: papayawhip;
+    margin: 5px;
+    padding: 5px;
+    vertical-align: top;
+}
+
+div#gameHolder, div#counter 
 {
 	margin: 20px;
 }
@@ -68,6 +95,7 @@ span.nonwraplabels
 	padding: 5px;
 	white-space: nowrap;
 	overflow: hidden;
+	display: inline-block;
 }
 
 input#Size, input#Offset
@@ -75,7 +103,8 @@ input#Size, input#Offset
 	width: 40px;
 }
 
-select#Lang option
+
+select option
 {
 	padding: 0px 10px;
 }

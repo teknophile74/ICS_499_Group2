@@ -10,26 +10,23 @@ var puzzle=null;
 var puzzleName=null;
 var outputStyle=null;
 
-function CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Width, Height) 
+function CreatePuzzle(puzzleName, Style, Offset, Lang, Width, Height) 
 {
 	var useImage = false;
-	if (outputStyle === "image") 
-	{
-		useImage = true;
-	}
+	if (Style === "image") { useImage = true; }
 	puzzle = new initializePuzzle(puzzleName, Width, Height, useImage);
 	// Load in the requested alpha array
-	loadCharArray(outputStyle, Width, Height, Offset, Lang);
+	loadCharArray(Style, Width, Height, Offset, Lang);
 }
 
 function init()
 {
 	// set initially needed values
 	puzzleName = PuzzleBaseConfig.puzzleName;
-	outputStyle = PuzzleBaseConfig.outputStyle;
 	currentLang = PuzzleBaseConfig.currentLang;
 	
 	PopulatePageLanguageSettings();
+	PopulateGameStyleSettings();
 	if (!(GetLanguageFromQueryString()))
 	{
 		var selectBox = document.getElementById('Lang');
@@ -42,7 +39,9 @@ function init()
 		}
 	}
 	// initial parameters used to create the game
-	CreatePuzzle(puzzleName, outputStyle, PuzzleBaseConfig.initialOffset, currentLang, PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
+	CreatePuzzle(PuzzleBaseConfig.puzzleName, PuzzleBaseConfig.initialStyle,
+				PuzzleBaseConfig.initialOffset, PuzzleBaseConfig.currentLang, 
+				PuzzleBaseConfig.initialWidth, PuzzleBaseConfig.initialHeight);
 	ResetCounter();
 	puzzle.writePuzzle();
 }
@@ -174,36 +173,48 @@ function changePuzzleSize(newSize)
 {
 	var Size = parseInt(newSize);
 	var Lang = (document.getElementById("Lang")).value;
+	var Style = (document.getElementById("Style")).value;
 	var Offset = parseInt((document.getElementById("Offset")).value);
-	changePuzzle(Size, Lang, Offset);
+	changePuzzle(Size, Lang, Style, Offset);
 }
 
 function changePuzzleLanguage(newLang)
 {
 	var Size = parseInt((document.getElementById("Size")).value);
 	var Lang = newLang;
+	var Style = (document.getElementById("Style")).value;
 	var Offset = parseInt((document.getElementById("Offset")).value);
-	changePuzzle(Size, Lang, Offset);
+	changePuzzle(Size, Lang, Style, Offset);
 }
 
 function changePuzzleOffset(newOffset)
 {
 	var Size = parseInt((document.getElementById("Size")).value);
 	var Lang = (document.getElementById("Lang")).value;
+	var Style = (document.getElementById("Style")).value;
 	var Offset = parseInt(newOffset);
-	changePuzzle(Size, Lang, Offset);
+	changePuzzle(Size, Lang, Style, Offset);
 }
 
-function changePuzzle(Size, Lang, Offset)
+function changePuzzleStyle(newStyle)
+{
+	var Size = parseInt((document.getElementById("Size")).value);
+	var Lang = (document.getElementById("Lang")).value;
+	var Style = newStyle;
+	var Offset = parseInt((document.getElementById("Offset")).value);
+	changePuzzle(Size, Lang, Style, Offset);
+}
+
+function changePuzzle(Size, Lang, Style, Offset)
 {
 	puzzle.cleanGame();
-	CreatePuzzle(puzzleName, outputStyle, Offset, Lang, Size, Size);
+	CreatePuzzle(puzzleName, Style, Offset, Lang, Size, Size);
 	ResetCounter();
 	puzzle.writePuzzle();
 }
 
 
-function loadCharArray(outputStyle, intWidth, intHeight, intOffset, newLang)
+function loadCharArray(newStyle, intWidth, intHeight, intOffset, newLang)
 {
 	var increment;
 	if (intOffset.NaN) {
@@ -213,6 +224,11 @@ function loadCharArray(outputStyle, intWidth, intHeight, intOffset, newLang)
 	if (!(newLang)) {
 		var selectBox = document.getElementById('Lang');
 		newLang = selectBox.options[selectBox.selectedIndex].text;
+	}
+	
+	if (!(newStyle)) {
+		var selectBox = document.getElementById('Style');
+		newStyle = selectBox.options[selectBox.selectedIndex].value;
 	}
 	
 	if (window[newLang]) {
@@ -234,7 +250,7 @@ function loadCharArray(outputStyle, intWidth, intHeight, intOffset, newLang)
 					increment = i+intOffset;
 				}
 				
-				switch(outputStyle) {
+				switch(newStyle) {
 				    case "char":
 				    	puzzle.pieces[i]=charArray[increment].char;
 				        break;
@@ -297,6 +313,7 @@ function ResetPuzzle()
 {
 	(document.getElementById("Size")).value = PuzzleBaseConfig.initialWidth;
 	(document.getElementById("Offset")).value = PuzzleBaseConfig.initialOffset;
+	(document.getElementById("Style")).value = PuzzleBaseConfig.initialStyle;
 	changePuzzleLanguage((document.getElementById('Lang')).value);
 }
 
