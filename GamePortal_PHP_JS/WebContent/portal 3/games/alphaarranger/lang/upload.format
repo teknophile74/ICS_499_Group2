@@ -1,0 +1,4 @@
+name:LangJSON.js
+var:PRIMARYLANG
+headers:glyph,word,image
+format:string,string,url
