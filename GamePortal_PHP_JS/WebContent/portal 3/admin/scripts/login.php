@@ -13,6 +13,7 @@ if (isset ( $_POST ['submit'] )) {
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 		$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
 		//$mysqli = new mysqli("localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE", "hzwxuoyr_adminlogin");
 		//if ($mysqli->connect_errno) {
@@ -77,3 +78,30 @@ if (isset ( $_POST ['submit'] )) {
 }
 ?>
 >>>>>>> 2fb107e Adding base admin portal
+=======
+		$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
+		//$mysqli = new mysqli("localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE", "hzwxuoyr_adminlogin");
+		//if ($mysqli->connect_errno) {
+		//	$error = "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+		//}
+		// To protect MySQL injection for Security purpose
+		$username = stripslashes ( $username );
+		$password = stripslashes ( $password );
+		$username = mysql_real_escape_string ( $username );
+		$password = mysql_real_escape_string ( $password );
+		// Selecting Database
+		$db = mysql_select_db ( "hzwxuoyr_adminlogin", $connection );
+		// SQL query to fetch information of registerd users and finds user match.
+		$query = mysql_query ( "select * from login where password='$password' AND username='$username'", $connection );
+		$rows = mysql_num_rows ( $query );
+		if ($rows == 1) {
+			$_SESSION ['login_user'] = $username; // Initializing Session
+			header ( "location: uploadgamefiles.php" ); // Redirecting To Other Page
+		} else {
+			$error = "Username or Password is invalid";
+		}
+		mysql_close ( $connection ); // Closing Connection
+	}
+}
+?>
+>>>>>>> 872cb0e Merge to master

@@ -40,6 +40,7 @@ function GetInboundLanguage(queryString)
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 function doDecode(inObject) 
 {
 	var outObject = null;
@@ -256,6 +257,76 @@ function SetOption(selectBox, i)
 >>>>>>> 1bbe591 Conversion Process Updates
     newOption.value = key;
 >>>>>>> 1c9feb3 Changes for portal admin and slider
+=======
+function doDecode(inObject) 
+{
+	var outObject = null;
+    if (inObject) 
+    {
+        // decode URI and change + to spaces
+    	outObject = decodeURIComponent((inObject.replace(/\+/g, '%20')));
+    }
+    return outObject;
+}
+
+
+function GetLanguageFromQueryString()
+{
+	var success = false;
+	if (location) 
+	{
+		var queryString = location.search;
+		
+		if (queryString) 
+		{
+			var userChosenLang = GetInboundLanguage(queryString);
+			// Get languageSelector object
+			var selectBox = document.getElementById("Lang");
+			// Iterate nodes in the select tag
+			for(var i=0; i < selectBox.length-1; i++)
+			{
+			   if (userChosenLang == selectBox.options[i].text)
+			   {
+				   selectBox.selectedIndex = i;
+			   }
+			}
+			currentLang = userChosenLang;
+			success = true;
+		}
+	}
+	return success;
+}
+
+function PopulatePageDropDownSettings()
+{
+	var selectBox;
+	var msgString = "Adding countries to country select tag";
+	logToConsole(msgString, true)
+	for (var i=0; i < countryCodes.length-1; i++) 
+	{
+		selectBox = document.getElementById('country');
+		SetCountryOption(selectBox, i);
+	}
+	
+	msgString = "Adding languages to primaryLang and secondaryLang select tags";
+	logToConsole(msgString, true)	
+	for (var key in languageCodes) 
+	{
+		selectBox = document.getElementById('primaryLang');
+		SetLangOption(selectBox, key);
+		
+		selectBox = document.getElementById('secondaryLang');
+		SetLangOption(selectBox, key);
+	}
+	
+}
+
+function SetLangOption(selectBox, key)
+{
+    var newOption = document.createElement('option');
+    newOption.innerHTML = languageCodes[key];
+    newOption.value = key;
+>>>>>>> 872cb0e Merge to master
     selectBox.appendChild(newOption);
 }
 

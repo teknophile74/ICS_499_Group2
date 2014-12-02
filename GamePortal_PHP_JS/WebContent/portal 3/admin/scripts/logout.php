@@ -2,6 +2,7 @@
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 session_start ();
 if (session_destroy ()) // Destroying All Sessions
 {
@@ -26,3 +27,11 @@ if (session_destroy ()) // Destroying All Sessions
 }
 ?>
 >>>>>>> 2fb107e Adding base admin portal
+=======
+session_start ();
+if (session_destroy ()) // Destroying All Sessions
+{
+	header ( "Location: ../login.php" ); // Redirecting To Home Page
+}
+?>
+>>>>>>> 872cb0e Merge to master

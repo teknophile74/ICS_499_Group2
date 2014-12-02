@@ -9,6 +9,7 @@ var PuzzleBaseConfig =
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 	initialStyle : 'image',
 =======
 	outputStyle : 'glyph',
@@ -19,10 +20,14 @@ var PuzzleBaseConfig =
 =======
 	initialStyle : 'image',
 >>>>>>> 1106639 Updated Game to handle alternate in game changes for style. Updated settings for game play and appearence
+=======
+	initialStyle : 'image',
+>>>>>>> 872cb0e Merge to master
 	currentLang : 'English',
 	initialWidth : 4,
 	initialHeight : 4,
 	initialOffset : 0
+<<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 };
@@ -66,3 +71,23 @@ var PuzzleOutputStyles =
 	}
 ];
 >>>>>>> 1106639 Updated Game to handle alternate in game changes for style. Updated settings for game play and appearence
+=======
+};
+
+var PuzzleOutputStyles = 
+[ 
+	//Character : 'char',
+	{ 
+		name  : 'Letter',
+		style : 'glyph'
+	},
+	{ 
+		name  : 'Word',
+		style : 'word' 
+	},
+	{ 
+		name  : 'Image',
+		style : 'image'
+	}
+];
+>>>>>>> 872cb0e Merge to master
