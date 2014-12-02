@@ -65,19 +65,19 @@ function ToggleInputDisplay( id, value )
 
 function SetCategoryInputHidden()
 {
-	ToggleInputDisplay( 'categoryNameDiv', 'none' );
-	ToggleInputDisplay( 'secondaryLang', 'none' );
+	ToggleInputDisplay( 'categoryNameControl', 'none' );
+	ToggleInputDisplay( 'secondaryLangLabel', 'none' );
 }
 
 function updateInputDisplay(object)
 {
 	if (object) {
 		if (object === 'wordexplorer'){
-			ToggleInputDisplay( 'categoryNameDiv', 'block' );
-			ToggleInputDisplay( 'secondaryLang', 'block' );
+			ToggleInputDisplay( 'categoryNameControl', 'block' );
+			ToggleInputDisplay( 'secondaryLangLabel', 'block' );
 		} else {
-			ToggleInputDisplay( 'categoryNameDiv', 'none' );
-			ToggleInputDisplay( 'secondaryLang', 'none' );
+			ToggleInputDisplay( 'categoryNameControl', 'none' );
+			ToggleInputDisplay( 'secondaryLangLabel', 'none' );
 		}
 	}
 }

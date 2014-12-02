@@ -167,8 +167,34 @@ controller('upload_files/testfile.txt', 'alphaarranger', '', 'CN', '', '');
 >>>>>>> ed5ac9a Updating upload files and conversion settings for admin page
  */
 
+function openFile($filename) {
+    $file_handle = fopen($filename, "rb");
+
+    while (!feof($file_handle) ) {
+        $lines = fgets($file_handle);
+    }
+
+    fclose($file_handle);
+    return $lines;
+}
+
 function writeJSON() {
 	// http://php.net/manual/en/function.json-encode.php
+    $fp = @fopen($_GET['csv'], 'r');
+
+    $headers = fgetcsv($fp, 2048);
+
+    $data = array();
+    while ($row = fgetcsv($fp, 2048)) {
+        $item = array();
+        foreach ($row as $key => $cell) {
+            $item[$headers[$key]] = utf8_encode($cell);
+        }
+        $data[] = $item;
+    }
+
+    //header('Content-type: text/javascript');
+    //echo json_encode($data);
 }
 
 function fileConversion() {
@@ -203,14 +229,14 @@ function controller($target_file, $game_name, $country_code,
 	// Get path to uploaded file
 	$upload_dir = "../upload_files/";
 	// Get JSON Language Array
-	$langfiledata = file_get_contents('../scripts/ISOV639v2Codes.js');
+	$langfiledata = file_get_contents('ISOV639v2Codes.js');
 	$langdataarray = json_decode($langfiledata, true);
 	// Get JSON Country Array
-	$countryfiledata = file_get_contents('../scripts/countries.js');
+	$countryfiledata = file_get_contents('countries.js');
 	$countrydataarray = json_decode($countryfiledata, true);
 	// Set games base path
 	$game_dir = "../../games/";
-	$lang_dir = $game_dir . '/' . $game_name . '/lang/';
+	$lang_dir = $game_dir . $game_name . '/lang/';
 	$dest_dir = "";
 	// Set temp file name
 	$temp_filename = "temp_conversion_file";
@@ -244,8 +270,8 @@ function controller($target_file, $game_name, $country_code,
 		// Get game upload format (upload.format) in lang dir of game
 		$uploadFormatFile = $lang_dir . 'upload.format';
 		$upload_formatdata = file_get_contents($uploadFormatFile);
-		
-		// Run checks agains expected format and newly uploaded file
+        //$parts = explode(':', $line_of_text);
+		// Run checks against expected format and newly uploaded file
 		
 			// If errors reject back to user
 			// else proceed to conversion
@@ -264,6 +290,11 @@ function controller($target_file, $game_name, $country_code,
 	// Return to upload page
 	return $return_message;
 }
+<<<<<<< Upstream, based on origin/Prod
 
 >>>>>>> 49fd840 Updating GamePortal Admin site with needed controller info and needed settings Added [origin] country to upload page
 ?>
+=======
+controller('upload_files/testfile.txt', 'alphaarranger', '', 'CN', '', '');
+?>
+>>>>>>> 1bbe591 Conversion Process Updates

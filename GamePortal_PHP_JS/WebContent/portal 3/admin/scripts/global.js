@@ -164,7 +164,7 @@ function PopulatePageDropDownSettings()
 	var selectBox;
 	var msgString = "Adding countries to country select tag";
 	logToConsole(msgString, true)
-	for (var i=0; 1 >countryCodes.lenght; i++) 
+	for (var i=0; i < countryCodes.length-1; i++) 
 	{
 		selectBox = document.getElementById('country');
 		SetCountryOption(selectBox, i);
@@ -186,6 +186,7 @@ function PopulatePageDropDownSettings()
 function SetLangOption(selectBox, key)
 {
     var newOption = document.createElement('option');
+<<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
     
     newOption.id = CurrentLangDirs[i].dir;
@@ -250,6 +251,9 @@ function SetOption(selectBox, i)
 >>>>>>> 2fb107e Adding base admin portal
 =======
     newOption.innerHTML =  languageCodes[key];
+=======
+    newOption.innerHTML = languageCodes[key];
+>>>>>>> 1bbe591 Conversion Process Updates
     newOption.value = key;
 >>>>>>> 1c9feb3 Changes for portal admin and slider
     selectBox.appendChild(newOption);
@@ -258,7 +262,7 @@ function SetOption(selectBox, i)
 function SetCountryOption(selectBox, counter)
 {
     var newOption = document.createElement('option');
-    newOption.innerHTML =  countryCodes[counter].name;
+    newOption.innerHTML = countryCodes[counter].name;
     newOption.value = countryCodes[counter].code;
     selectBox.appendChild(newOption);
 }

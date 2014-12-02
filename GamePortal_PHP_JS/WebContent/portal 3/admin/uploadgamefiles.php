@@ -2,6 +2,7 @@
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 	include('scripts/session.php');
 	include('scripts/upload.php'); // Includes upload Script
 ?>
@@ -157,12 +158,17 @@ include('session.php');
 include('scripts/session.php');
 include('scripts/upload.php'); // Includes upload Script
 >>>>>>> 1c9feb3 Changes for portal admin and slider
+=======
+	include('scripts/session.php');
+	include('scripts/upload.php'); // Includes upload Script
+>>>>>>> 1bbe591 Conversion Process Updates
 ?>
 <!DOCTYPE>
 <html>
 <head>
 	<title>Game File Upload Page</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<script src="scripts/countries.js"></script>
 	<script src="scripts/ISOV639v2Codes.js"></script>
 	<script src="scripts/global.js"></script>
 	<script src="scripts/admin.js"></script>
@@ -190,8 +196,7 @@ include('scripts/upload.php'); // Includes upload Script
 								$gameCount = count($games);
 								
 								//loop through the array for games
-								for($i = 0; $i < $gameCount; $i++)
-								{
+								for($i = 0; $i < $gameCount; $i++) {
 									//get the individual game's folder name
 									$theGame = explode("/", $games[$i]);
 									$theGame = $theGame[2];
@@ -218,7 +223,7 @@ include('scripts/upload.php'); // Includes upload Script
 					<label>Primary Language
 						<select id="primaryLang" name="primaryLang"></select>
 					</label><br />
-					<label>Secondary Language
+					<label id="secondaryLangLabel">Secondary Language
 						<select id="secondaryLang" name="secondaryLang"></select>
 					</label>
 				</div>
