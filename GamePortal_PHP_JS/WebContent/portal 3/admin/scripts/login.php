@@ -18,9 +18,12 @@ if (isset ( $_POST ['submit'] )) {
 		//if ($mysqli->connect_errno) {
 		//	$error = "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 		//}
+<<<<<<< Upstream, based on origin/Prod
 =======
 		$connection = mysql_connect ( "localhost", "hzwxuoyr_admin", "PASSWORD_GOES_HERE" );
 >>>>>>> 49fd840 Updating GamePortal Admin site with needed controller info and needed settings Added [origin] country to upload page
+=======
+>>>>>>> e2c46f5 Update to login and php pages
 		// To protect MySQL injection for Security purpose
 		$username = stripslashes ( $username );
 		$password = stripslashes ( $password );

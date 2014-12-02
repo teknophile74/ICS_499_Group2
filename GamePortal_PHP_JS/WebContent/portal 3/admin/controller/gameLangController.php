@@ -2,6 +2,7 @@
 
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 /*
  * Getting values from json
  * http://www.academia.edu/4092169/Get_data_from_string_with_JSON_object_in_PHP
@@ -158,6 +159,9 @@ controller('upload_files/testfile.txt', 'alphaarranger', '', 'CN', '', '');
  * get needed info from POST variables
 =======
 /**
+=======
+/*
+>>>>>>> e2c46f5 Update to login and php pages
  * Getting values from json
  * http://www.academia.edu/4092169/Get_data_from_string_with_JSON_object_in_PHP
 >>>>>>> ed5ac9a Updating upload files and conversion settings for admin page
@@ -170,11 +174,11 @@ function writeJSON() {
 function fileConversion() {
 	// Get lang file name from game upload.format file
 	// Load the format and header settings into arrays
-	/**
+	/*
 	 * Load uploaded file in an array, or read it in line by line,
 	 * into altername array
 	 */
-	/**
+	/*
 	 * Read in expected output file name from upload.format and
 	 * get needed info from POST variables
 	 */

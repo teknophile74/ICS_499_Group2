@@ -6,6 +6,7 @@ include ('scripts/login.php'); // Includes Login Script
 <head>
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 <title>Game Portal Admin Login</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -38,11 +39,14 @@ include ('scripts/login.php'); // Includes Login Script
 </html>
 =======
 <title>Game Portal Login</title>
+=======
+<title>Game Portal Admin Login</title>
+>>>>>>> e2c46f5 Update to login and php pages
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="main">
-		<h1>Game Portal Login</h1>
+		<h1>Game Portal Admin Login</h1>
 		<div id="login">
 			<h2>Login Form</h2>
 			<form action="" method="post">
