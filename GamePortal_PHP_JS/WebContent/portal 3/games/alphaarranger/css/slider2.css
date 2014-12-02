@@ -1,6 +1,7 @@
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
 <<<<<<< Upstream, based on origin/Prod
+<<<<<<< Upstream, based on origin/Prod
 
 body {
 	background: #FFFFFF url(../images/aabg.jpg) repeat;
@@ -237,3 +238,86 @@ select option
 	padding: 0px 10px;
 }
 >>>>>>> 872cb0e Merge to master
+=======
+
+body {
+	background: #FFFFFF url(../images/aabg.jpg) repeat;
+	font-size: 1em;
+}
+
+table 
+{
+	border: solid blue 2px;
+}
+
+td 
+{
+	margin: 0px;
+	padding: 0px;
+	border: solid 2px;
+	width: 90px;
+	height: 90px;
+	text-align: center;
+	font-size: .9em;
+	background: #FFFFFF;
+}
+
+td img
+{
+	margin: 0px;
+	padding: 0px;
+	width: 90px;
+	height: 90px;
+}
+
+td.graysq 
+{
+	background-color: gray;
+}
+
+a 
+{
+	text-decoration: none;
+}
+
+fieldset.gameSettings
+{
+	max-width: 825px;
+	background: #FFFFFF;
+	padding: 5px;
+	margin: 20px;
+	font-size: 1em;
+}
+
+div#gameHolder 
+{
+	margin: 20px;
+}
+
+div#counter 
+{
+	margin: 20px;
+}
+
+#MoveCounter 
+{
+	color: red;
+}
+
+span.nonwraplabels 
+{
+	padding: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+input#Size, input#Offset
+{
+	width: 40px;
+}
+
+select#Lang option
+{
+	padding: 0px 10px;
+}
+>>>>>>> 4edc402 Adding back missing files to master
