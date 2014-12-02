@@ -4,6 +4,19 @@
  * @Author Aaron Burke
  */
 
+/*function playSoundAudio()
+{
+	var play= document.getElementByClass("prilangTransLit");
+	play.playSoundAudio();
+}
+
+function imageInfo()
+{
+	var imageInfo = document.createElement("prilangLiteral").target="_blank";
+	//var urlForSoundLink = window.open("prilangLiteral", "_blank");
+}
+*/
+
 if (typeof String.prototype.startsWith != 'function') {
     String.prototype.startsWith = function(prefix) {
         return this.slice(0, prefix.length) == prefix;

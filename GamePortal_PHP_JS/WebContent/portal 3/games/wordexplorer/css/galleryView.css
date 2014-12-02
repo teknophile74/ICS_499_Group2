@@ -62,7 +62,7 @@
     margin: 0;
     height: 25px;
     width: 25px;
-    padding: 10px 0 0;
+    padding: 1px 0 0;
     position: relative;
 }
 
@@ -78,12 +78,12 @@
 }
 
 #gallery #fullsize div div.nav_seclang img.speakerImg {
-    top: 0;
+    top: 10;
     left: 50px;
     margin: 0;
     height: 25px;
     width: 25px;
-    padding: 10px 0 0;
+    padding: 1px 0 0;
     position: relative;
 }
 

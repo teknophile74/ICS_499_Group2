@@ -361,7 +361,7 @@ function init()
   //BS.createWord(2);
   // initial parameters used to create the game
   //CreateWord(englishInEnglish,langInLang,englishInLang,langInEnglish,imageURI,infoURI,soundURIOfEnglish,soundURIOfLang);
-}
+} // end of init
 
 function GetCategoryArray()
 {
@@ -429,7 +429,7 @@ function triggerUpdate(newUpdate)
 	}
 	return;
 }
-
+/*
 function triggerSecondaryLangUpdate(someValue)
 {
 	if (someValue)
@@ -438,5 +438,19 @@ function triggerSecondaryLangUpdate(someValue)
 		var secLanguage = someValue.replace(" ", "_");
 		
 		//postback to server - get new page
-	}	
-}
+		selectBox = document.getElementById('primaryLang');
+		var primaryLang = selectBox.options[selectBox.selectedIndex].text;
+		
+		selectBox = document.getElementById('secondaryLang');
+		var secondaryLang = selectBox.options[selectBox.selectedIndex].text;
+		
+		var catArrayValue = primaryLang+secondaryLang+'_'+category;
+		
+		if (window[catArrayValue])
+		{  
+			var newExplorer = new initializeWordExplorer(window[catArrayValue]);
+			newExplorer.writeInterface();
+		}
+	}
+	return;
+} */

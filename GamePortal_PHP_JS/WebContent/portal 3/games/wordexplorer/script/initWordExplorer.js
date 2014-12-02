@@ -162,11 +162,11 @@ function initializeWordExplorer(inboundCatArray)
 			// Create Links with break
 			var langLink1 = document.createElement("a");
 			var langLink2 = document.createElement("a");
+			var soundAudio= document.createElement("audio");
 			//var langLink3 = document.createElement("a");  // add another link
 			var breakElement = document.createElement("br");
 			var speakerImgElement = document.createElement("img");
 			var soundElement = document.createElement("object");
-			
 			// TODO: Update Link with sound?
 			if (divElementName === 'nav_prilang')
 			{
@@ -212,7 +212,6 @@ function initializeWordExplorer(inboundCatArray)
 			parentDivElement.appendChild(newDiv);
 	//	}
 } // End CreateLangDiv(parentDivElement, divElementName, id)
-	
 	this.cleanGame=function()
 	{
 		if (!(RemoveLocalChildElement("gallery", "fullsize")))
