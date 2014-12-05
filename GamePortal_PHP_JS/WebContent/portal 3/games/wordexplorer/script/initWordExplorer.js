@@ -80,6 +80,7 @@ function initializeWordExplorer(inboundCatArray)
 				if((hrefStr.startsWith('http://') || hrefStr.startsWith('https://')))
 				{
 					aElemObj.setAttribute('href', hrefStr);
+					aElemObj.setAttribute('target', "_blank");
 				} 
 				else{
 					aElemObj.setAttribute('href', '#'+hrefStr);
