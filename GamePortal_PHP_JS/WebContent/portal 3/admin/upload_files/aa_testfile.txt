@@ -1,3 +1,3 @@
-glyph,word,image
-D,Dog,http://en.knicket.com/details/j25v/android/cute-dog-puppy
-W,Water,https://pbs.twimg.com/profile_images/446584704/aqua_solutions_logo_o5y5_normal.jpg
+glyph|word|image
+D|Dog|http://en.knicket.com/details/j25v/android/cute-dog-puppy
+W|Water|https://pbs.twimg.com/profile_images/446584704/aqua_solutions_logo_o5y5_normal.jpg

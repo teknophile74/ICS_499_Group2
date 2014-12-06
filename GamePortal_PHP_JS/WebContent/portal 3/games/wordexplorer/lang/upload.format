@@ -1,4 +1,4 @@
-name:_USER_DEFINED_
-var:PRIMARYLANG|SECONDARYLANG|_|_USER_DEFINED_
-headers:PrimLang_word,PrimLang_sound_url,PrimLang_translit,PrimLangInfo,SecLang_word,SecLang_sound_url,SecLang_translit,Image
-format:string,url,string,url,string,url,string,url
+name:__Category__
+var:PRIMARYLANG|SECONDARYLANG|_|__Category__
+headers:PrimLang_word,PrimLang_sound_url,PrimLang_translit,PrimLangInfo,Category,SecLang_word,SecLang_sound_url,SecLang_translit,Image
+format:string,url,string,url,string,string,url,string,url

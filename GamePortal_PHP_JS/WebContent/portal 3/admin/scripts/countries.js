@@ -1,7 +1,3 @@
-/**
- * List of Country codes from
- * https://gist.github.com/Keeguon/2310008
- */
 var countryCodes =
 [ 
   {name: 'Afghanistan', code: 'AF'}, 

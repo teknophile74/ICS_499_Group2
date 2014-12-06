@@ -67,14 +67,6 @@
 					</label>
 				</div>
 			</fieldset>
-			<fieldset id="categoryNameControl">
-				<legend>Category Name</legend>
-				<div id="categoryNameDiv">
-					<label>User Assigned Category Name (Required)
-						<input id="categoryName" type="text" name="categoryName">
-					</label>
-				</div>
-			</fieldset>
 			<fieldset>
 				<legend>File Location</legend>
 				<label>Select a file to upload:

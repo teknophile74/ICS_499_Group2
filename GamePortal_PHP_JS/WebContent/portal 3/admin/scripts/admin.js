@@ -16,7 +16,6 @@ function ToggleInputDisplay( id, value )
 
 function SetCategoryInputHidden()
 {
-	ToggleInputDisplay( 'categoryNameControl', 'none' );
 	ToggleInputDisplay( 'secondaryLangLabel', 'none' );
 }
 
@@ -24,10 +23,8 @@ function updateInputDisplay(object)
 {
 	if (object) {
 		if (object === 'wordexplorer'){
-			ToggleInputDisplay( 'categoryNameControl', 'block' );
 			ToggleInputDisplay( 'secondaryLangLabel', 'block' );
 		} else {
-			ToggleInputDisplay( 'categoryNameControl', 'none' );
 			ToggleInputDisplay( 'secondaryLangLabel', 'none' );
 		}
 	}

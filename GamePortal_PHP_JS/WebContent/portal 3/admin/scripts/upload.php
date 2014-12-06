@@ -37,7 +37,7 @@ if ( $_FILES ["fileToUpload"] ["name"] ) {
 				$secondary_lang_code = (isset($_POST['secondaryLang'])) ? $_POST ['secondaryLang'] : "";
 				$category_name = (isset($_POST['categoryName'])) ? $_POST ['categoryName'] : "";
 				$error = controller($target_file, $game_name, $country_code, 
-						$primary_lang_code, $secondary_lang_code, $category_name);
+						$primary_lang_code, $secondary_lang_code);
 			}
 			
 			if ($error == "") {
