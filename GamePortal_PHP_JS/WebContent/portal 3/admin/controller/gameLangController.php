@@ -1,11 +1,23 @@
 <?php
 // include and instantiate the class
-require_once("../scripts/PHPDebug.php");
-$debug = new PHPDebug();
+require_once("scripts/PHPDebug.php");
+//Set Debug flag
+$doDebug=true;
+$debug=null;
+if ($doDebug) {
+	if ($debug = null) {
+		$debug = new PHPDebug();
+	}
+}
 /*
  * Getting values from json
  * http://www.academia.edu/4092169/Get_data_from_string_with_JSON_object_in_PHP
  */
+
+function outputDebug($message) {
+	// Write debug info to console
+	$debug->debug($message);
+}
 
 function testForValidURL($url) {
 	$isURL=false;
@@ -14,7 +26,7 @@ function testForValidURL($url) {
 		//URL is valid
 		$isURL=true;
 	} else {
-		$debug->debug($url." is not a valid URL!");// Write debug info
+		outputDebug($url." is not a valid URL!");// Write debug info
 	}
 	return $isURL;
 }
@@ -24,7 +36,7 @@ function testForValidStrings($newString) {
 	
 	if (!is_string($newString)) {
 		$isString=false;
-		$debug->debug($isString." is not a string value!");// Write debug info
+		outputDebug($isString." is not a string value!");// Write debug info
 	}
 	return $isString;
 }
@@ -43,6 +55,7 @@ function openFile($filename) {
 function readScriptsJSONFiles($filename) {
 	$returnArray=array();
 	$returnArray = file($filename);
+	outputDebug("Trying to load: $filename into returnArray"); // Write debug info
 	//drop first line - read the rest into the array
 	unset($returnArray[0]);
 	//file_put_contents("outfile.txt", implode("", $file_array));
@@ -78,7 +91,7 @@ $upload_formatVar,$upload_formatHeaders,$upload_formatFormat) {
 		}
 	} else {
 		// error opening the file.
-		$debug->debug("Error opening upload format for game: $filename"); // Write debug info
+		outputDebug("Error opening upload format for game: $filename"); // Write debug info
 	}
 	fclose($handle);
 }
@@ -90,11 +103,11 @@ function readCSVFile($filename) {
 		while (($data = fgetcsv($handle, 1024, "|")) !== FALSE) {
 			$num = count($data);
 			// Write debug info
-			$debug->debug("$num fields in line $row");// Write debug info
+			outputDebug("$num fields in line $row");// Write debug info
 			$row++;
 			for ($c=0; $c < $num; $c++) {
 				// Write debug info
-				$debug->debug("Current array data for colum: $c is $data[$c]");// Write debug info
+				outputDebug("Current array data for colum: $c is $data[$c]");// Write debug info
 				array_push($csvReturnArray, $data[$c]);
 			}
 		}
@@ -118,7 +131,7 @@ function writeJSON($headers, $inputArray, $destFilename) {
         $data[] = $item;
     }
     
-    $debug->debug("Attempting to encode new JSON file to $destFilename");// Write debug info
+    outputDebug("Attempting to encode new JSON file to $destFilename");// Write debug info
     
     file_put_contents($destFilename, implode("",json_encode($data)));
 }
@@ -160,23 +173,26 @@ function fileConversion($game_name ,$JSON_fileName, $JSON_arrayName,
 
 function controller($target_file, $game_name, $country_code, 
 					$primary_lang_code, $secondary_lang_code) {
+	$langfiledata=array(); $countrydataarray=array();
 	// Gets GAME name, Country and Language(s) from POST - in variables
 	$return_message = ""; 	// Set return message string
-	$upload_dir = "../upload_files/"; 	// Get path to uploaded file
-	$scripts_dir = "../scripts/"; 	// Get path to uploaded file
+	$upload_dir = "upload_files/"; 	// Get path to uploaded file
+	$scripts_dir = "scripts/"; 	// Get path to uploaded file
 	
 	// Get JSON Language Array
-	//$langfiledata = readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js');
-	$langdataarray = json_decode((readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js')), true);
+	$langfiledata = readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js');
+	foreach ($langfiledata as $row) {
+		array_push($langdataarray, json_decode($row, true));
+	}
 	vardump($langdataarray);
 	
 	// Get JSON Country Array
-	//$countryfiledata = readScriptsJSONFiles($scripts_dir.'countries.js');
-	$countrydataarray = json_decode((readScriptsJSONFiles($scripts_dir.'countries.js')), true);
+	$countryfiledata = readScriptsJSONFiles($scripts_dir.'countries.js');
+	$countrydataarray = json_decode($countryfiledata, true);
 	vardump($countrydataarray);
 	
 	// Set games base path
-	$game_dir = "../../games/";
+	$game_dir = "../games/";
 	$lang_dir = $game_dir.$game_name.'/lang/';
 	$dest_dir = null;
 	
@@ -200,7 +216,7 @@ function controller($target_file, $game_name, $country_code,
 	$prilang_name = $langdataarray[$primary_lang_code];
 	$seclang_name = $langdataarray[$secondary_lang_code];
 	
-	$debug->debug("Current variables are: $game_dir $lang_dir $dest_dir $upload_formatName $upload_formatVar $upload_formatHeaders $upload_formatFormat");// Write debug info
+	outputDebug("Current variables are: $game_dir $lang_dir $dest_dir $upload_formatName $upload_formatVar $upload_formatHeaders $upload_formatFormat");// Write debug info
 	
 	// Check for existence of uploaded file
 	if (file_exists($target_file)) {
@@ -211,7 +227,7 @@ function controller($target_file, $game_name, $country_code,
 		} else {
 			$dest_dir = $lang_dir.$country_code.'/'.$primary_lang_code.'/';
 		}
-		$debug->debug("Destination for new file is $dest_dir");// Write debug info
+		outputDebug("Destination for new file is $dest_dir");// Write debug info
 		
 		openFile($target_file);
 		
@@ -237,5 +253,5 @@ function controller($target_file, $game_name, $country_code,
 	// Return to upload page
 	return $return_message;
 }
-controller('upload_files/testfile.txt', 'alphaarranger', '', 'CN', '');
+//controller('upload_files/testfile.txt', 'alphaarranger', '', 'CN', '');
 ?>
