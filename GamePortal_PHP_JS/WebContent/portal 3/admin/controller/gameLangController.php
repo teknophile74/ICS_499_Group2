@@ -1,22 +1,29 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 // include and instantiate the class
 require_once("scripts/PHPDebug.php");
 //Set Debug flag
 $doDebug=true;
 $debug=null;
 if ($doDebug) {
-	if ($debug = null) {
+	if ($debug==null) {
 		$debug = new PHPDebug();
 	}
 }
+
 /*
  * Getting values from json
  * http://www.academia.edu/4092169/Get_data_from_string_with_JSON_object_in_PHP
  */
 
-function outputDebug($message) {
+function outputDebug($message, $json=null, $type=null) {
 	// Write debug info to console
-	$debug->debug($message);
+	global $doDebug;
+	if ($doDebug) {
+		global $debug;
+		$debug->debug($message,$json,$type);
+	}
 }
 
 function testForValidURL($url) {
@@ -52,18 +59,16 @@ function openFile($filename) {
     return $lines;
 }
 
-function readScriptsJSONFiles($filename) {
-	$returnArray=array();
+function readScriptsJSONFiles($filename, $returnArray) {
 	$returnArray = file($filename);
 	outputDebug("Trying to load: $filename into returnArray"); // Write debug info
 	//drop first line - read the rest into the array
 	unset($returnArray[0]);
-	//file_put_contents("outfile.txt", implode("", $file_array));
-	return $returnArray; 
+	return $returnArray;
 }
 
 function getUploadFormat($filename,$upload_formatName,
-$upload_formatVar,$upload_formatHeaders,$upload_formatFormat) {
+	$upload_formatVar,$upload_formatHeaders,$upload_formatFormat) {
 	$counter=1;
 	$handle = fopen($filename, "r");
 	if ($handle) {
@@ -72,18 +77,26 @@ $upload_formatVar,$upload_formatHeaders,$upload_formatFormat) {
 			switch ($counter) {
 				case 1:
 					$upload_formatName=explode(":", $line);
+					return $upload_formatName;
+					//var_dump($counter.":".$upload_formatName[1]);
 					break;
 				case 2:
 					$upload_formatVar=explode(":", $line);
 					$upload_formatVar=explode("|", $upload_formatVar[1]);
+					return $upload_formatVar;
+					//var_dump($counter.":");var_dump($upload_formatVar);
 					break;
 				case 3:
 					$upload_formatHeaders=explode(":", $line);
 					$upload_formatHeaders=explode("|", $upload_formatHeaders[1]);
+					return $upload_formatHeaders;
+					//var_dump($counter.":");var_dump($upload_formatHeaders);
 					break;
 				case 4:
-					$upload_formatHeaders=explode(":", $line);
-					$upload_formatHeaders=explode("|", $upload_formatHeaders[1]);
+					$upload_formatFormat=explode(":", $line);
+					$upload_formatFormat=explode("|", $upload_formatFormat[1]);
+					return $upload_formatFormat;
+					//var_dump($counter.":");var_dump($upload_formatFormat);
 					break;
 				default:break;
 			}
@@ -167,34 +180,58 @@ function fileConversion($game_name ,$JSON_fileName, $JSON_arrayName,
 	// if Country_LANG has new file add new country and lang combo to
 	// CurrentLangDirs.js file in game lang dir
 	
+	//file_put_contents("outfile.txt", implode("", $file_array));
+	
 	// Write out success message to admin user
 	// ELSE Write out failure message to admin user
 }
 
+function array_push_assoc($array, $key, $value){
+	$array[$key] = $value;
+	return $array;
+}
+
 function controller($target_file, $game_name, $country_code, 
 					$primary_lang_code, $secondary_lang_code) {
-	$langfiledata=array(); $countrydataarray=array();
+	$langfiledata=array(); $countryfiledata=array();
+	$langdataarray=array(); $countrydataarray=array();
 	// Gets GAME name, Country and Language(s) from POST - in variables
 	$return_message = ""; 	// Set return message string
 	$upload_dir = "upload_files/"; 	// Get path to uploaded file
 	$scripts_dir = "scripts/"; 	// Get path to uploaded file
 	
 	// Get JSON Language Array
-	$langfiledata = readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js');
+	$langfiledata = readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js',$langfiledata);
 	foreach ($langfiledata as $row) {
-		array_push($langdataarray, json_decode($row, true));
+		$notAllowed="{};";
+		
+		if (!(strpbrk($row,$notAllowed))) {
+			$result=explode(":", $row);
+			$key=str_replace(array('\'',',','"',' '),'',$result[0]);
+			$value=str_replace(array('\'',',','"',' '),'',$result[1]);
+			$langdataarray = array_push_assoc($langdataarray,$key,$value);
+		}
 	}
-	vardump($langdataarray);
 	
 	// Get JSON Country Array
-	$countryfiledata = readScriptsJSONFiles($scripts_dir.'countries.js');
-	$countrydataarray = json_decode($countryfiledata, true);
-	vardump($countrydataarray);
+	$countryfiledata = readScriptsJSONFiles($scripts_dir.'countries.js',$countryfiledata);
+	//$countrydataarray = json_decode($countryfiledata, true);
+	foreach ($countryfiledata as $row) {
+		$notAllowed="[];";
+	
+		if (!(strpbrk($row,$notAllowed))) {
+			//$result=explode(":", $row);
+			$result=str_replace(array('},'),'}',$row);
+			$result=json_decode($result,true);
+			array_push($countrydataarray, $result);
+		}
+	}
 	
 	// Set games base path
 	$game_dir = "../games/";
 	$lang_dir = $game_dir.$game_name.'/lang/';
 	$dest_dir = null;
+	//var_dump($game_dir."<br />".$lang_dir."<br />".$dest_dir);
 	
 	// Set temp file name
 	$temp_filename = "temp_conversion_file";
@@ -206,7 +243,11 @@ function controller($target_file, $game_name, $country_code,
 	// Get game upload format (upload.format) in lang dir of game
 	getUploadFormat($lang_dir.'upload.format',$upload_formatName,$upload_formatVar,$upload_formatHeaders,$upload_formatFormat);
 	
-	vardump($upload_formatName);vardump($upload_formatVar);vardump($upload_formatHeaders);vardump($upload_formatFormat);
+	var_dump($upload_formatName);var_dump("<br />");
+	var_dump($upload_formatVar);var_dump("<br />");
+	var_dump($upload_formatHeaders);var_dump("<br />");
+	var_dump($upload_formatFormat);
+
 		
 	// Set Name of new JSON array and file name
 	$JSON_arrayName = "";
@@ -217,6 +258,7 @@ function controller($target_file, $game_name, $country_code,
 	$seclang_name = $langdataarray[$secondary_lang_code];
 	
 	outputDebug("Current variables are: $game_dir $lang_dir $dest_dir $upload_formatName $upload_formatVar $upload_formatHeaders $upload_formatFormat");// Write debug info
+	die;
 	
 	// Check for existence of uploaded file
 	if (file_exists($target_file)) {

@@ -1,15 +1,14 @@
 <?php
 // include and instantiate the class
-require("scripts/PHPDebug.php");
+require_once("scripts/PHPDebug.php");
 //Set Debug flag
-$doDebug=false;
+$doDebug=true;
 $debug=null;
 if ($doDebug) {
-	if ($debug = null) {
+	if ($debug==null) {
 		$debug = new PHPDebug();
 	}
 }
-include('controller/gameLangController.php');
 
 $error = ''; // Variable To Store Error Message
 $reason = ''; // Var to store reason for failure
@@ -48,9 +47,10 @@ if( strtolower( $_SERVER[ 'REQUEST_METHOD' ] ) == 'post' && !empty( $_FILES ) ) 
 					$primary_lang_code = (isset($_POST['primaryLang'])) ? $_POST ['primaryLang'] : "";
 					$secondary_lang_code = (isset($_POST['secondaryLang'])) ? $_POST ['secondaryLang'] : "";
 					$category_name = (isset($_POST['categoryName'])) ? $_POST ['categoryName'] : "";
-					if ($doDebug) {$debug->debug("Running upload controller withthe following variables: ");}
+					if ($doDebug) {$debug->debug("Running upload controller withthe following variables: ",null,'LOG');}
 					if ($doDebug) {$debug->debug("$target_file, $game_name, $country_code, 
-							$primary_lang_code, $secondary_lang_code");}
+							$primary_lang_code, $secondary_lang_code",null,'LOG');}
+					include('controller/gameLangController.php');
 					$error = controller($target_file, $game_name, $country_code, 
 							$primary_lang_code, $secondary_lang_code);
 				}
