@@ -7,7 +7,7 @@ class PHPDebug {
 		if (!defined("WARN"))   define("WARN",3);
 		if (!defined("ERROR"))  define("ERROR",4);
 
-		define("NL","\r\n");
+		if (!defined("NL"))     define("NL","\r\n");
 		echo '<script type="text/javascript">'.NL;
 		 
 		/// this is for IE and other browsers w/o console

@@ -108,8 +108,8 @@ function SetOption(selectBox, i, tagToPop)
     if (tagToPop === 'Lang')
 	{
         newOption.id = CurrentLangDirs[i].dir;
-        newOption.innerHTML = CurrentLangDirs[i].arrayName;
-        newOption.value = CurrentLangDirs[i].arrayName;
+        newOption.innerHTML = CurrentLangDirs[i].PrimaryLang;
+        newOption.value = CurrentLangDirs[i].PrimaryLang;
 	}
     
     if (newOption) 
@@ -123,7 +123,7 @@ function SetLangScripts(i)
 {
     var head = document.getElementsByTagName("head")[0];
     var sourcesPath = CurrentLangDirs[i].dir;
-    var scriptId = CurrentLangDirs[i].arrayName+'LangArray';
+    var scriptId = CurrentLangDirs[i].PrimaryLang+'LangArray';
     
     sourcesPath = 'lang/' + sourcesPath.replace("_", "/") + '/LangJSON.js';
   
