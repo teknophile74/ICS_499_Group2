@@ -49,10 +49,7 @@ function validateFileData($inputLine, $expectUploadFormat) {
 	if ($doDebug) {var_dump("<br/ >validateFileData Variables:<br />");}
 	// Begin checks
 	if ((is_array($inputLine)) && (is_array($expectUploadFormat))) {
-// 		var_dump($expectUploadFormat);
-// 		var_dump("<br />");
-// 		var_dump($inputLine);
-// 		var_dump("<br />");
+		if ($doDebug) {var_dump($expectUploadFormat,"<br />",$inputLine,"<br />");}
 		$i=0;
 		foreach ($expectUploadFormat as $inputCheck) {
 			if ($doDebug) {var_dump("1 {$inputCheck}<br />");}
@@ -98,13 +95,105 @@ function validateFileData($inputLine, $expectUploadFormat) {
 	return $isValid;
 }
 
+function writeBackUpdatedLangDirFile($currentLangDirsVar, $game_name,
+		$currentLangDirsarray, $dest_filenames, $prilang_name, 
+		$seclang_name, $dest_dir_var) {
+	global $doDebug;
+	//$doDebug=TRUE;
+	$isDupValue=FALSE;
+	if ($doDebug) {var_dump("Update CurrentLangDirs File Start<br />");}
+	
+	$langDirHeaders=array("dir","PrimaryLang");
+	if ($game_name == 'wordexplorer') {
+		array_push($langDirHeaders,"SecondaryLang","Categories");
+	}
+	
+	$currentLangDirsarray = $currentLangDirsarray[0];
+	
+	foreach($currentLangDirsarray as $row) {
+		foreach($row as $key=>$value) {
+			if ($value==$dest_dir_var) { 
+				$isDupValue=TRUE;
+				break 2;
+			}
+		}	
+	}
+	
+	if (!$isDupValue) {
+		// Carve off new directory from array
+		$tempArray = array_slice($currentLangDirsarray,0,1);
+		$tempArray = $tempArray[0];
+			
+		if ($doDebug) {var_dump("Current Lang Dirs 1: ",$currentLangDirsarray,"<br />");}
+		if ($doDebug) {var_dump("Temp Array 1: ",$tempArray,"<br />");}
+		
+		// Add new members to temp array
+		foreach($tempArray as $key => $value) {
+			if ($key == 'dir') { 
+				$tempArray[$key]=$dest_dir_var;
+			}
+			if ($key == 'PrimaryLang') { 
+				$tempArray[$key]=$prilang_name;
+			}
+			// Check for Special Game headers
+			if ($game_name == 'wordexplorer') {
+				array_push($langDirHeaders,"SecondaryLang","Categories");
+				if ($key == 'SecondaryLang') {  
+					$tempArray[$key]=$seclang_name; 
+				}
+				// TODO Complete Coding of this function
+				if ($key == 'Categories') { 
+					$tempArray[$key]=array(); 
+				}
+			}
+		}
+	
+		if ($doDebug) {var_dump("Temp Array 2: ",$tempArray,"<br />");}
+		
+		// Merge Arrays and sort output array
+		$currentLangDirsarray[] = $tempArray;
+	}
+	
+	asort($currentLangDirsarray);
+	
+	if ($doDebug) {var_dump("Current Lang Dirs 2: ",$currentLangDirsarray,"<br />");}
+	if ($doDebug) {
+		var_dump("CurrentLangDirs File Variables - Before Writing");
+		$varArray = array($currentLangDirsVar, $game_name,
+			$currentLangDirsarray, $dest_filenames, 
+			$prilang_name, $seclang_name, 
+			$dest_dir_var, $langDirHeaders);
+		foreach ($varArray as $var) {
+			var_dump($var, "<br/>");
+			outputDebug($var,null,'LOG'); // Write debug info
+		}
+	}
+	
+	// Create a backup copy of the original file 
+	if (!copy($currentLangDirsVar, "{$currentLangDirsVar}.bak")) {
+		if ($doDebug) {var_dump("Backup copy of {$currentLangDirsVar} failed <br />");}
+	}
+	// Write out new LangDir File
+	$resource = fopen($currentLangDirsVar, 'wb+');
+	fwrite($resource, "var CurrentLangDirs = \n");
+	writeJSON($resource,$langDirHeaders,$currentLangDirsarray,$currentLangDirsVar, TRUE);
+	fclose($resource);
+	
+	if ($doDebug) {var_dump("Update CurrentLangDirs File Complete<br />");}
+	$doDebug=FALSE;
+}
 
-function readScriptsJSONFiles($filename, &$returnArray) {
+function readScriptsJSONFiles($filename, &$returnArray, $DirArray=FALSE) {
 	outputDebug('Trying to load: '.$filename.' into returnArray',null,'LOG'); // Write debug info
 	
 	$returnArray = file($filename);
-	//drop first line - read the rest into the array
-	unset($returnArray[0]);
+	if ($DirArray) {
+		//drop first element - read the rest into the array
+		array_shift($returnArray);
+	} else {
+		//drop first line - read the rest into the array
+		unset($returnArray[0]);
+	}
 	return $returnArray;
 }
 
@@ -172,7 +261,7 @@ function readCSVFile($filename, &$csvReturnArray) {
 					$arrayIndex=$row-2;
 					for ($c=0; $c < $num; $c++) {
 						// Write debug info
-						outputDebug("Current array data for colum: {$c} is {$data[$c]}",null,'LOG'); // Write debug info
+						outputDebug("Current array data for column: {$c} is {$data[$c]}",null,'LOG'); // Write debug info
 						$csvReturnArray[$arrayIndex][$c] = $data[$c];
 					}
 				}
@@ -190,7 +279,9 @@ function readCSVFile($filename, &$csvReturnArray) {
 	}
 }
 
-function writeJSON(&$resource, $headers, $inputArray, $destFilename) {
+function writeJSON(&$resource, $headers, $inputArray, $destFilename, $LangDir) {
+	global $doDebug;
+	$doDebug=FALSE;
 	/**
 	 * Concept borrowed from http://php.net/manual/en/function.json-encode.php
 	 */ 
@@ -198,22 +289,30 @@ function writeJSON(&$resource, $headers, $inputArray, $destFilename) {
     $data = array();
     foreach($inputArray as $row) {
         $item = array();
+        if ($doDebug) {var_dump("Current Row: ",$row,"<br />");}
         foreach ($row as $key => $rowData) {
-            $item[$headers[$key]] = utf8_encode($rowData);
+        	if ($doDebug) {var_dump("Current Header: ",$headers,"<br />");}
+        	if ($doDebug) {var_dump("Current Key: ",$key,"<br />");}
+        	if ($doDebug) {var_dump("Current Data: ",$rowData,"<br />");}
+        	if ($LangDir) {
+        		$item[$key] = utf8_encode($rowData);
+        	} else {
+            	$item[$headers[$key]] = utf8_encode($rowData);
+        	}
         }
         $data[] = $item;
     }
     
-    outputDebug('Attempting to encode new JSON file to '.$destFilename,null,'LOG');// Write debug info
+    outputDebug("Attempting to encode new JSON file to {$destFilename}",null,'LOG');// Write debug info
     //file_put_contents($destFilename, implode("",json_encode($data)));
-    fwrite($resource, json_encode($data, JSON_UNESCAPED_SLASHES));
+    fwrite($resource, (json_encode($data, JSON_UNESCAPED_SLASHES)).";");
+    //$doDebug=FALSE;
 }
 
 function fileConversion($game_name, $prilang_name, $seclang_name, 
 			$upload_formatName,	$upload_formatVar, $upload_formatHeaders, 
 			$upload_formatFormat, $newFileArray, $temp_filename) {
 	global $doDebug;
-	$doDebug = FALSE;
 	if ($doDebug) {var_dump("JSON Conversion Process Start<br />");}
 	// Set Name of new JSON array and file name
 	$JSON_arrayName=''; $category_name='';
@@ -261,7 +360,7 @@ function fileConversion($game_name, $prilang_name, $seclang_name,
 	for ($i=0; $i < count($JSON_fileName); ++$i) {
 		$resource = fopen("{$temp_filename}_{$i}", 'wb+');
 		fwrite($resource, "var {$JSON_arrayName} = \n");
-		writeJSON($resource,$upload_formatHeaders,$tempArray,"{$temp_filename}_{$i}");
+		writeJSON($resource,$upload_formatHeaders,$tempArray,"{$temp_filename}_{$i}", FALSE);
 		fclose($resource);
 	}
 	// Write out failure message to admin user - if process is broken
@@ -272,6 +371,7 @@ function fileConversion($game_name, $prilang_name, $seclang_name,
 function controller($target_file, $game_name, $country_code, 
 					$primary_lang_code, $secondary_lang_code) {
 	global $doDebug;
+	$doDebug=FALSE;
 	if ($doDebug) {
 		echo "Incoming Parameters<br />";
 		var_dump($target_file, $game_name, $country_code, $primary_lang_code, $secondary_lang_code);
@@ -280,6 +380,7 @@ function controller($target_file, $game_name, $country_code,
 	
 	$langfiledata=array(); $countryfiledata=array();
 	$langdataarray=array(); $countrydataarray=array();
+	$currentLangDirsarray=array(); $currentLangDirsdata=array();
 	// Gets GAME name, Country and Language(s) from POST - in variables
 	$return_message = ""; 	// Set return message string
 	$upload_dir = "upload_files/"; 	// Get path to uploaded file
@@ -288,16 +389,16 @@ function controller($target_file, $game_name, $country_code,
 	$game_dir = "../games/";
 	$lang_dir = "{$game_dir}{$game_name}/lang/";
 	$dest_dir = null;
+	$dest_dir_var = null;
 	// Set temp file name
 	$temp_filename = "{$upload_dir}temp_conversion_file";
 	
 	if ($doDebug) {
 		echo "Local Variables<br />";
-		var_dump($upload_dir, $scripts_dir, $game_dir, $lang_dir, $dest_dir, $temp_filename);
-		var_dump("<br />");
+		var_dump($upload_dir, $scripts_dir, $game_dir, $lang_dir, 
+			$dest_dir, $dest_dir_var, $temp_filename, "<br />");
 	}
 	// Get JSON Language Array
-	//$langfiledata = readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js',$langfiledata);
 	readScriptsJSONFiles($scripts_dir.'ISOV639v2Codes.js',$langfiledata);
 	foreach ($langfiledata as $row) {
 		$notAllowed="{};";
@@ -312,20 +413,34 @@ function controller($target_file, $game_name, $country_code,
 	if ($doDebug) {echo "Langfiledata Variables<br />";	var_dump($langdataarray); var_dump("<br />");}
 	
 	// Get JSON Country Array
-	//$countryfiledata = readScriptsJSONFiles($scripts_dir.'countries.js',$countryfiledata);
 	readScriptsJSONFiles($scripts_dir.'countries.js',$countryfiledata);
-	//$countrydataarray = json_decode($countryfiledata, true);
 	foreach ($countryfiledata as $row) {
 		$notAllowed="[];";
 	
 		if (!(strpbrk($row,$notAllowed))) {
-			//$result=explode(":", $row);
 			$result=str_replace(array('},'),'}',$row);
 			$result=json_decode($result,true);
 			array_push($countrydataarray, $result);
 		}
 	}
 	if ($doDebug) {echo "Countryfiledata Variables<br />"; var_dump($countrydataarray); var_dump("<br />");}
+	
+	//$doDebug=TRUE;
+	// Get JSON Current Lang Directories Array
+	readScriptsJSONFiles($lang_dir.'CurrentLangDirs.js',$currentLangDirsdata, TRUE);
+	foreach ($currentLangDirsdata as $row) {
+		//$notAllowed="[];";
+		
+		//if (!strpbrk($row,$notAllowed)) {
+			//$result=str_replace(array('},'),'}',$row);
+			$row=trim($row,";");
+			//var_dump($row);
+			$result=json_decode($row,true);
+			array_push($currentLangDirsarray, $result);
+		//}
+	}
+	if ($doDebug) {echo "CurrentLangDirsdata Variables<br />";	var_dump($currentLangDirsarray); var_dump("<br />");}
+	//$doDebug=FALSE;
 	
 	$upload_formatName='';	$upload_formatVar=array();
 	$upload_formatHeaders=array(); 	$upload_formatFormat=array();
@@ -366,9 +481,11 @@ function controller($target_file, $game_name, $country_code,
 		// Set up base path to lang folder
 		if ($game_name == 'wordexplorer'){
 			// If game was "wordexplorer" game chosen - special path
-			$dest_dir = $lang_dir.$country_code.'/'.$primary_lang_code.'/'.$secondary_lang_code.'/';
+			$dest_dir = "{$lang_dir}{$country_code}/{$primary_lang_code}/{$secondary_lang_code}/";
+			$dest_dir_var = "{$country_code}_{$primary_lang_code}_{$secondary_lang_code}";
 		} else {
-			$dest_dir = $lang_dir.$country_code.'/'.$primary_lang_code.'/';
+			$dest_dir = "{$lang_dir}{$country_code}/{$primary_lang_code}/";
+			$dest_dir_var = "{$country_code}_{$primary_lang_code}";
 		}
 		outputDebug("Destination for new file is {$dest_dir}",null,'LOG');// Write debug info
 		
@@ -438,7 +555,7 @@ function controller($target_file, $game_name, $country_code,
 							destination directory of {$dest_dir}!<br/>";
 						break;
 					}
-					
+
 					if (is_file($finalDestFileName)) {
 						// If debug keep files for evaluation
 						if (!$doDebug) {
@@ -459,7 +576,8 @@ function controller($target_file, $game_name, $country_code,
 			 * if Country_LANG has new file add new country and lang combo to
 			 * CurrentLangDirs.js file in game lang dir
 			 */
-			// !!!MORE WORK NEEDED HERE!!!! Update CurrentLangDirs with new file input.
+			writeBackUpdatedLangDirFile("{$lang_dir}CurrentLangDirs.js", $game_name,
+			$currentLangDirsarray, $dest_filenames, $prilang_name, $seclang_name, $dest_dir_var);
 		}
 		
 		// If debug keep files for evaluation

@@ -24,11 +24,12 @@ function init()
 	// set initially needed values
 	puzzleName = PuzzleBaseConfig.puzzleName;
 	currentLang = PuzzleBaseConfig.currentLang;
+	outputStyle = PuzzleBaseConfig.initialStyle;
 	
 	PopulatePageLanguageSettings();
 	PopulateGameStyleSettings();
-	if (!(GetLanguageFromQueryString()))
-	{
+	if (!(GetLanguageFromQueryString())){
+		// Set Current Language
 		var selectBox = document.getElementById('Lang');
 		for(var i=0; i < selectBox.length; i++)
 		{
@@ -38,6 +39,17 @@ function init()
 		   }
 		}
 	}
+	
+	// Set Current Style
+	var selectBox = document.getElementById('Style');
+	for(var i=0; i < selectBox.length; i++)
+	{
+	   if (outputStyle == selectBox.options[i].value)
+	   {
+		   selectBox.selectedIndex = i;
+	   }
+	}
+	
 	// initial parameters used to create the game
 	CreatePuzzle(PuzzleBaseConfig.puzzleName, PuzzleBaseConfig.initialStyle,
 				PuzzleBaseConfig.initialOffset, PuzzleBaseConfig.currentLang, 
